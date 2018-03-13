@@ -6,7 +6,27 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <nav>
+            <ul>
+                <li><a href="{{ url('home') }}">Home</a></li>
+                {% if user is null %}
+                <li><a href="{{ url('login') }}">Log in</a></li>
+                {% endif %}
+
+                {% if user is not null %}
+                    <li><a href="{{ url('login') }}">Log out</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+        {% for flash_message in app.session.flashBag.get('error') %}
+            <div class="flash-notice"> {{ flash_message }} </div>
+        {% endfor %}
+
+        {% block body %}
+        {% endblock %}
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
