@@ -25,8 +25,6 @@ class DefaultController extends Controller
         $session = new Session();
         $user = $session->get('user_id');
 
-        var_dump($session);
-
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'user_id' => $user

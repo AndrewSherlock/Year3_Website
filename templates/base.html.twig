@@ -3,7 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+            <link rel="stylesheet" href="/css/font-awesome.css">
+            <link rel="stylesheet" href="/css/styles.css">
+            <link rel="stylesheet" href="/css/food.css">
+
+        {% endblock %}
     </head>
     <body>
         <nav>
@@ -14,7 +20,10 @@
                     <li><a href="{{ url('login') }}">Log in</a></li>
                 {% endif %}
 
+                <li><a href="{{ path('food_index')}}">See foods</a></li>
+
                 {% if user_id is defined and user_id is not null %}
+                    <li><a href="{{ path('food_new')}}">Add new food</a></li>
                     <li><a href="{{ path('user_show', {'id': user_id})}}">Profile</a></li>
                     <li><a href="{{ url('logout') }}">Log out</a></li>
                 {% endif %}

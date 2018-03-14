@@ -56,9 +56,20 @@ class Food
     private $category;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Review", inversedBy="foods")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $reviews;
+
+    /**
      *  @ORM\Column(type="date")
      */
     private $dateAdded;
+
+    public function __construct()
+    {
+       // $this->reviews = new ArrayCollection();
+    }
 
     /**
      * @return mixed

@@ -27,6 +27,11 @@ class Category
      */
     private $foods;
 
+    public function __construct()
+    {
+      //  $this->foods = new ArrayCollection();
+    }
+
     /**
      * @return mixed
      */
@@ -58,6 +63,4 @@ class Category
     {
         $this->category = $category;
     }
-
-
 }

@@ -33,6 +33,11 @@ class User
     private $foods;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="user")
+     */
+    private $reviews;
+
+    /**
      * @return mixed
      */
     public function getId()

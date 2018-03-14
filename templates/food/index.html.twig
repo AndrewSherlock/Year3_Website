@@ -1,20 +1,81 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}Food index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>src/Controller/FoodController.php</code></li>
-        <li>Your template at <code>templates/food/index.html.twig</code></li>
-    </ul>
-</div>
+    <h1> Food list</h1>
+
+    <div class="row col-md-12">
+        <div class="row col-md-10">
+            {% for food in foods %}
+
+                <div class="col-md-4">
+                    <a href="{{ path('food_show_detail', {'id': food.id}) }}">
+                        <h3>{{ food.title }}</h3>
+                        <img src="{{ food.photoLink }}">
+                        <p>Click to view reviews</p>
+                        <p>0 reviews available</p>
+                    </a>
+                </div>
+
+            {% else %}
+                <div class="col-md-12">
+                    <div class="alert alert-primary" role="alert">
+                        There is no foods available. There maybe more available if you register!
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-2" style="background: #000000" >
+
+        </div>
+    </div>
+
+
+    <div class="col-md-4" style="background: #000000" >
+
+    </div>
+
+
+
+    {#<h1>Food index</h1>#}
+    {#<table>#}
+    {#<thead>#}
+    {#<tr>#}
+    {#<th>Id</th>#}
+    {#<th>Title</th>#}
+    {#<th>Summary</th>#}
+    {#<th>PhotoLink</th>#}
+    {#<th>Description</th>#}
+    {#<th>Price</th>#}
+    {#<th>DateAdded</th>#}
+    {#<th>actions</th>#}
+    {#</tr>#}
+    {#</thead>#}
+    {#<tbody>#}
+    {#{% for food in foods %}#}
+    {#<tr>#}
+    {#<td>{{ food.id }}</td>#}
+    {#<td>{{ food.title }}</td>#}
+    {#<td>{{ food.summary }}</td>#}
+    {#<td>{{ food.photoLink }}</td>#}
+    {#<td>{{ food.description }}</td>#}
+    {#<td>{{ food.price }}</td>#}
+    {#<td>{{ food.dateAdded ? food.dateAdded|date('Y-m-d') : '' }}</td>#}
+    {#<td>#}
+    {#<a href="{{ path('food_show', {'id': food.id}) }}">show</a>#}
+    {#<a href="{{ path('food_edit', {'id': food.id}) }}">edit</a>#}
+    {#</td>#}
+    {#</tr>#}
+    {#{% else %}#}
+    {#<tr>#}
+    {#<td colspan="8">no records found</td>#}
+    {#</tr>#}
+    {#{% endfor %}#}
+    {#</tbody>#}
+    {#</table>#}
+    {#<a href="{{ path('food_new') }}">Create new</a>#}
+
 {% endblock %}
