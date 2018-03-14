@@ -27,8 +27,10 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
 
-
-        return $u[0];
+        if($u != null)
+            return $u[0];
+        else
+            return null;
     }
 
     /*

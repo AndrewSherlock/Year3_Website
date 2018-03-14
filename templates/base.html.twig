@@ -9,16 +9,22 @@
         <nav>
             <ul>
                 <li><a href="{{ url('home') }}">Home</a></li>
-                {% if user is null %}
-                <li><a href="{{ url('login') }}">Log in</a></li>
+                {% if user_id is not defined or user_id is null%}
+                    <li><a href="{{ url('register') }}">Register</a></li>
+                    <li><a href="{{ url('login') }}">Log in</a></li>
                 {% endif %}
 
-                {% if user is not null %}
-                    <li><a href="{{ url('login') }}">Log out</a></li>
+                {% if user_id is defined and user_id is not null %}
+                    <li><a href="{{ path('user_show', {'id': user_id})}}">Profile</a></li>
+                    <li><a href="{{ url('logout') }}">Log out</a></li>
                 {% endif %}
 
             </ul>
         </nav>
+
+        {% for flash_message in app.session.flashBag.get('success') %}
+            <div class="flash-notice"> {{ flash_message }} </div>
+        {% endfor %}
 
         {% for flash_message in app.session.flashBag.get('error') %}
             <div class="flash-notice"> {{ flash_message }} </div>

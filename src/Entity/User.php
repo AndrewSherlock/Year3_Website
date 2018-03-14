@@ -26,6 +26,12 @@ class User
      */
     private $password;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Food", mappedBy="user")
+     */
+    private $foods;
+
     /**
      * @return mixed
      */
