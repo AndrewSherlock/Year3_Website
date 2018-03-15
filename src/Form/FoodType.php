@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Food;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,10 @@ class FoodType extends AbstractType
         $builder
             ->add('title')
             ->add('summary')
-            ->add('photoLink')
+            ->add('photoLink', FileType::class, array(
+                'multiple' => true,
+                'label' => 'Upload images'
+            ))
             ->add('description')
             ->add('price')
             ->add('category', EntityType::class,

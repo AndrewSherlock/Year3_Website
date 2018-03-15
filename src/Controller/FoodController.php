@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Food;
 use App\Entity\Review;
 use App\Form\FoodType;
+use App\Utils\ImageUploader;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,10 +29,19 @@ class FoodController extends Controller
             ->getRepository(Food::class)
             ->findAll();
 
-        var_dump($foods[0]->getPrice());
+        $photoLink = [];
+
+        foreach ($foods as $food)
+        {
+            $photo = $this->getPhotoLinks($food->getPhotoLink())[0];
+            array_push($photoLink, $photo);
+        }
 
 
-        return $this->render('food/index.html.twig', ['foods' => $foods]);
+        return $this->render('food/index.html.twig', [
+            'foods' => $foods,
+            'photos' => $photoLink
+        ]);
     }
 
     /**
@@ -52,12 +63,18 @@ class FoodController extends Controller
             $averageScore += floatval($review->getStars());
         }
 
-        $averageScore = $averageScore / sizeof($reviews);
+        $photos = $food->getPhotoLink();
+        $photoList = $this->getPhotoLinks($photos);
+
+        if(sizeof($reviews) > 0) {
+            $averageScore = $averageScore / sizeof($reviews);
+        }
 
         return $this->render('food/detail.html.twig', [
             'food' => $food,
             'average' => $averageScore,
-            'reviews' => $reviews
+            'reviews' => $reviews,
+            'photos' => $photoList
         ]);
     }
 
@@ -83,10 +100,29 @@ class FoodController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $imageUploader = new ImageUploader($request->files->get('food')['photoLink']);
+            $fileAddress = $imageUploader->beginUpload();
+
+            if(!empty($request->files->get('food')['photoLink']) && $fileAddress == null)
+            {
+                $this->addFlash('error', 'There was a probelm with your images');
+                return $this->redirectToRoute('new');
+            }
+
+           // var_dump($fileAddress); die();
+            $arrayString = '';
+
+            foreach($fileAddress as $address)
+            {
+                $arrayString .= '{'. $address .'},';
+            }
+
+
             $date = new \DateTime(date('Y-m-d'));
 
             $food->setDateAdded($date);
             $food->setAddedBy($user);
+            $food->setPhotoLink($arrayString);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($food);
@@ -170,5 +206,29 @@ class FoodController extends Controller
         $template = 'food\index.html.twig';
 
         return $this->render($template, $args);
+    }
+
+    private function getPhotoLinks($fileString)
+    {
+        $array = [];
+
+        if($fileString != null)
+        {
+            $temp = explode(",", $fileString);
+
+            foreach ($temp as $photo)
+            {
+                if($photo == "" || empty($photo))
+                    continue;
+
+                $photo = str_replace('{','',$photo);
+                $photo = str_replace('}','',$photo);
+                $photo = trim($photo);
+
+                array_push( $array, $photo);
+            }
+        }
+
+        return $array;
     }
 }

@@ -9,12 +9,18 @@
 
     <div class="row col-md-12">
         <div class="row col-md-10">
+            {% set i = 0 %}
             {% for food in foods %}
 
                 <div class="col-md-4">
                     <a href="{{ path('food_show_detail', {'id': food.id}) }}">
                         <h3>{{ food.title }}</h3>
-                        <img src="{{ food.photoLink }}">
+                        {% if photos[i] is not null and photos[i] != "none"%}
+                            <img class="food_main" src="{{ photos[i] }}" alt ="{{ food.title }} image">
+                        {% elseif photos[i] == "none" %}
+                            <img class="food_main" src="/images/full_star.png" alt ="{{ food.title }} image">
+                        {% endif %}
+                        {% set i = i + 1 %}
                         <p>{{ food.summary }}</p>
                         <p>Click to view reviews</p>
                     </a>

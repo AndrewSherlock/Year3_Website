@@ -50,7 +50,9 @@
             {% endfor %}
         </div>
         <div class="col-md-3">
-            <img src="/images/full_star.png">
+            {% if photos is not null %}
+                <img src="{{ photos[0] }}">
+            {% endif %}
         </div>
     </div>
 

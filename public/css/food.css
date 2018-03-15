@@ -2,6 +2,11 @@
 
 }
 
+.food_main{
+    width: 80%;
+    height: 180px;
+}
+
 .review_item{
     border-top: black dashed 2px;
     border-bottom: black dashed 2px;
