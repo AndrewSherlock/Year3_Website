@@ -56,10 +56,29 @@ class Food
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Review", inversedBy="foods")
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="reviews")
      * @ORM\JoinColumn(nullable=true)
      */
     private $reviews;
+
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param mixed $reviews
+     */
+    public function setReviews($reviews): void
+    {
+        $this->reviews = $reviews;
+    }
 
     /**
      *  @ORM\Column(type="date")
@@ -68,7 +87,7 @@ class Food
 
     public function __construct()
     {
-       // $this->reviews = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     /**
@@ -208,14 +227,3 @@ class Food
     }
 
 }
-
-
-/*
-- FOOD/DRINK item =
-	- title (2-3 words)
-	- summary (1 sentence)
-	- uploaded photo
-	- description
-	- list of ingredients
-	- price range (under 5 / 6-9 / 10-14 / 15-19 / 20-39
-*/

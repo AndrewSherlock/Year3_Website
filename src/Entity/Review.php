@@ -33,7 +33,7 @@ class Review
     private $summary;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="float")
      */
     private $stars;
 
@@ -41,6 +41,32 @@ class Review
      * @ORM\Column(type="date")
      */
     private $date;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="Review")
+     */
+    private $votes;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $review_score;
+
+    /**
+     * @return mixed
+     */
+    public function getReviewScore()
+    {
+        return $this->review_score;
+    }
+
+    /**
+     * @param mixed $review_score
+     */
+    public function setReviewScore($review_score): void
+    {
+        $this->review_score = $review_score;
+    }
 
     /**
      * @return mixed
@@ -57,6 +83,23 @@ class Review
     {
         $this->date = $date;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getVotes()
+    {
+        return $this->votes;
+    }
+
+    /**
+     * @param mixed $votes
+     */
+    public function setVotes($votes): void
+    {
+        $this->votes = $votes;
+    }
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Food", inversedBy="foods")

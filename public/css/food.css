@@ -1,7 +1,16 @@
 .food_display{
-    background: #5eb5e0;
+
+}
+
+.review_item{
+    border-top: black dashed 2px;
+    border-bottom: black dashed 2px;
 }
 
 .food_display h2{
     text-align: center;
+}
+
+.review_star{
+    width: 50px;
 }

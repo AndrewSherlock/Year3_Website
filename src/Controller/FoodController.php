@@ -27,6 +27,9 @@ class FoodController extends Controller
             ->getRepository(Food::class)
             ->findAll();
 
+        var_dump($foods[0]->getPrice());
+
+
         return $this->render('food/index.html.twig', ['foods' => $foods]);
     }
 
@@ -37,7 +40,10 @@ class FoodController extends Controller
     public function showFoodDetailAction(Food $food)
     {
         $reviewRp = $this->getDoctrine()->getRepository(Review::class);
-        $reviews = $reviewRp->findBy(['food' => $food->getId()]);
+        $reviews = $reviewRp->findBy(
+            [
+                'food' => $food->getId(),
+        ], array('review_score' => 'DESC'));
 
         $averageScore = 0;
 

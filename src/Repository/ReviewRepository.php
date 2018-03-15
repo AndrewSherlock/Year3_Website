@@ -19,6 +19,24 @@ class ReviewRepository extends ServiceEntityRepository
         parent::__construct($registry, Review::class);
     }
 
+    public function changeReviewScore($id, $value)
+    {
+        $queryRes = $this->createQueryBuilder('r')
+            ->where('r.id = :id')->setParameter('id', $id)
+            ->getQuery()->getResult();
+
+        $reviewScore = $queryRes[0]->getReviewScore();
+        $newScore = intval($value) + $reviewScore;
+
+
+        $setQuery = $this->createQueryBuilder('u')->update(Review::class, 'r')
+            ->set('r.review_score', $newScore)->where('r.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()->execute()
+            ;
+
+    }
+
     /*
     public function findBySomething($value)
     {

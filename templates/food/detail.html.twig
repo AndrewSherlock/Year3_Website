@@ -15,22 +15,39 @@
             <a href="{{ path('review_new', {'id': food.id}) }}">Add review</a>
 
             {% for review in reviews %}
-            <div class="row">
+            <div class="row review_item">
                 <div class="col=md-3">
                     <img src="\images\full_star.png">
                 </div>
                 <div class="col-md-9">
-                    {{ review.addedBy.username }}
-                    {{ review.summary }}
-                    {{ review.price }}
-                    {{ review.date.date }}
-                    {{ review.stars }}
+                    <p>
+                        <span style="margin-top:10px; float: left;"> {{ review.addedBy.username }} </span>
+                        <span style="float: right;">
+                             {% set starsLeft = 0 %}
+                            {% for i in range(1, review.stars, 1) %}
+                                {% set starsLeft = i %}
+                                <img class="review_star" src="/images/full_star.png" alt="star">
+                            {% endfor %}
+                            {%  if review.stars - starsLeft != 0%}
+                                <img class="review_star" src="/images/half_star.png" alt="star">
+                            {% endif %}
+                        </span>
+                    </p>
+                    <p style="clear: both">
+                        <p style="float: left">Date of review : {{ review.date |date('d/m/Y') }}</p>
+                        <p style="float:right;">Price payed : €{{ review.price |number_format(2) }}</p>
+                    </p>
+                    <p style="clear: both">
+                        <p>{{ review.summary }}</p>
+                    </p>
+                    <p style="float: right">
+                        <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"></a>
+                        <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down"></a>
+                    </p>
+                    <p style="clear: both"></p>
                 </div>
             </div>
             {% endfor %}
-
-
-
         </div>
         <div class="col-md-3">
             <img src="/images/full_star.png">

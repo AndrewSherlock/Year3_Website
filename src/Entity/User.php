@@ -38,6 +38,11 @@ class User
     private $reviews;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="user")
+     */
+    private $votes;
+
+    /**
      * @return mixed
      */
     public function getId()

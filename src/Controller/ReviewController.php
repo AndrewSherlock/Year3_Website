@@ -59,6 +59,7 @@ class ReviewController extends Controller
 
         if($form->isSubmitted() && $form->isSubmitted())
         {
+
             $reviewValues = $request->get('form');
 
             if($reviewValues['stars'] > 5 || $reviewValues['stars'] < 0)
@@ -73,6 +74,7 @@ class ReviewController extends Controller
             $review->setPrice($reviewValues['price']);
             $review->setSummary($reviewValues['summary']);
             $review->setStars($reviewValues['stars']);
+            $review->setReviewScore(0);
 
             $foodRp = $this->getDoctrine()->getRepository(Food::class);
             $food = $foodRp->find($id);
@@ -113,6 +115,22 @@ class ReviewController extends Controller
 //            'review' => $review,
 //            'form' => $form->createView(),
 //        ]);
+    }
+
+    /**
+     * @Route("/setScore/{id}", name="set_score")
+     */
+    public function setScore(Request $request)
+    {
+        $id = $request->get('id');
+        $food_id = $request->get('food_id');
+        $value = $request->get('value');
+
+        $reviewRP = $this->getDoctrine()->getManager()->getRepository(Review::class);
+        $reviewRP->changeReviewScore($id, $value);
+
+        $this->addFlash('success', 'Review voted');
+        return $this->redirectToRoute('food_show_detail',array('id' => $food_id));
     }
 
     /**
@@ -162,5 +180,17 @@ class ReviewController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('review_index');
+    }
+
+    public function img()
+    {
+        //$validateF = new ValidateFunctions();
+        $tmp_name = $img['file_upload']['tmp_name'];
+        $name = explode('.',$validateF->sanitize($img['file_upload']['name']));
+        $newName = (int)microtime(true).$id.'.'.$name[1];
+        $this->imageLink = '/images/'.$table.'s/'.$newName;
+        $upload_link = $_SERVER['DOCUMENT_ROOT'].$this->imageLink;
+        move_uploaded_file($tmp_name,$upload_link);
+        return $this->imageLink;
     }
 }
