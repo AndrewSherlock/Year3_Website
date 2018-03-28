@@ -25,9 +25,17 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = $this->getDoctrine()
-            ->getRepository(Food::class)
-            ->findAll();
+        if($this->isGranted("ROLE_USER")) {
+            $foods = $this->getDoctrine()
+                ->getRepository(Food::class)
+                ->findAll();
+        } else{
+            $foods = $this->getDoctrine()
+                ->getRepository(Food::class)
+                ->findBy([
+                    'isPublic' => true,
+                ]);
+        }
 
         $photoLink = [];
 
@@ -45,11 +53,42 @@ class FoodController extends Controller
     }
 
     /**
+     * @Route("/foods/user/{id}", name="show_users")
+     * @return Response
+     */
+    public function showAllUsersPosts(Request $request)
+    {
+        $id = $request->get('id');
+
+        $foods = $this->getDoctrine()->getRepository(Food::class)->findBy(['addedBy' => $id]);
+
+        $photoLink = [];
+
+        foreach ($foods as $food)
+        {
+            $photo = $this->getPhotoLinks($food->getPhotoLink())[0];
+            array_push($photoLink, $photo);
+        }
+
+
+        return $this->render('food/users_food_list.html.twig', [
+            'foods' => $foods,
+            'photos' => $photoLink
+        ]);
+    }
+
+    /**
      * @Route("/detail/{id}", name="show_detail")
      * @Method("GET")
      */
     public function showFoodDetailAction(Food $food)
     {
+        if(!$food->getisPublic() && !$this->isGranted("ROLE_USER"))
+        {
+            $this->addFlash('error', 'Access not granted');
+            return $this->redirectToRoute("food_index");
+        }
+
         $reviewRp = $this->getDoctrine()->getRepository(Review::class);
         $reviews = $reviewRp->findBy(
             [
@@ -84,7 +123,7 @@ class FoodController extends Controller
      */
     public function new(Request $request)
     {
-        $user_id  = $request->getSession()->get('user_id');
+        $user_id  = $this->getUser()->getId();
         $userRP = $this->getDoctrine()->getRepository('App:User');
         $user = $userRP->find($user_id);
 
@@ -158,6 +197,20 @@ class FoodController extends Controller
         $form = $this->createForm(FoodType::class, $food);
         $form->handleRequest($request);
 
+        if($this->getUser() == null)
+        {
+            $this->addFlash('error', 'You must be logged in for that');
+            $this->redirectToRoute('home');
+        }
+
+        $user_id = $this->getUser()->getId();
+
+        if(!in_array('ROLE_ADMIN', $this->getUser()->getRoles()) && $user_id != $food->getAddedBy()->getId())
+        {
+            $this->addFlash('error', 'You do not have access to do that');
+            $this->redirectToRoute('home');
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -230,5 +283,80 @@ class FoodController extends Controller
         }
 
         return $array;
+    }
+
+    /**
+     * @Route("/foods/search", name="process_search")
+     * @return Response
+     */
+    public function foodSearch(Request $request)
+    {
+        $textSearch = $request->get('text_search');
+        $date = $request->get('date_search');
+        $priceRange = $request->get('price_range');
+
+        $foods = [];
+        
+        if($textSearch != "" && !empty($textSearch))
+        {
+            $checkFoods = $this->getDoctrine()->getRepository(Food::class)->findAll();
+            foreach ($foods as $food)
+            {
+                $nameOfFood = $food->getTitle();
+                if(stripos( strtolower($nameOfFood),  strtolower($textSearch)))
+                {
+                    $foods[] = $food;
+                }
+            }
+        }
+
+        if($date != '' && !empty($date))
+        {
+            if(empty($foods))
+            {
+                $checkFoods = $this->getDoctrine()->getRepository(Food::class)->findBy(['dateAdded' => $date]);
+                $foods = $checkFoods;
+            } else{
+
+                $temp = [];
+
+                foreach ($foods as $food)
+                {
+                    if($food->getDateAdded() == $date)
+                    {
+                        $temp[] = $food;
+                    }
+                }
+
+                $foods = $temp;
+            }
+        }
+
+        if($priceRange != '' && !empty($priceRange))
+        {
+            if(empty($foods))
+            {
+                $checkFoods = $this->getDoctrine()->getRepository(Food::class)->findBy(['dateAdded' => $date]);
+                $foods = $checkFoods;
+            } else{
+
+                $temp = [];
+
+                foreach ($foods as $food)
+                {
+                    if($food->getDateAdded() == $date)
+                    {
+                        $temp[] = $food;
+                    }
+                }
+
+                $foods = $temp;
+            }
+        }
+
+
+        print_r($foods);
+        die();
+
     }
 }

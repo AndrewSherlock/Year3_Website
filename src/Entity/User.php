@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements  UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -25,6 +27,11 @@ class User
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = [];
 
 
     /**
@@ -83,5 +90,41 @@ class User
     }
 
 
+    public function serialize()
+    {
+        return serialize(array( $this->id, $this->username, $this->password));
+    }
 
+    public function unserialize($serialized)
+    {
+        list ( $this->id, $this->username, $this->password ) = unserialize($serialized);
+    }
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }

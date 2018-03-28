@@ -11,8 +11,10 @@
             <p>{{ food.description }}</p>
             <p>{{ average }}</p>
 
-
-            <a href="{{ path('review_new', {'id': food.id}) }}">Add review</a>
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('suggested_product_new', {'id': food.id}) }}">Suggest Public food</a>
+                <a href="{{ path('review_new', {'id': food.id}) }}">Add review</a>
+            {% endif %}
 
             {% for review in reviews %}
             <div class="row review_item">
@@ -40,11 +42,18 @@
                     <p style="clear: both">
                         <p>{{ review.summary }}</p>
                     </p>
-                    <p style="float: right">
-                        <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"></a>
-                        <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down"></a>
+                    {%  if is_granted('ROLE_USER') %}
+                        <p style="float: right">
+                            <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"></a>
+                            <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down"></a>
+                        </p>
+                    {% endif %}
+                    <p style="clear: both">
+                        {% if is_granted('ROLE_ADMIN') or (app.user != null and app.user.id == review.addedBy.id) %}
+                            <a href="{{ path('review_edit', {'id':review.id}) }}">Update review</a>
+                            <a href="{{ path('review_delete', {'id':review.id}) }}">Delete review</a>
+                        {% endif %}
                     </p>
-                    <p style="clear: both"></p>
                 </div>
             </div>
             {% endfor %}

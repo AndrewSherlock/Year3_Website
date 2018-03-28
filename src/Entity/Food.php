@@ -62,7 +62,16 @@ class Food
      */
     private $reviews;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SuggestedProduct", mappedBy="suggestProducts")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $suggestedProduct;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublic;
 
 
     /**
@@ -226,5 +235,22 @@ class Food
     {
         $this->dateAdded = $dateAdded;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getisPublic()
+    {
+        return $this->isPublic;
+    }
+
+    /**
+     * @param mixed $isPublic
+     */
+    public function setIsPublic($isPublic): void
+    {
+        $this->isPublic = $isPublic;
+    }
+
 
 }

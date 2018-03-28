@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}!{% endblock %}
+
+{% block body %}
+
+    <h1>{{ app.user.username }}'s Food list</h1>
+
+    <a href="{{ path('user_show', {'id':app.user.id})}}" >Back to Profile</a></td>
+
+    <table>
+        <tr>
+            <th>Food ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Summary</th>
+            <th>Date Added</th>
+        </tr>
+        {% for food in foods %}
+            <tr>
+                <td><a href="{{ path('food_show_detail', {'id': food.id}) }}" >{{ food.id }}</a></td>
+                <td><a href="{{ path('food_show_detail', {'id': food.id}) }}" >{{ food.title }}</a></td>
+                <td>{{ food.category.category }}</td>
+                <td>{{  food.summary }}</td>
+                <td>{{ food.dateAdded|date('Y-m-d') }}</td>
+                <td><a href="{{ path('food_edit', {'id': food.id}) }}" >Update</a></td>
+                <td><a href="{{ path('food_delete', {'id': food.id}) }}" >Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <h1>Admin Panel</h1>
+
+    <a href="{{ path('admin_foods')}}">See all foods</a>
+    <a href="{{ path('admin_users')}}">See all Users</a>
+    <a href="{{ path('admin_approveList')}}">See suggested approve list</a>X
+
+{% endblock %}

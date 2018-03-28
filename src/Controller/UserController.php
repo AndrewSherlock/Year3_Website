@@ -7,6 +7,7 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,30 +63,13 @@ class UserController extends Controller
         $em->flush();
 
         $this->addFlash('success', 'User successfully created');
+
+        if($this->getUser() != null && in_array('ROLE_ADMIN',  $user->getRoles()))
+        {
+            return $this->redirectToRoute('admin_users');
+        }
+
         return $this->redirectToRoute('login');
-
-
-//        $user = new User();
-//        $form = $this->createForm(UserType::class, $user);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//
-//            $userPassword = $user->getPassword();
-//            $newPassword = password_hash($userPassword, PASSWORD_BCRYPT);
-//            $user->setPassword($newPassword);
-//
-//            $em->persist($user);
-//            $em->flush();
-//
-//            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
-//        }
-//
-//        return $this->render('user/new.html.twig', [
-//            'user' => $user,
-//            'form' => $form->createView(),
-//        ]);
     }
 
     /**
@@ -94,15 +78,19 @@ class UserController extends Controller
      */
     public function show(User $user, Request $request)
     {
-        $session = $request->getSession();
-        $user_id = $session->get('user_id');
+        if($this->getUser() != null)
+            $user_id = $this->getUser()->getId();
+        else{
+            return $this->redirectToRoute('login');
+        }
 
-        //TODO when delete ensure user_id is reset
-
-        if($user_id == null)
+        if($this->getUser() != null && $user->getId() != $user_id)
         {
-            $this->addFlash('error', 'You must be logged in for that');
-            return $this->redirectToRoute('home');
+            if(!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
+            {
+                $this->addFlash('error', 'You do not have the access to do this');
+                return $this->redirectToRoute('login');
+            }
         }
 
         return $this->render('user/show.html.twig', [
@@ -123,7 +111,13 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
+            $edittingUser = $this->getUser()->getId();
+
+            if($user->getId() == $edittingUser) {
+                return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
+            } else {
+                return $this->redirectToRoute('admin_users');
+            }
         }
 
         return $this->render('user/edit.html.twig', [
@@ -133,9 +127,9 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="delete")
-     * @Method("DELETE")
-     */
+ * @Route("/{id}", name="delete")
+ * @Method("DELETE")
+ */
     public function delete(Request $request, User $user)
     {
         if (!$this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
@@ -148,5 +142,4 @@ class UserController extends Controller
 
         return $this->redirectToRoute('user_index');
     }
-
 }

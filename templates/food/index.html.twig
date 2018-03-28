@@ -35,7 +35,28 @@
             {% endfor %}
         </div>
         <div class="col-md-2" style="background: #000000" >
-
+            <p style="color: #FFFFFF">Filter options</p>
+            <form action="{{ path('food_process_search') }}" method="POST">
+                <p>
+                    <label for="text_search">Text Search</label>
+                    <input type="text" name="text_search" id="text_search">
+                </p>
+                <p>
+                    <label for="date_search">Date Search</label>
+                    <input type="date" name="date_search" id="date_search">
+                </p>
+                <p>
+                    <label for="text_search">Price range</label><br>
+                    <input type="radio" name="price_range" value="" checked> choose range<br>
+                    <input type="radio" name="price_range" value="0"> €0 - 1<br>
+                    <input type="radio" name="price_range" value="1"> €1 - 3<br>
+                    <input type="radio" name="price_range" value="2"> €3 - 5<br>
+                    <input type="radio" name="price_range" value="2"> €5 or more<br>
+                </p>
+                <p>
+                    <input type="submit" value="Search foods">
+                </p>
+            </form>
         </div>
     </div>
 

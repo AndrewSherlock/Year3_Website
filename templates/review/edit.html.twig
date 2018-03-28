@@ -8,7 +8,7 @@
 
     {% include 'review/_form.html.twig' with {'form': form, 'button_label': 'Edit'} only %}
 
-    <a href="{{ path('review_index') }}">back to list</a>
+    <a href="{{ path('food_show_detail', {'id':review.food.id}) }}">back to food detail</a>
 
     {% include 'review/_delete_form.html.twig' with {'identifier': review.id} only %}
 

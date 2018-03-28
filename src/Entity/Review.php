@@ -53,6 +53,11 @@ class Review
     private $review_score;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublic;
+
+    /**
      * @return mixed
      */
     public function getReviewScore()
@@ -194,6 +199,24 @@ class Review
     {
         $this->food = $food;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getisPublic()
+    {
+        return $this->isPublic;
+    }
+
+    /**
+     * @param mixed $isPublic
+     */
+    public function setIsPublic($isPublic): void
+    {
+        $this->isPublic = $isPublic;
+    }
+
+
 
    // private $photos;
 

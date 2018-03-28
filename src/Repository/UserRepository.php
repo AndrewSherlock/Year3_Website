@@ -32,6 +32,22 @@ class UserRepository extends ServiceEntityRepository
         else
             return null;
     }
+    public function changeUserAccount($id, $nAccount)
+    {
+        $json_array = [$nAccount];
+        $arr = json_encode($json_array);
+
+        $query = $this->createQueryBuilder('q')
+            ->update(User::class, 'u')
+            ->set('u.roles', '?1')
+            ->where('u.id =  ?2')
+            ->setParameter(1, $arr)
+            ->setParameter(2, $id)
+            ->getQuery();
+
+        $query->execute();
+
+    }
 
     /*
     public function findBySomething($value)

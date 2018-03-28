@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}!{% endblock %}
+
+{% block body %}
+
+    <h1>{{ app.user.username }}'s Reviews list</h1>
+
+    <a href="{{ path('user_show', {'id':app.user.id})}}" >Back to Profile</a></td>
+
+    <table>
+        <tr>
+            <th>Review ID</th>
+            <th>Comment</th>
+            <th>Food</th>
+            <th>Score</th>
+            <th>Date Added</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for review in reviews %}
+            <tr>
+                <td>{{ review.id }}</td>
+                <td>{{ review.summary }}</td>
+                <td><a href="{{ path('food_show_detail', {'id': review.food.id}) }}" {{ review.food.title }}</td>
+                <td>{{  review.stars }}</td>
+                <td>{{ review.date|date('Y-m-d') }}</td>
+                <td><a href="{{ path('review_edit', {'id': review.id}) }}" >Update</a></td>
+                <td><a href="{{ path('review_delete', {'id': review.id}) }}" >Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

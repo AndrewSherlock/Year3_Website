@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_name }}!{% endblock %}
+
+{% block body %}
+
+    <h1>Food list</h1>
+
+    <a href="{{ path('food_new')}}" >Add new food</a>
+    <a href="{{ path('admin_home')}}" >Back to Admin panel</a></td>
+
+    <table>
+        <tr>
+            <th>Food ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Summary</th>
+            <th>Date Added</th>
+            <th>Added by</th>
+            <th>Public food</th>
+        </tr>
+        {% for food in foodlist %}
+        <tr>
+            <td><a href="{{ path('food_show_detail', {'id': food.id}) }}" >{{ food.id }}</a></td>
+            <td><a href="{{ path('food_show_detail', {'id': food.id}) }}" >{{ food.title }}</a></td>
+            <td>{{ food.category.category }}</td>
+            <td>{{  food.summary }}</td>
+            <td>{{ food.dateAdded|date('Y-m-d') }}</td>
+            <td>{{ food.addedBy.username }}</td>
+            {% if food.isPublic %}
+            <td>Yes</td>
+            {% else %}
+            <td>No</td>
+            {% endif %}
+            <td><a href="{{ path('food_edit', {'id': food.id}) }}" >Update</a></td>
+            <td><a href="{{ path('food_delete', {'id': food.id}) }}" >Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

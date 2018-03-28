@@ -21,7 +21,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('food_index')}}">See foods</a>
                 </li>
-                {% if user_id is not defined or user_id is null%}
+                {% if not is_granted('ROLE_USER') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('register') }}">Register</a>
                 </li>
@@ -29,12 +29,17 @@
                     <a class="nav-link" href="{{ url('login') }}">Log in</a>
                 </li>
                 {% endif %}
-                {% if user_id is defined and user_id is not null %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('food_new')}}">Admin panel</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('food_new')}}">Add new food</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('user_show', {'id': user_id})}}">Profile</a>
+                        <a class="nav-link" href="{{ path('user_show', {'id': app.user.id})}}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('logout') }}">Log out</a>

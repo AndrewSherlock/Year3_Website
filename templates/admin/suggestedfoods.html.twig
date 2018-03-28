@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <h1>Suggested public list</h1>
+
+    <a href="{{ path('admin_home')}}" >Back to Admin panel</a></td>
+
+    <table>
+        <tr>
+            <th>Suggestion ID</th>
+            <th>Food Name</th>
+            <th>Category</th>
+            <th>Accept</th>
+            <th>Deny</th>
+        </tr>
+        {% for food in suggestedfoods %}
+            <tr>
+                <td><a href="{{ path('food_show_detail', {'id': food.food.id}) }}" >{{ food.id }}</a></td>
+                <td><a href="{{ path('food_show_detail', {'id': food.food.id}) }}" >{{ food.food.title }}</a></td>
+                <td>{{ food.food.category.category }}</td>
+
+                <td><a href="{{ path('admin_accept', {'id' : food.food.id}) }}">Accept public</a> </td>
+                <td><a href="{{ path('admin_reject', {'id' : food.food.id}) }}">Reject public</a> </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

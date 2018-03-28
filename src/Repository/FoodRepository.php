@@ -20,6 +20,18 @@ class FoodRepository extends ServiceEntityRepository
         parent::__construct($registry, Food::class);
     }
 
+    public function setItemPublic($id)
+    {
+        $query = $this->createQueryBuilder('q')
+            ->update(Food::class, 'f')
+            ->set('f.isPublic', '?1')
+            ->where('f.id =  ?2')
+            ->setParameter(1, true)
+            ->setParameter(2, $id)
+            ->getQuery();
+
+        $query->execute();
+    }
     /*
     public function findBySomething($value)
     {
