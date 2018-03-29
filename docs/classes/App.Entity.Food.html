@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/App.html">\App</a></li>
+                                                        <li><a href="../namespaces/DoctrineMigrations.html">\DoctrineMigrations</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">314</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-239499982"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-239499982" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1567662534"></a>
+                                <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
+            </div>
+            <div id="namespace-1567662534" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1055252754"></a>
+                                <a href="../namespaces/App.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-1055252754" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Controller.AdminController.html">AdminController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controller.DefaultController.html">DefaultController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controller.ReviewController.html">ReviewController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controller.SuggestedProductController.html">SuggestedProductController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controller.SuggestedReviewController.html">SuggestedReviewController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controller.UserController.html">UserController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-460181385"></a>
+                                <a href="../namespaces/App.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-460181385" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Entity.Category.html">Category</a></li>
+                                                    <li class="class"><a href="../classes/App.Entity.Food.html">Food</a></li>
+                                                    <li class="class"><a href="../classes/App.Entity.Review.html">Review</a></li>
+                                                    <li class="class"><a href="../classes/App.Entity.SuggestedProduct.html">SuggestedProduct</a></li>
+                                                    <li class="class"><a href="../classes/App.Entity.SuggestedReview.html">SuggestedReview</a></li>
+                                                    <li class="class"><a href="../classes/App.Entity.User.html">User</a></li>
+                                                    <li class="class"><a href="../classes/App.Entity.Vote.html">Vote</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-333762875"></a>
+                                <a href="../namespaces/App.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
+            </div>
+            <div id="namespace-333762875" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Form.CategoryType.html">CategoryType</a></li>
+                                                    <li class="class"><a href="../classes/App.Form.FoodType.html">FoodType</a></li>
+                                                    <li class="class"><a href="../classes/App.Form.ReviewType.html">ReviewType</a></li>
+                                                    <li class="class"><a href="../classes/App.Form.UserType.html">UserType</a></li>
+                                                    <li class="class"><a href="../classes/App.Form.VoteType.html">VoteType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1700716300"></a>
+                                <a href="../namespaces/App.Repository.html" style="margin-left: 30px; padding-left: 0">Repository</a>
+            </div>
+            <div id="namespace-1700716300" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Repository.CategoryRepository.html">CategoryRepository</a></li>
+                                                    <li class="class"><a href="../classes/App.Repository.FoodRepository.html">FoodRepository</a></li>
+                                                    <li class="class"><a href="../classes/App.Repository.ReviewRepository.html">ReviewRepository</a></li>
+                                                    <li class="class"><a href="../classes/App.Repository.SuggestedProductRepository.html">SuggestedProductRepository</a></li>
+                                                    <li class="class"><a href="../classes/App.Repository.SuggestedReviewRepository.html">SuggestedReviewRepository</a></li>
+                                                    <li class="class"><a href="../classes/App.Repository.UserRepository.html">UserRepository</a></li>
+                                                    <li class="class"><a href="../classes/App.Repository.VoteRepository.html">VoteRepository</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-406186960"></a>
+                                <a href="../namespaces/App.Security.html" style="margin-left: 30px; padding-left: 0">Security</a>
+            </div>
+            <div id="namespace-406186960" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Security.AccessDeniedHandler.html">AccessDeniedHandler</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1609330520"></a>
+                                <a href="../namespaces/App.Utils.html" style="margin-left: 30px; padding-left: 0">Utils</a>
+            </div>
+            <div id="namespace-1609330520" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Utils.ImageUploader.html">ImageUploader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Kernel.html">Kernel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1189474434"></a>
+                                <a href="../namespaces/DoctrineMigrations.html" style="margin-left: 30px; padding-left: 0">DoctrineMigrations</a>
+            </div>
+            <div id="namespace-1189474434" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/DoctrineMigrations.Version20180326134535.html">Version20180326134535</a></li>
+                                                    <li class="class"><a href="../classes/DoctrineMigrations.Version20180326151804.html">Version20180326151804</a></li>
+                                                    <li class="class"><a href="../classes/DoctrineMigrations.Version20180326154107.html">Version20180326154107</a></li>
+                                                    <li class="class"><a href="../classes/DoctrineMigrations.Version20180328160643.html">Version20180328160643</a></li>
+                                                    <li class="class"><a href="../classes/DoctrineMigrations.Version20180329131019.html">Version20180329131019</a></li>
+                                                    <li class="class"><a href="../classes/DoctrineMigrations.Version20180329131414.html">Version20180329131414</a></li>
+                                                    <li class="class"><a href="../classes/DoctrineMigrations.Version20180329133723.html">Version20180329133723</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/App.Entity.html">\App\Entity</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\App\Entity</small>Food</h1>
+                    <p><em></em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/App.Entity.Food.html#method_getReviews" class="">getReviews()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setReviews" class="">setReviews()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getId" class="">getId()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getTitle" class="">getTitle()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setTitle" class="">setTitle()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getSummary" class="">getSummary()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setSummary" class="">setSummary()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getPhotoLink" class="">getPhotoLink()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setPhotoLink" class="">setPhotoLink()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getDescription" class="">getDescription()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setDescription" class="">setDescription()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getPrice" class="">getPrice()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setPrice" class="">setPrice()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getAddedBy" class="">getAddedBy()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setAddedBy" class="">setAddedBy()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getCategory" class="">getCategory()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setCategory" class="">setCategory()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getDateAdded" class="">getDateAdded()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setDateAdded" class="">setDateAdded()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getisPublic" class="">getisPublic()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setIsPublic" class="">setIsPublic()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getListOfIngredients" class="">getListOfIngredients()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setListOfIngredients" class="">setListOfIngredients()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_getSuggestedProduct" class="">getSuggestedProduct()</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#method_setSuggestedProduct" class="">setSuggestedProduct()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/App.Entity.Food.html#property_id" class="">$id</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_title" class="">$title</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_summary" class="">$summary</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_photoLink" class="">$photoLink</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_description" class="">$description</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_listOfIngredients" class="">$listOfIngredients</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_price" class="">$price</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_addedBy" class="">$addedBy</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_category" class="">$category</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_reviews" class="">$reviews</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_suggestedProduct" class="">$suggestedProduct</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_isPublic" class="">$isPublic</a><br />
+                                                                    <a href="../classes/App.Entity.Food.html#property_dateAdded" class="">$dateAdded</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Entity.Food.html"><div class="path-wrapper">Entity\Food.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\App\Entity\Food</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                ORM\Entity
+                            </th>
+                            <td>
+                                                                    <p>(repositoryClass=&quot;App\Repository\FoodRepository&quot;)</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$id</h3>
+                <pre class="signature">$id : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Id
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\GeneratedValue
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;integer&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_title" name="property_title" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$title</h3>
+                <pre class="signature">$title : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;string&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_summary" name="property_summary" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$summary</h3>
+                <pre class="signature">$summary : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;text&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_photoLink" name="property_photoLink" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$photoLink</h3>
+                <pre class="signature">$photoLink : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;string&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_description" name="property_description" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$description</h3>
+                <pre class="signature">$description : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;text&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_listOfIngredients" name="property_listOfIngredients" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$listOfIngredients</h3>
+                <pre class="signature">$listOfIngredients : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;text&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_price" name="property_price" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$price</h3>
+                <pre class="signature">$price : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;decimal&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_addedBy" name="property_addedBy" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$addedBy</h3>
+                <pre class="signature">$addedBy : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity=&quot;App\Entity\User&quot;, inversedBy=&quot;foods&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(nullable=true)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_category" name="property_category" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$category</h3>
+                <pre class="signature">$category : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\ManyToOne
+                        </th>
+                        <td>
+                                                            <p>(targetEntity=&quot;App\Entity\Category&quot;, inversedBy=&quot;foods&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(nullable=true)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_reviews" name="property_reviews" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$reviews</h3>
+                <pre class="signature">$reviews : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\OneToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity=&quot;App\Entity\Review&quot;, mappedBy=&quot;reviews&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(nullable=true)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_suggestedProduct" name="property_suggestedProduct" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$suggestedProduct</h3>
+                <pre class="signature">$suggestedProduct : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\OneToMany
+                        </th>
+                        <td>
+                                                            <p>(targetEntity=&quot;App\Entity\SuggestedProduct&quot;, mappedBy=&quot;suggestProducts&quot;)</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            ORM\JoinColumn
+                        </th>
+                        <td>
+                                                            <p>(nullable=true)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_isPublic" name="property_isPublic" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$isPublic</h3>
+                <pre class="signature">$isPublic : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;boolean&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dateAdded" name="property_dateAdded" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$dateAdded</h3>
+                <pre class="signature">$dateAdded : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            ORM\Column
+                        </th>
+                        <td>
+                                                            <p>(type=&quot;date&quot;)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getReviews" name="method_getReviews" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getReviews()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getReviews() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setReviews" name="method_setReviews" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setReviews()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setReviews(mixed  <span class="argument">$reviews</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$reviews </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getId" name="method_getId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getId() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTitle" name="method_getTitle" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTitle()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTitle() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setTitle" name="method_setTitle" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setTitle()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setTitle(mixed  <span class="argument">$title</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$title </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSummary" name="method_getSummary" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSummary()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSummary() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setSummary" name="method_setSummary" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setSummary()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setSummary(mixed  <span class="argument">$summary</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$summary </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPhotoLink" name="method_getPhotoLink" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPhotoLink()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPhotoLink() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPhotoLink" name="method_setPhotoLink" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPhotoLink()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPhotoLink(mixed  <span class="argument">$photoLink</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$photoLink </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDescription" name="method_getDescription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDescription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDescription() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDescription" name="method_setDescription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDescription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDescription(mixed  <span class="argument">$description</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$description </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPrice" name="method_getPrice" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPrice()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPrice() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPrice" name="method_setPrice" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPrice()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPrice(mixed  <span class="argument">$price</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$price </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAddedBy" name="method_getAddedBy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAddedBy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAddedBy() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAddedBy" name="method_setAddedBy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAddedBy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setAddedBy(mixed  <span class="argument">$addedBy</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$addedBy </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCategory" name="method_getCategory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCategory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCategory() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCategory" name="method_setCategory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCategory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCategory(mixed  <span class="argument">$category</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$category </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDateAdded" name="method_getDateAdded" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDateAdded()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDateAdded() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDateAdded" name="method_setDateAdded" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDateAdded()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDateAdded(mixed  <span class="argument">$dateAdded</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$dateAdded </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getisPublic" name="method_getisPublic" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getisPublic()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getisPublic() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIsPublic" name="method_setIsPublic" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIsPublic()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setIsPublic(mixed  <span class="argument">$isPublic</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$isPublic </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getListOfIngredients" name="method_getListOfIngredients" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getListOfIngredients()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getListOfIngredients() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setListOfIngredients" name="method_setListOfIngredients" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setListOfIngredients()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setListOfIngredients(mixed  <span class="argument">$listOfIngredients</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$listOfIngredients </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSuggestedProduct" name="method_getSuggestedProduct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSuggestedProduct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSuggestedProduct() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setSuggestedProduct" name="method_setSuggestedProduct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setSuggestedProduct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setSuggestedProduct(mixed  <span class="argument">$suggestedProduct</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$suggestedProduct </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+Warning: count(): Parameter must be an array or an object that implements Countable in phar://C:/Users/andrew/Desktop/Year 3/Year3_website/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 1293
+
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Food.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Entity\Food.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/App.html">\App</a></li>
+                                                                            <li><a href="../namespaces/DoctrineMigrations.html">\DoctrineMigrations</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on March 29th, 2018 at 18:25.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

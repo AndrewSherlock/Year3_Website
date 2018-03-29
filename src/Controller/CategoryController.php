@@ -1,5 +1,8 @@
 <?php
 
+/**
+ *  comment for file
+ */
 namespace App\Controller;
 
 use App\Entity\Category;

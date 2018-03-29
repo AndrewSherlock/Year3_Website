@@ -130,3 +130,38 @@ footer{
     margin-left: 25%;
     margin-right: 25%;
 }
+
+.food_information{
+
+}
+
+.food_information h2
+{
+    text-align: center;
+    font-family: Georgia;
+}
+
+.score_panel
+{
+    margin: 20px;
+}
+
+.error{
+    text-align: center;
+    margin-top: 20px;
+    font-family: Georgia;
+}
+
+.error .spacer
+{
+    height: 200px;
+}
+
+.form{
+    margin: 80px auto;
+    font-family: Georgia;
+}
+
+.form h2{
+    text-align: center;
+}

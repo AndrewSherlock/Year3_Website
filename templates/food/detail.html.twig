@@ -1,72 +1,105 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Food{% endblock %}
+{% block title %}{{ food.title }}{% endblock %}
 
 {% block body %}
     
     <div class="row col-md-12">
-        <div class="col-md-9 food_display">
-            <h2>{{ food.title }}</h2>
-
-            <p>{{ food.description }}</p>
-            <p>{{ average }}</p>
-
-            {% if is_granted('ROLE_USER') %}
-                <a href="{{ path('suggested_product_new', {'id': food.id}) }}">Suggest Public food</a>
-                <a href="{{ path('review_new', {'id': food.id}) }}">Add review</a>
-            {% endif %}
-
-            {% for review in reviews %}
-            <div class="row review_item">
-                <div class="col=md-3">
-                    <img src="\images\full_star.png">
-                </div>
-                <div class="col-md-9">
-                    <p>
-                        <span style="margin-top:10px; float: left;"> {{ review.addedBy.username }} </span>
-                        <span style="float: right;">
-                             {% set starsLeft = 0 %}
-                            {% for i in range(1, review.stars, 1) %}
-                                {% set starsLeft = i %}
-                                <img class="review_star" src="/images/full_star.png" alt="star">
-                            {% endfor %}
-                            {%  if review.stars - starsLeft != 0%}
-                                <img class="review_star" src="/images/half_star.png" alt="star">
-                            {% endif %}
-                        </span>
-                    </p>
-                    <p style="clear: both">
-                        <p style="float: left">Date of review : {{ review.date |date('d/m/Y') }}</p>
-                        <p style="float:right;">Price payed : €{{ review.price |number_format(2) }}</p>
-                    </p>
-                    <p style="clear: both">
-                        <p>{{ review.summary }}</p>
-                    </p>
-                    {%  if is_granted('ROLE_USER') %}
-                        <p style="float: right">
-                            <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"></a>
-                            <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down"></a>
-                        </p>
-                        <p>
-                            <a href="{{ url('suggested_review_new', {'id': review.id}) }}"> Suggest Public review</a>
-                        </p>
-                    {% endif %}
-                    <p style="clear: both">
-                        {% if is_granted('ROLE_ADMIN') or (app.user != null and app.user.id == review.addedBy.id) %}
-                            <a href="{{ path('review_edit', {'id':review.id}) }}">Update review</a>
-                            <a href="{{ path('review_delete', {'id':review.id}) }}">Delete review</a>
-                        {% endif %}
-                    </p>
-                </div>
+        <div class="row col-md-12">
+            <div class="col-md-8 food_information">
+                <h2>{{ food.title }}</h2>
+                <p>{{ food.description }}</p>
             </div>
-            {% endfor %}
+            <div class="col-md-3 score_panel">
+                {%  if average != 0 %}
+                    Average score :
+                    {% set starsLeft = 0 %}
+                    {% for i in range(1, average, 1) %}
+                    {% set starsLeft = i %}
+                    <img class="review_star" src="/images/full_star.png" alt="star">
+                    {% endfor %}
+                    {%  if average - starsLeft != 0%}
+                    <img class="review_star" src="/images/half_star.png" alt="star">
+                    {% endif %}
+                {% else %}
+                    <p>No reviews set</p>
+                {% endif %}
+            </div>
         </div>
-        <div class="col-md-3">
-            {% if photos is not null %}
-                <img src="{{ photos[0] }}">
-            {% endif %}
+        <div class="col-md-12">
+            {%  for review in reviews %}
+                <div class="row review_item">
+                    <span style="margin-top:10px; float: left;"> {{ review.addedBy.username }} </span>
+                </div>
+            {% endfor %}
+
+            {#{% for review in reviews %}#}
+                {#<div class="review_item">#}
+                    {#<div class="col=md-3">#}
+                        {#<img src="\images\full_star.png">#}
+                    {#</div>#}
+                    {#<div class="col-md-9">#}
+                        {#<p>#}
+                            {#<span style="margin-top:10px; float: left;"> {{ review.addedBy.username }} </span>#}
+                            {#<span style="float: right;">#}
+                             {#{% set starsLeft = 0 %}#}
+                                {#{% for i in range(1, review.stars, 1) %}#}
+                                    {#{% set starsLeft = i %}#}
+                                    {#<img class="review_star" src="/images/full_star.png" alt="star">#}
+                                {#{% endfor %}#}
+                                {#{%  if review.stars - starsLeft != 0%}#}
+                                    {#<img class="review_star" src="/images/half_star.png" alt="star">#}
+                                {#{% endif %}#}
+                        {#</span>#}
+                        {#</p>#}
+                        {#<p style="clear: both">#}
+                        {#<p style="float: left">Date of review : {{ review.date |date('d/m/Y') }}</p>#}
+                        {#<p style="float:right;">Price payed : €{{ review.price |number_format(2) }}</p>#}
+                        {#</p>#}
+                        {#<p style="clear: both">#}
+                        {#<p>{{ review.summary }}</p>#}
+                        {#</p>#}
+                        {#{%  if is_granted('ROLE_USER') %}#}
+                            {#<p style="float: right">#}
+                                {#<a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"></a>#}
+                                {#<a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down"></a>#}
+                            {#</p>#}
+                            {#<p>#}
+                                {#<a href="{{ url('suggested_review_new', {'id': review.id}) }}"> Suggest Public review</a>#}
+                            {#</p>#}
+                        {#{% endif %}#}
+                        {#<p style="clear: both">#}
+                            {#{% if is_granted('ROLE_ADMIN') or (app.user != null and app.user.id == review.addedBy.id) %}#}
+                                {#<a href="{{ path('review_edit', {'id':review.id}) }}">Update review</a>#}
+                                {#<a href="{{ path('review_delete', {'id':review.id}) }}">Delete review</a>#}
+                            {#{% endif %}#}
+                        {#</p>#}
+                    {#</div>#}
+                {#</div>#}
+            {#{% endfor %}#}
+
         </div>
     </div>
+
+        {#<div class="col-md-9 food_display">#}
+            {#<h2>{{ food.title }}</h2>#}
+
+            {#<p>{{ food.description }}</p>#}
+            {#<p>{{ average }}</p>#}
+
+            {#{% if is_granted('ROLE_USER') %}#}
+                {#<a href="{{ path('suggested_product_new', {'id': food.id}) }}">Suggest Public food</a>#}
+                {#<a href="{{ path('review_new', {'id': food.id}) }}">Add review</a>#}
+            {#{% endif %}#}
+
+
+        {#</div>#}
+        {#<div class="col-md-3">#}
+            {#{% if photos is not null %}#}
+                {#<img src="{{ photos[0] }}">#}
+            {#{% endif %}#}
+        {#</div>#}
+
 
     {#<h1>Food</h1>#}
 

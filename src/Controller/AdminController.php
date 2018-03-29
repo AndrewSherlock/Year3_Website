@@ -1,5 +1,7 @@
 <?php
-
+/**
+ *
+ */
 namespace App\Controller;
 
 use App\Entity\Category;
@@ -17,12 +19,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Route("/admin", name="admin")
+ * Class AdminController
+ * @package App\Controller
  */
 class AdminController extends Controller
 {
     /**
+     *  Gets the home page of the admin panel
      * @Route("/", name="_home")
      * @Security("has_role('ROLE_ADMIN')")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
     {
@@ -34,8 +40,10 @@ class AdminController extends Controller
     }
 
     /**
+     * admin user list page
      * @Route("/userList", name="_users")
      * @Security("has_role('ROLE_ADMIN')")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showUserList()
     {
@@ -51,8 +59,10 @@ class AdminController extends Controller
     }
 
     /**
+     *  admin panel food list
      * @Route("/foodList", name="_foods")
      * @Security("has_role('ROLE_ADMIN')")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showFoodList()
     {
@@ -69,8 +79,10 @@ class AdminController extends Controller
     }
 
     /**
+     * Gets the foods that have to be approved for public viewing
      * @Route("/approveList", name="_approveList")
      * @Security("has_role('ROLE_ADMIN')")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showApproveList()
     {
@@ -88,8 +100,10 @@ class AdminController extends Controller
     }
 
     /**
+     *  shows our food categorys
      * @Route("/category_list", name="_cat_list")
      * @Security("has_role('ROLE_ADMIN')")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showCatList()
     {

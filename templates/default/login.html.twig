@@ -4,13 +4,20 @@
 
 {% block body %}
 
-    <h2>Log in page</h2>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="col-md-4"></div>
+            <div class="col-md-8 form">
+                <h2>Log in page</h2>
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
 
-    {{ form(login_form) }}
-
+                {{ form(login_form) }}
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
 {% endblock %}
