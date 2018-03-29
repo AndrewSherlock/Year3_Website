@@ -35,11 +35,12 @@ class ImageUploader
                 return null;
             }
 
-            if($file->getClientSize() > 100000)
+            if($file->getClientSize() > 1000000)
             {
                 return null;
             }
         }
+
 
         foreach ($fileArray as $file)
         {

@@ -53,9 +53,26 @@ class Review
     private $review_score;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $placeOfPurchase;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $isPublic;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Food", inversedBy="foods")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $food;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SuggestedReview", mappedBy="suggestedReview")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $suggestedReview;
 
     /**
      * @return mixed
@@ -104,13 +121,6 @@ class Review
     {
         $this->votes = $votes;
     }
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Food", inversedBy="foods")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $food;
 
     /**
      * @return mixed
@@ -216,9 +226,36 @@ class Review
         $this->isPublic = $isPublic;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPlaceOfPurchase()
+    {
+        return $this->placeOfPurchase;
+    }
 
+    /**
+     * @param mixed $placeOfPurchase
+     */
+    public function setPlaceOfPurchase($placeOfPurchase): void
+    {
+        $this->placeOfPurchase = $placeOfPurchase;
+    }
 
-   // private $photos;
+    /**
+     * @return mixed
+     */
+    public function getSuggestedReview()
+    {
+        return $this->suggestedReview;
+    }
 
+    /**
+     * @param mixed $suggestedReview
+     */
+    public function setSuggestedReview($suggestedReview): void
+    {
+        $this->suggestedReview = $suggestedReview;
+    }
 
 }

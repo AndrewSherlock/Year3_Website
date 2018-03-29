@@ -47,6 +47,9 @@
                             <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"></a>
                             <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down"></a>
                         </p>
+                        <p>
+                            <a href="{{ url('suggested_review_new', {'id': review.id}) }}"> Suggest Public review</a>
+                        </p>
                     {% endif %}
                     <p style="clear: both">
                         {% if is_granted('ROLE_ADMIN') or (app.user != null and app.user.id == review.addedBy.id) %}

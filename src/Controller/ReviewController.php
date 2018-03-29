@@ -50,6 +50,7 @@ class ReviewController extends Controller
 
         $form = $this->createFormBuilder($review)
             ->add('summary', TextType::class)
+            ->add('placeOfPurchase', TextType::class)
             ->add('price', NumberType::class)
             ->add('stars', NumberType::class)
             ->add('login', SubmitType::class,
@@ -72,6 +73,7 @@ class ReviewController extends Controller
 
             $review->setDate($date);
             $review->setPrice($reviewValues['price']);
+            $review->setPlaceOfPurchase($reviewValues['placeOfPurchase']);
             $review->setSummary($reviewValues['summary']);
             $review->setStars($reviewValues['stars']);
             $review->setReviewScore(0);
@@ -179,20 +181,6 @@ class ReviewController extends Controller
         return $this->render('review/show_users.html.twig', [
             'reviews' => $reviews,
         ]);
-
-
-
     }
 
-//    public function img()
-//    {
-//        $validateF = new ValidateFunctions();
-//        $tmp_name = $img['file_upload']['tmp_name'];
-//        $name = explode('.',$validateF->sanitize($img['file_upload']['name']));
-//        $newName = (int)microtime(true).$id.'.'.$name[1];
-//        $this->imageLink = '/images/'.$table.'s/'.$newName;
-//        $upload_link = $_SERVER['DOCUMENT_ROOT'].$this->imageLink;
-//        move_uploaded_file($tmp_name,$upload_link);
-//        return $this->imageLink;
-//    }
 }

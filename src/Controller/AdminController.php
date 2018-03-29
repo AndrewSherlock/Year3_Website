@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Food;
+use App\Entity\Review;
 use App\Entity\SuggestedProduct;
+use App\Entity\SuggestedReview;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -57,7 +59,7 @@ class AdminController extends Controller
         $foods = $this->getDoctrine()->getRepository(Food::class)->findAll();
 
         $args = [
-            'controller_name' => 'Admin Panel - foods',
+            'page_name' => 'Admin Panel - foods',
             'foodlist' => $foods
         ];
 
@@ -78,6 +80,26 @@ class AdminController extends Controller
         $args = [
             'controller_name' => 'Admin Panel - approve list',
             'suggestedfoods' => $suggestedPublicFoods
+        ];
+
+
+        return $this->render($template, $args);
+    }
+
+
+    /**
+     * @Route("/approve_review_list", name="_approve_review_list")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function showApproveReviewList()
+    {
+        $template = 'admin/suggested_public_review.html.twig';
+
+        $suggestedPublicReviews = $this->getDoctrine()->getRepository(SuggestedReview::class)->findAll();
+
+        $args = [
+            'controller_name' => 'Admin Panel - approve review list',
+            'suggestedReviews' => $suggestedPublicReviews
         ];
 
 
@@ -158,5 +180,32 @@ class AdminController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('admin_users');
+    }
+
+    /**
+     * @Route("/accept_public_review/{id}", name="_accept_review")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function acceptPublicReview(Request $request)
+    {
+        $id = $request->get('id');
+        $this->getDoctrine()->getRepository(Review::class)->setItemPublic($id);
+        $this->getDoctrine()->getRepository(SuggestedReview::class)->removeSuggestedItems($id);
+        $this->addFlash('success', 'Item set to public');
+
+        return $this->redirectToRoute('admin_foods');
+    }
+
+    /**
+     * @Route("/accept_public_review/{id}", name="_reject_review")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function rejectPublicReview(Request $request)
+    {
+        $id = $request->get('id');
+        $this->getDoctrine()->getRepository(SuggestedReview::class)->removeSuggestedItems($id);
+        $this->addFlash('success', 'Item not set to public');
+
+        return $this->redirectToRoute('admin_foods');
     }
 }

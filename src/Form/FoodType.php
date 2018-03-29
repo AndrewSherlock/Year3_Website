@@ -21,6 +21,7 @@ class FoodType extends AbstractType
                 'label' => 'Upload images'
             ))
             ->add('description')
+            ->add('listOfIngredients')
             ->add('price')
             ->add('category', EntityType::class,
                 [

@@ -37,7 +37,10 @@ class Food
      */
     private $description;
 
-   // private $listOfIngredients; //TODO add when i decide how to handle
+    /**
+     *  @ORM\Column(type="text")
+     */
+    private $listOfIngredients;
 
     /**
      *  @ORM\Column(type="decimal")
@@ -251,6 +254,39 @@ class Food
     {
         $this->isPublic = $isPublic;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getListOfIngredients()
+    {
+        return $this->listOfIngredients;
+    }
+
+    /**
+     * @param mixed $listOfIngredients
+     */
+    public function setListOfIngredients($listOfIngredients): void
+    {
+        $this->listOfIngredients = $listOfIngredients;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSuggestedProduct()
+    {
+        return $this->suggestedProduct;
+    }
+
+    /**
+     * @param mixed $suggestedProduct
+     */
+    public function setSuggestedProduct($suggestedProduct): void
+    {
+        $this->suggestedProduct = $suggestedProduct;
+    }
+
 
 
 }

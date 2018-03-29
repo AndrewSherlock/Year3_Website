@@ -145,7 +145,7 @@ class FoodController extends Controller
             if(!empty($request->files->get('food')['photoLink']) && $fileAddress == null)
             {
                 $this->addFlash('error', 'There was a probelm with your images');
-                return $this->redirectToRoute('new');
+                return $this->redirectToRoute('food_new');
             }
 
            // var_dump($fileAddress); die();
@@ -162,6 +162,7 @@ class FoodController extends Controller
             $food->setDateAdded($date);
             $food->setAddedBy($user);
             $food->setPhotoLink($arrayString);
+            $food->setIsPublic(false);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($food);
@@ -286,7 +287,7 @@ class FoodController extends Controller
     }
 
     /**
-     * @Route("/foods/search", name="process_search")
+     * @Route("/search", name="process_search")
      * @return Response
      */
     public function foodSearch(Request $request)
@@ -300,10 +301,10 @@ class FoodController extends Controller
         if($textSearch != "" && !empty($textSearch))
         {
             $checkFoods = $this->getDoctrine()->getRepository(Food::class)->findAll();
-            foreach ($foods as $food)
+            foreach ($checkFoods as $food)
             {
                 $nameOfFood = $food->getTitle();
-                if(stripos( strtolower($nameOfFood),  strtolower($textSearch)))
+                if(strpos( strtolower($nameOfFood),  strtolower($textSearch)) !== false)
                 {
                     $foods[] = $food;
                 }
@@ -312,9 +313,11 @@ class FoodController extends Controller
 
         if($date != '' && !empty($date))
         {
+            $datetime = new \DateTime($date);
+
             if(empty($foods))
             {
-                $checkFoods = $this->getDoctrine()->getRepository(Food::class)->findBy(['dateAdded' => $date]);
+                $checkFoods = $this->getDoctrine()->getRepository(Food::class)->findBy(['dateAdded' => $datetime]);
                 $foods = $checkFoods;
             } else{
 
@@ -322,7 +325,7 @@ class FoodController extends Controller
 
                 foreach ($foods as $food)
                 {
-                    if($food->getDateAdded() == $date)
+                    if($food->getDateAdded() == $datetime)
                     {
                         $temp[] = $food;
                     }
@@ -336,15 +339,21 @@ class FoodController extends Controller
         {
             if(empty($foods))
             {
-                $checkFoods = $this->getDoctrine()->getRepository(Food::class)->findBy(['dateAdded' => $date]);
-                $foods = $checkFoods;
+                $checkFoods = $this->getDoctrine()->getRepository(Food::class)->findAll();
+                foreach ($checkFoods as $food)
+                {
+                    if($this->getCheckFoodForPriceRange($priceRange, $food))
+                    {
+                        $foods[] = $food;
+                    }
+                }
             } else{
 
                 $temp = [];
 
                 foreach ($foods as $food)
                 {
-                    if($food->getDateAdded() == $date)
+                    if($this->getCheckFoodForPriceRange($priceRange, $food))
                     {
                         $temp[] = $food;
                     }
@@ -354,9 +363,49 @@ class FoodController extends Controller
             }
         }
 
+        $photoLink = [];
 
-        print_r($foods);
-        die();
+        foreach ($foods as $food)
+        {
+            $photo = $this->getPhotoLinks($food->getPhotoLink())[0];
+            array_push($photoLink, $photo);
+        }
 
+
+        return $this->render('food/index.html.twig', [
+            'foods' => $foods,
+            'photos' => $photoLink
+        ]);
+
+    }
+
+    private function getCheckFoodForPriceRange($priceValue, $food)
+    {
+        $price = $food->getPrice();
+        switch ($priceValue)
+        {
+            case 0:
+                if($price() < 1)
+                {
+                    return true;
+                }
+            case 1:
+                if($price > 1 && $price < 3 )
+                {
+                    return true;
+                }
+            case 2:
+                if($price > 3 & $price < 5)
+                {
+                    return true;
+                }
+            case 3:
+                if($price > 5)
+                {
+                    return true;
+                }
+            default:
+                return false;
+        }
     }
 }

@@ -9,20 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/user", name="suggested_product_")
+ * @Route("/suggested_product", name="suggested_product_")
  */
 class SuggestedProductController extends Controller
 {
-    /**
-     * @Route("/suggested/product", name="suggested_product")
-     */
-    public function index()
-    {
-        return $this->render('suggested_product/index.html.twig', [
-            'controller_name' => 'SuggestedProductController',
-        ]);
-    }
-
     /**
      * @Route("/suggested/new/{id}", name="new")
      */
@@ -39,6 +29,5 @@ class SuggestedProductController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('food_show_detail', ['id' => $food->getId()]);
-
     }
 }

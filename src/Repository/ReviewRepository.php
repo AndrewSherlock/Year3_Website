@@ -32,21 +32,20 @@ class ReviewRepository extends ServiceEntityRepository
         $setQuery = $this->createQueryBuilder('u')->update(Review::class, 'r')
             ->set('r.review_score', $newScore)->where('r.id = :id')
             ->setParameter('id', $id)
-            ->getQuery()->execute()
-            ;
+            ->getQuery()->execute();
 
     }
 
-    /*
-    public function findBySomething($value)
+    public function setItemPublic($id)
     {
-        return $this->createQueryBuilder('r')
-            ->where('r.something = :value')->setParameter('value', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $this->createQueryBuilder('q')
+            ->update(Review::class, 'r')
+            ->set('r.isPublic', '?1')
+            ->where('r.id =  ?2')
+            ->setParameter(1, true)
+            ->setParameter(2, $id)
+            ->getQuery();
+
+        $query->execute();
     }
-    */
 }

@@ -14,6 +14,7 @@ class ReviewType extends AbstractType
         $builder
             ->add('price')
             ->add('summary')
+            ->add('placeOfPurchase')
             ->add('stars')
         ;
     }
