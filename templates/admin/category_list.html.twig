@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_name }}!{% endblock %}
+
+{% block body %}
+
+    <h1>Food list</h1>
+
+    <a href="{{ path('category_new')}}" >Add new category</a>
+    <a href="{{ path('admin_home')}}" >Back to Admin panel</a></td>
+
+    <table>
+        <tr>
+            <th>Food ID</th>
+            <th>Category</th>
+        </tr>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</a></td>
+                <td>{{ category.category }}</a></td>
+                <td><a href="{{ path('category_edit', {'id': category.id}) }}" >Update</a></td>
+                {#<td><a href="{{ path('food_delete', {'id': food.id}) }}" >Delete</a></td>#}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

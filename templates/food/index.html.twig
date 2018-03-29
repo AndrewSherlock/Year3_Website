@@ -1,18 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Food index{% endblock %}
+{% block title %}Food list{% endblock %}
 
 {% block body %}
 
-
-    <h1> Food list</h1>
-
+    <h1 class="food_list_title"> Sugar free foods</h1>
     <div class="row col-md-12">
-        <div class="row col-md-10">
+        <div class="row col-md-10 food_list">
             {% set i = 0 %}
             {% for food in foods %}
 
-                <div class="col-md-4">
+                <div class="col-md-3 food_item_view">
                     <a href="{{ path('food_show_detail', {'id': food.id}) }}">
                         <h3>{{ food.title }}</h3>
                         {% if photos[i] is not null and photos[i] != "none"%}
@@ -21,6 +19,7 @@
                             <img class="food_main" src="/images/full_star.png" alt ="{{ food.title }} image">
                         {% endif %}
                         {% set i = i + 1 %}
+                        <br>
                         <p>{{ food.summary }}</p>
                         <p>Click to view reviews</p>
                     </a>
@@ -36,7 +35,7 @@
         </div>
 
         {% if is_granted('ROLE_USER') %}
-        <div class="col-md-2" style="background: #000000" >
+        <div class="col-md-2 filter_pane" style="background: #000000" >
             <p style="color: #FFFFFF">Filter options</p>
             <form action="{{ path('food_process_search') }}" method="POST">
                 <p>
@@ -64,7 +63,6 @@
     </div>
 
 
-    <div class="col-md-4" style="background: #000000" >
 
     </div>
 

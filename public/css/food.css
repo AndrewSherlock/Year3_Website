@@ -1,5 +1,14 @@
-.food_display{
+body{
+    background: #aafffc;
+}
 
+.navbar-light .navbar-nav .nav-link{
+    color: #e2e2e2;
+}
+
+.bg-light
+{
+    background-color: #5eb5e0!important;
 }
 
 .food_main{
@@ -18,4 +27,106 @@
 
 .review_star{
     width: 50px;
+}
+
+.top_image{
+    width: 100%;
+    height: 200px;
+}
+
+.home_content{
+    margin-top: 3%;
+    background-color: black;
+    border-radius: 10px;
+    color: #e2e2e2;
+    font-family: Georgia;
+}
+
+.home_content .title_home
+{
+    text-align: center;
+}
+
+.home_content p{
+    text-align: justify;
+    font-size: 20px;
+    padding:  20px;
+}
+
+footer{
+    background-color: #5eb5e0!important;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-family: Georgia;
+    padding: 10px;
+    color: #e2e2e2;
+}
+
+.food_list_title
+{
+    margin: 10px;
+    text-align: center;
+    color: black;
+    font-family: Georgia;
+}
+
+.food_item_view
+{
+    background: #5eb5e0;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.food_item_view img
+{
+    display: block;
+    margin: 0 auto;
+    height: 140px;
+    background-color: black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.food_item_view h3{
+    font-family: Georgia;
+    color: #e2e2e2;
+    text-align: center;
+    margin: 10px;
+}
+
+.food_item_view p{
+    font-family: Georgia;
+    color: #e2e2e2;
+    text-align: center;
+}
+
+.food_list{
+    margin: auto auto;
+}
+
+.filter_pane{
+    background: black;
+    border-radius: 10px;
+    margin: auto auto;
+}
+
+.filter_pane p{
+    font-family: Georgia;
+    color: #e2e2e2;
+}
+
+.filter_pane input[type="radio"]
+{
+    margin-left: 50px;
+}
+
+.filter_pane input[type="submit"]
+{
+   width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
 }

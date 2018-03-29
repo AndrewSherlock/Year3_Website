@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Food;
 use App\Entity\Review;
 use App\Entity\SuggestedProduct;
@@ -80,6 +81,25 @@ class AdminController extends Controller
         $args = [
             'controller_name' => 'Admin Panel - approve list',
             'suggestedfoods' => $suggestedPublicFoods
+        ];
+
+
+        return $this->render($template, $args);
+    }
+
+    /**
+     * @Route("/category_list", name="_cat_list")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function showCatList()
+    {
+        $template = 'admin/category_list.html.twig';
+
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+        $args = [
+            'page_name' => 'Admin Panel - Category list',
+            'categories' => $categories
         ];
 
 
