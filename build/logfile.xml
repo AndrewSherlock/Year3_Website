@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Project Test Suite" tests="5" assertions="7" errors="0" failures="1" skipped="0" time="0.497148">
+    <testsuite name="App\Tests\ControllerTests\DefaultControllerTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\ControllerTests\DefaultControllerTest.php" tests="4" assertions="6" errors="0" failures="1" skipped="0" time="0.496817">
+      <testsuite name="App\Tests\ControllerTests\DefaultControllerTest::testPagesAreReachable" tests="2" assertions="4" errors="0" failures="0" skipped="0" time="0.282392">
+        <testcase name="testPagesAreReachable with data set #0" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\ControllerTests\DefaultControllerTest.php" line="20" assertions="2" time="0.208239"/>
+        <testcase name="testPagesAreReachable with data set #1" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\ControllerTests\DefaultControllerTest.php" line="20" assertions="2" time="0.074153"/>
+      </testsuite>
+      <testcase name="testLoginWithValidInformation" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\ControllerTests\DefaultControllerTest.php" line="57" assertions="1" time="0.104892"/>
+      <testcase name="testNewUserSignup" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\ControllerTests\DefaultControllerTest.php" line="84" assertions="1" time="0.109533">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\ControllerTests\DefaultControllerTest::testNewUserSignup
+Failed asserting that '&lt;!doctype html&gt;\n
+&lt;html&gt;\n
+    &lt;head&gt;\n
+        &lt;meta charset="utf-8"&gt;\n
+        &lt;title&gt;login&lt;/title&gt;\n
+                    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-psh8r72jq3sodhvi3uxftmaw6vc51mkb0q5p2rruppvrszue4w1povhygtpbfshb" crossorigin="anonymous"&gt;\n
+            &lt;link rel="stylesheet" href="/css/font-awesome.css"&gt;\n
+            &lt;link rel="stylesheet" href="/css/styles.css"&gt;\n
+            &lt;link rel="stylesheet" href="/css/food.css"&gt;\n
+\n
+            &lt;/head&gt;\n
+    &lt;body&gt;\n
+    &lt;img class="top_image" src="/../images/background.jpg"&gt;\n
+\n
+    &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;\n
+        &lt;a class="navbar-brand" href="/"&gt;sugar-free foods&lt;/a&gt;\n
+        &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarnavaltmarkup" aria-controls="navbarnavaltmarkup" aria-expanded="false" aria-label="toggle navigation"&gt;\n
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;\n
+        &lt;/button&gt;\n
+        &lt;div class="collapse navbar-collapse" id="navbarnavaltmarkup"&gt;\n
+            &lt;div class="navbar-nav"&gt;\n
+                &lt;a class="nav-link nav-item" href="http://localhost/"&gt;home&lt;/a&gt;\n
+                &lt;a class="nav-link nav-item" href="http://localhost/food/"&gt;see foods&lt;/a&gt;\n
+\n
+                                    &lt;a class="nav-link nav-item" href="http://localhost/register"&gt;register&lt;/a&gt;\n
+                    &lt;a class="nav-link nav-item" href="http://localhost/login"&gt;log in&lt;/a&gt;\n
+                                                            &lt;/div&gt;\n
+        &lt;/div&gt;\n
+    &lt;/nav&gt;\n
+\n
+        \n
+        \n
+        \n
+    &lt;div class="container"&gt;\n
+        &lt;div class="col-md-12"&gt;\n
+            &lt;div class="col-md-4"&gt;&lt;/div&gt;\n
+            &lt;div class="col-md-8 form"&gt;\n
+                &lt;h2&gt;log in page&lt;/h2&gt;\n
+\n
+                                    &lt;div&gt;authentication request could not be processed due to a system problem.&lt;/div&gt;\n
+                \n
+\n
+                &lt;form name="form" method="post"&gt;&lt;div id="form"&gt;&lt;div class="form-group"&gt;&lt;label for="form_username" class="form-control-label required"&gt;username&lt;/label&gt;&lt;input type="text" id="form_username" name="form[username]" required="required" class="form-control" value="test user" /&gt;&lt;/div&gt;&lt;div class="form-group"&gt;&lt;label for="form_password" class="form-control-label required"&gt;password&lt;/label&gt;&lt;input type="password" id="form_password" name="form[password]" required="required" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group"&gt;&lt;button type="submit" id="form_login" name="form[login]" class="btn-secondary btn"&gt;login&lt;/button&gt;&lt;/div&gt;&lt;input type="hidden" id="form__token" name="form[_token]" value="vjoaazpz5q5oge4dh8dvpiu7rmhgm1zba4sozk5o10a" /&gt;&lt;/div&gt;&lt;/form&gt;\n
+            &lt;/div&gt;\n
+            &lt;div class="col-md-4"&gt;&lt;/div&gt;\n
+        &lt;/div&gt;\n
+    &lt;/div&gt;\n
+        \n
+                \n
+    &lt;/body&gt;\n
+&lt;/html&gt;\n
+' contains "user created successfully".
+
+C:\Users\andrew\Desktop\Year 3\Year3_website\tests\ControllerTests\DefaultControllerTest.php:104
+</failure>
+      </testcase>
+    </testsuite>
+    <testsuite name="App\Tests\DefaultControllerTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\DefaultControllerTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.000331">
+      <testcase name="testOnePlusOneEqualsTwo" class="App\Tests\DefaultControllerTest" classname="App.Tests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\DefaultControllerTest.php" line="9" assertions="1" time="0.000331"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

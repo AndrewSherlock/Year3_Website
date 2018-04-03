@@ -109,7 +109,19 @@ footer{
     margin: auto auto;
 }
 
+.top_search{
+    width: 100%;
+    background: black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.top_search .input_item{
+
+}
+
 .filter_pane{
+    margin-top: 0;
     background: black;
     border-radius: 10px;
     margin: auto auto;

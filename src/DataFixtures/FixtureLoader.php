@@ -18,7 +18,9 @@ class FixtureLoader extends Fixture implements DependentFixtureInterface
     {
         return array(
             CreateUsers::class,
-            CategoryCreater::class
+            CategoryCreater::class,
+            FoodFixture::class,
+            ReviewGenerator::class
         );
     }
 

@@ -37,5 +37,10 @@ class CategoryCreater extends Fixture
         $manager->persist($cat_4);
         $manager->flush();
 
+        $cat_5 = new Category();
+        $cat_5->setCategory('Jam');
+        $manager->persist($cat_5);
+        $manager->flush();
+
     }
 }

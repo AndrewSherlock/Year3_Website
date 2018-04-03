@@ -69,7 +69,7 @@
                 {% if app.user == null and review.isPublic or app.user != null %}
 
                 <div class="row" style="border-top: 2px dashed black; border-bottom: 2px dashed black; padding: 10px">
-                   <div class="col-md-10">
+                   <div class="col-md-9">
                        <div style="float: left">
                            <p>{{ review.addedBy.username }}</p>
                            <p>{{ review.summary }}</p>
@@ -85,7 +85,7 @@
                        </div>
                        <p style="clear: both"></p>
                    </div>
-                    <div class="col-md-2" style="text-align: center; margin-top: 10px;">
+                    <div class="col-md-3" style="text-align: center; margin-top: 10px;">
 
                         <p>Review Score : {{ review.reviewScore }}</p>
 

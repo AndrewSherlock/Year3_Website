@@ -24,6 +24,13 @@
         <!-- ###- doctrine/doctrine-bundle ### -->
     </php>
 
+    <logging>
+        <log type="coverage-html" target="./build/report"/>
+        <log type="junit" target="./build/logfile.xml"/>
+        <log type="testdox-html" target="./build/testdox.html"/>
+        <log type="testdox-text" target="./build/testdox.txt"/>
+        <log type="tap" target="./build/logfile.tap"/>
+    </logging>
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests/</directory>
