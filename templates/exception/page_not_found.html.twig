@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="col-md-12">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 page_not_found">
+
+                <h1>Page not found</h1>
+
+                <p>It looks like something went wrong. Click the link below to go back to home.</p>
+
+                <p><a href="{{ path('home') }}">Back to home</a> </p>
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -37,7 +37,7 @@ class VoteController extends Controller
      */
     public function new(Request $request)
     {
-        $user_id = $request->getSession()->get('user_id');
+        $user_id = $this->getUser();
         $id = $request->get('id');
         $food_id = $request->get('food_id');
         $voteValue = $request->get('vote');

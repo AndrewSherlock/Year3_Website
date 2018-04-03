@@ -21,6 +21,8 @@
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "fzaninotto/faker": "^1.7",
         "koff/crud-maker-bundle": "^1.0",
         "symfony/debug-pack": "^1.0",
         "symfony/dotenv": "^4.0",
