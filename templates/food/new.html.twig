@@ -4,8 +4,15 @@
 
 {% block body %}
 
-    <h1>Create new Food</h1>
+    <h1 style="text-align: center">Create new Food</h1>
 
+    <div class="container">
+    <div class="col-md-3" ></div>
+
+    <div class="col-md-6" style="margin: 0 auto">
     {% include 'food/_form.html.twig' with {'form': form} only %}
+    </div>
 
+    <div class="col-md-3"></div>
+    </div>
 {% endblock %}

@@ -23,17 +23,17 @@ class CategoryCreater extends Fixture
         $manager->flush();
 
         $cat_3 = new Category();
-        $cat_3->setCategory('Cakes');
+        $cat_3->setCategory('Biscuits');
         $manager->persist($cat_3);
         $manager->flush();
 
         $cat_3 = new Category();
-        $cat_3->setCategory('Buns');
+        $cat_3->setCategory('Chocolate');
         $manager->persist($cat_3);
         $manager->flush();
 
         $cat_4 = new Category();
-        $cat_4->setCategory('Liquorice');
+        $cat_4->setCategory('Ice-cream');
         $manager->persist($cat_4);
         $manager->flush();
 

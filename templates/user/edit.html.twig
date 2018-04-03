@@ -4,12 +4,17 @@
 
 {% block body %}
 
-    <h1>Edit User</h1>
+    <h1 style="text-align: center">Edit User</h1>
 
-    {% include 'user/_form.html.twig' with {'form': form, 'button_label': 'Edit'} only %}
+    <div class="container">
 
-    <a href="{{ path('user_index') }}">back to list</a>
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="margin: 20px auto">
+            {% include 'user/_form.html.twig' with {'form': form, 'button_label': 'Edit'} only %}
+            <a style="margin-top: 50px" href="{{ path('user_index') }}">back to list</a>
+        </div>
+        <div class="col-md-3"></div>
 
-    {% include 'user/_delete_form.html.twig' with {'identifier': user.id} only %}
+    </div>
 
 {% endblock %}

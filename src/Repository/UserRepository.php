@@ -49,6 +49,11 @@ class UserRepository extends ServiceEntityRepository
 
     }
 
+    public function giveUsersToFixtures()
+    {
+        return $this->findAll();
+    }
+
     /*
     public function findBySomething($value)
     {

@@ -59,17 +59,24 @@
                 {% if photos != null %}
                     <img class="detail_image" src="{{ photos[0] }}" alt="{{ food.title }} photo">
                 {% else %}
-                    //TODO default image
+                    <img src="/../images/default_image.png" alt="default_image">
                 {% endif %}
             </div>
         </div>
         <div class="col-md-12">
             {% for review in reviews %}
+
+                {% if app.user == null and review.isPublic or app.user != null %}
+
                 <div class="row" style="border-top: 2px dashed black; border-bottom: 2px dashed black; padding: 10px">
                    <div class="col-md-10">
                        <div style="float: left">
                            <p>{{ review.addedBy.username }}</p>
                            <p>{{ review.summary }}</p>
+
+                           {% if not review.isPublic %}
+                              <a href="{{ path('suggested_review_new', {'id': review.id}) }}">Suggest Review food</a>
+                           {% endif %}
                        </div>
                        <div style="float: right">
                            <p>Price paid : €{{ review.price |number_format(2) }}</p>
@@ -99,10 +106,13 @@
                         <img class="review_star" src="/images/empty_star.png" alt="star">
                         {% endif %}
 
+                        {%  if is_granted('ROLE_USER') %}
                         <p style="margin: 10px">Upvote/Downvote Review</p>
                         <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"></a>
                         <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down"></a>
+                        {% endif %}
                     </div>
+                    {% endif %}
                     {#<div style="float: left;">#}
                         {#<p>{{ review.addedBy.username }}</p>#}
                         {#{{ review.summary }}#}

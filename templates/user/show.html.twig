@@ -4,27 +4,48 @@
 
 {% block body %}
 
-    <h1>User</h1>
+    <div class="container">
+        <h2 style="text-align: center">{{ user.username }} Profile</h2>
 
-    <table>
-        <tr>
-            <th>Id</th>
-            <td>{{ user.id }}</td>
-        </tr>
-        <tr>
-            <th>Username</th>
-            <td>{{ user.username }}</td>
-        </tr>
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="margin: 20px auto">
 
-    </table>
+            <p>ID number : {{ user.id }}</p>
+            <p>Username : {{ user.username }}</p>
+            <p>Foods added by {{ user.username }} : <a href="{{ url('food_show_users', {'id':user.id}) }}"><input type="button" value="Show foods"></a></p>
+            <p>Reviews left by {{ user.username }} : <a href="{{ url('review_show_users', {'id':user.id})}}"><input type="button" value="Show Reviews"></a></p>
+            <div class="spacer" style="margin-top: 30px"></div>
+            <p>Edit Profile: <a href="{{ path('user_edit', {'id': user.id})}}"><input type="button" value="Edit Profile"></a></p>
+            <p>{% include 'user/_delete_form.html.twig' with {'identifier': user.id} only %}</p>
+            <div class="spacer" style="margin-top: 50px"></div>
+            <a href="{{ path('user_index') }}">back to list</a>
 
-    <a href=" {{ url('food_show_users', {'id':user.id})}}">Show my foods</a>
-    <a href=" {{ url('review_show_users', {'id':user.id})}}">Show my reviews</a>
+        </div>
+        <div class="col-md-3"></div>
 
-    <a href="{{ path('user_index') }}">back to list</a>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+    </div>
+    {#<h1>User</h1>#}
 
-    {% include 'user/_delete_form.html.twig' with {'identifier': user.id} only %}
+    {#<table>#}
+        {#<tr>#}
+            {#<th>Id</th>#}
+            {#<td>{{ user.id }}</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<th>Username</th>#}
+            {#<td>{{ user.username }}</td>#}
+        {#</tr>#}
+
+    {#</table>#}
+
+    {#<a href=" {{ url('food_show_users', {'id':user.id})}}">Show my foods</a>#}
+    {#<a href=" {{ url('review_show_users', {'id':user.id})}}">Show my reviews</a>#}
+
+    {#<a href="{{ path('user_index') }}">back to list</a>#}
+
+    {#<a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>#}
+
+    {#{% include 'user/_delete_form.html.twig' with {'identifier': user.id} only %}#}
 
 {% endblock %}

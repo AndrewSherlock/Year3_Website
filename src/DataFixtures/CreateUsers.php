@@ -21,6 +21,13 @@ class CreateUsers extends Fixture
         $manager->persist($admin);
         $manager->flush();
 
+        $reg_user = new User();
+        $reg_user->setUsername('reg_user');
+        $reg_user->setPassword(password_hash('password', PASSWORD_BCRYPT));
+        $reg_user->setRoles(['ROLE_USER']);
+        $manager->persist($reg_user);
+        $manager->flush();
+
         for($i = 0; $i < 99; $i++)
         {
             $user = new User();

@@ -149,9 +149,8 @@ class User implements  UserInterface, \Serializable
      */
     public function setRoles($roles)
     {
-        $roles[] = 'ROLE_USER';
         $this->roles = $roles;
-
+        $roles[] = 'ROLE_USER';
         return $this;
     }
 

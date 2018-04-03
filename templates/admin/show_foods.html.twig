@@ -4,22 +4,28 @@
 
 {% block body %}
 
-    <h1>Food list</h1>
+    <h1 style="text-align: center">Food list</h1>
 
-    <a href="{{ path('food_new')}}" >Add new food</a>
-    <a href="{{ path('admin_home')}}" >Back to Admin panel</a></td>
+    <div style="margin-left: 50px">
+        <a href="{{ path('food_new')}}" >Add new food</a><br>
+        <a href="{{ path('admin_home')}}" >Back to Admin panel</a>
+    </div>
 
-    <table>
+
+    <table class="table table-sm" style="margin-top: 40px">
         <tr>
-            <th>Food ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Summary</th>
-            <th>Date Added</th>
-            <th>Added by</th>
-            <th>Public food</th>
+            <th scope="col">Food ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Summary</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Added by</th>
+            <th scope="col">Public food</th>
+            <th scope="col">Food Edit</th>
+            <th scope="col">Food Delete</th>
         </tr>
-        {% for food in foodlist %}
+    <tbody>
+    {% for food in foodlist %}
         <tr>
             <td><a href="{{ path('food_show_detail', {'id': food.id}) }}" >{{ food.id }}</a></td>
             <td><a href="{{ path('food_show_detail', {'id': food.id}) }}" >{{ food.title }}</a></td>
@@ -28,13 +34,49 @@
             <td>{{ food.dateAdded|date('Y-m-d') }}</td>
             <td>{{ food.addedBy.username }}</td>
             {% if food.isPublic %}
-            <td>Yes</td>
+                <td>Yes</td>
             {% else %}
-            <td>No</td>
+                <td>No</td>
             {% endif %}
             <td><a href="{{ path('food_edit', {'id': food.id}) }}" >Update</a></td>
             <td><a href="{{ path('food_delete', {'id': food.id}) }}" >Delete</a></td>
         </tr>
-        {% endfor %}
+    {% endfor %}
+    </tbody>
     </table>
+
+
+    {#<h1>Food list</h1>#}
+
+    {#<a href="{{ path('food_new')}}" >Add new food</a>#}
+    {#<a href="{{ path('admin_home')}}" >Back to Admin panel</a></td>#}
+
+    {#<table>#}
+        {#<tr>#}
+            {#<th>Food ID</th>#}
+            {#<th>Name</th>#}
+            {#<th>Category</th>#}
+            {#<th>Summary</th>#}
+            {#<th>Date Added</th>#}
+            {#<th>Added by</th>#}
+            {#<th>Public food</th>#}
+        {#</tr>#}
+        {#{% for food in foodlist %}#}
+        {#<tr>#}
+            {#<td><a href="{{ path('food_show_detail', {'id': food.id}) }}" >{{ food.id }}</a></td>#}
+            {#<td><a href="{{ path('food_show_detail', {'id': food.id}) }}" >{{ food.title }}</a></td>#}
+            {#<td>{{ food.category.category }}</td>#}
+            {#<td>{{  food.summary }}</td>#}
+            {#<td>{{ food.dateAdded|date('Y-m-d') }}</td>#}
+            {#<td>{{ food.addedBy.username }}</td>#}
+            {#{% if food.isPublic %}#}
+            {#<td>Yes</td>#}
+            {#{% else %}#}
+            {#<td>No</td>#}
+            {#{% endif %}#}
+            {#<td><a href="{{ path('food_edit', {'id': food.id}) }}" >Update</a></td>#}
+            {#<td><a href="{{ path('food_delete', {'id': food.id}) }}" >Delete</a></td>#}
+        {#</tr>#}
+        {#{% endfor %}#}
+    {#</table>#}
 {% endblock %}

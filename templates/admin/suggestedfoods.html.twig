@@ -4,11 +4,13 @@
 
 {% block body %}
 
-    <h1>Suggested public list</h1>
+    <h1 style="text-align: center">Suggested public food list</h1>
 
-    <a href="{{ path('admin_home')}}" >Back to Admin panel</a></td>
+    <div style="margin-left: 50px">
+        <a href="{{ path('admin_home')}}" >Back to Admin panel</a>
+    </div>
 
-    <table>
+    <table class="table table-sm" style="margin-top: 40px">
         <tr>
             <th>Suggestion ID</th>
             <th>Food Name</th>
@@ -16,6 +18,7 @@
             <th>Accept</th>
             <th>Deny</th>
         </tr>
+        <tbody>
         {% for food in suggestedfoods %}
             <tr>
                 <td><a href="{{ path('food_show_detail', {'id': food.food.id}) }}" >{{ food.id }}</a></td>
@@ -27,5 +30,6 @@
 
             </tr>
         {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
