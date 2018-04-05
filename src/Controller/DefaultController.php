@@ -23,12 +23,8 @@ class DefaultController extends Controller
      */
     public function index()
     {
-        $session = new Session();
-        $user = $session->get('user_id');
-
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
-            'user_id' => $user
         ]);
     }
 
@@ -106,31 +102,6 @@ class DefaultController extends Controller
             ->add('login', SubmitType::class,
                 array('label' => 'Login'))->getForm();
 
-//        $form->handleRequest($request);
-//
-//        if($form->isSubmitted() && $form->isValid())
-//        {
-//            $username = $request->request->get('form')['username'];
-//            $password = $request->request->get('form')['password'];
-//
-//            $userRp =  $this->getDoctrine()->getRepository('App:User');
-//            $user_info_array = $userRp->findOneByUsername($username);
-//
-//            if($user_info_array == null || empty($user_info_array))
-//            {
-//                $this->addFlash('error', 'No such user found.');
-//                return $this->redirectToRoute('home');;
-//            }
-//
-//            if(password_verify($password, $user_info_array['password']))
-//            {
-//                $session = new Session();
-//                $session->set('user_id', $user_info_array['id']);
-//                return $this->redirectToRoute('home');
-//            } else{
-//                $this->addFlash('error', 'Incorrect login information');
-//            }
-//        }
 
         $args = [
             'login_form' => $form->createView(),
@@ -146,10 +117,10 @@ class DefaultController extends Controller
      */
     public function logoutAction()
     {
-        $session = new Session();
-
-        //$session->set('user', null);
-        $session->clear();
-        return $this->redirectToRoute('home');
+//        $session = new Session();
+//
+//        //$session->set('user', null);
+//        $session->clear();
+//        return $this->redirectToRoute('home');
     }
 }

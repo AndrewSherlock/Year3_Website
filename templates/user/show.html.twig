@@ -15,7 +15,7 @@
             <p>Foods added by {{ user.username }} : <a href="{{ url('food_show_users', {'id':user.id}) }}"><input type="button" value="Show foods"></a></p>
             <p>Reviews left by {{ user.username }} : <a href="{{ url('review_show_users', {'id':user.id})}}"><input type="button" value="Show Reviews"></a></p>
             <div class="spacer" style="margin-top: 30px"></div>
-            <p>Edit Profile: <a href="{{ path('user_edit', {'id': user.id})}}"><input type="button" value="Edit Profile"></a></p>
+            <p>Edit Profile: <a href="{{ path('user_edit', {'id': user.id})}}">Edit Profile</a></p>
             <p>{% include 'user/_delete_form.html.twig' with {'identifier': user.id} only %}</p>
             <div class="spacer" style="margin-top: 50px"></div>
             <a href="{{ path('user_index') }}">back to list</a>

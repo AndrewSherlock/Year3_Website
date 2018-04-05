@@ -79,6 +79,16 @@ class User implements  UserInterface, \Serializable
     }
 
     /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+
+
+    /**
      * get the user name
      * @return string
      */

@@ -108,8 +108,8 @@
 
                         {%  if is_granted('ROLE_USER') %}
                         <p style="margin: 10px">Upvote/Downvote Review</p>
-                        <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"></a>
-                        <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down"></a>
+                        <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"> Upvote</a>
+                        <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down">Downvote</a>
                         {% endif %}
                     </div>
                     {% endif %}

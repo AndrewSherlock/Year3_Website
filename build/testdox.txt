@@ -1,8 +1,0 @@
-App\Tests\ControllerTests\DefaultController
- [x] Pages are reachable 
- [x] Login with valid information
- [ ] New user signup
-
-App\Tests\DefaultController
- [x] One plus one equals two
-

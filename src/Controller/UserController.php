@@ -41,13 +41,12 @@ class UserController extends Controller
         $data = $session->get('data');
         $session->set('data', null);
 
+
         $userRp = $this->getDoctrine()->getRepository('App:User');
         $foundUser  = $userRp->findOneByUsername($data['username']);
 
         if($foundUser)
         {
-            //TODO sticky form
-
             $this->addFlash('error', 'User already exists');
             return $this->redirectToRoute('register');
         }
@@ -127,14 +126,14 @@ class UserController extends Controller
     }
 
     /**
- * @Route("/{id}", name="delete")
+ * @Route("delete/{id}", name="delete")
  * @Method("DELETE")
  */
     public function delete(Request $request, User $user)
     {
-        if (!$this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            return $this->redirectToRoute('user_index');
-        }
+//        if (!$this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+//            return $this->redirectToRoute('user_index');
+//        }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);

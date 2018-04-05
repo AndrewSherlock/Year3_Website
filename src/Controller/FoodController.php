@@ -53,7 +53,7 @@ class FoodController extends Controller
     }
 
     /**
-     * @Route("/foods/user/{id}", name="show_users")
+     * @Route("/user/{id}", name="show_users")
      * @return Response
      */
     public function showAllUsersPosts(Request $request)
@@ -64,11 +64,11 @@ class FoodController extends Controller
 
         $photoLink = [];
 
-        foreach ($foods as $food)
-        {
-            $photo = $this->getPhotoLinks($food->getPhotoLink())[0];
-            array_push($photoLink, $photo);
-        }
+//        foreach ($foods as $food)
+//        {
+//            $photo = $this->getPhotoLinks($food->getPhotoLink())[0];
+//            array_push($photoLink, $photo);
+//        }
 
 
         return $this->render('food/users_food_list.html.twig', [
@@ -201,7 +201,7 @@ class FoodController extends Controller
         if($this->getUser() == null)
         {
             $this->addFlash('error', 'You must be logged in for that');
-            $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
         }
 
         $user_id = $this->getUser()->getId();
@@ -209,7 +209,9 @@ class FoodController extends Controller
         if(!in_array('ROLE_ADMIN', $this->getUser()->getRoles()) && $user_id != $food->getAddedBy()->getId())
         {
             $this->addFlash('error', 'You do not have access to do that');
-            $this->redirectToRoute('home');
+
+
+            return $this->redirectToRoute('home');
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -272,14 +274,14 @@ class FoodController extends Controller
 
             foreach ($temp as $photo)
             {
-                if($photo == "" || empty($photo))
-                    continue;
+                if($photo != "" || !empty($photo)) {
 
-                $photo = str_replace('{','',$photo);
-                $photo = str_replace('}','',$photo);
-                $photo = trim($photo);
+                    $photo = str_replace('{', '', $photo);
+                    $photo = str_replace('}', '', $photo);
+                    $photo = trim($photo);
 
-                array_push( $array, $photo);
+                    array_push($array, $photo);
+                }
             }
         }
 
@@ -385,7 +387,7 @@ class FoodController extends Controller
         switch ($priceValue)
         {
             case 0:
-                if($price() < 1)
+                if($price < 1)
                 {
                     return true;
                 }
@@ -395,7 +397,7 @@ class FoodController extends Controller
                     return true;
                 }
             case 2:
-                if($price > 3 & $price < 5)
+                if($price > 3 && $price < 5)
                 {
                     return true;
                 }

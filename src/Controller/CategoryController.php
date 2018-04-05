@@ -67,15 +67,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="delete")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function delete(Request $request, Category $category)
     {
-        if (!$this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
-            return $this->redirectToRoute('admin_cat_list');
-        }
+//        if (!$this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+//            return $this->redirectToRoute('admin_cat_list');
+//        }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);

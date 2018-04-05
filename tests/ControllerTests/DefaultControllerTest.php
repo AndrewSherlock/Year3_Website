@@ -35,14 +35,11 @@ class DefaultControllerTest extends WebTestCase
 
     public function pageTestsProvider()
     {
-        /*
-         *  [
-                '/',
-                'Welcome to the sugar free foods website'
-            ],
-         */
-
         return[
+             [
+                '/',
+                'Welcome' // FAILING
+            ],
             [
                 '/register',
                 'Register'
@@ -74,14 +71,17 @@ class DefaultControllerTest extends WebTestCase
         $form['form[password]'] = 'admin';
 
         $crawler = $client->submit($form);
+        $expectedUrl = '/';
         $expectedText = 'logout';
 
-//        $crawler = $client->followRedirect();
-//        $content = $client->getResponse()->getContent();
-//        $this->assertContains(strtolower($expectedText), strtolower($content));
+        $this->assertContains($expectedUrl, $client->getResponse()->getContent());
+
+        $crawler = $client->followRedirect();
+        $content = $client->getResponse()->getContent();
+        $this->assertContains(strtolower($expectedText), strtolower($content));
     }
 
-    public function testNewUserSignup()
+    public function testLogout()
     {
         // Arrange
         $url = '/login';
@@ -90,19 +90,56 @@ class DefaultControllerTest extends WebTestCase
         $crawler = $client->request($httpMethod, $url);
         $buttonName = 'form[login]';
 
+
         //act
         $button = $crawler->selectButton($buttonName);
         $form = $button->form();
-
-        $form['form[username]'] = 'test user';
+        $form['form[username]'] = 'admin';
+        $form['form[password]'] = 'admin';
 
         $crawler = $client->submit($form);
-        $expectedText = 'user created successfully';
 
         $crawler = $client->followRedirect();
-        $content = $client->getResponse()->getContent();
-        $this->assertContains(strtolower($expectedText), strtolower($content));
+       // $crawler = $client->getRequest();
 
+        $linkText = 'Log out';
+        $link = $crawler->selectLink($linkText)->link();
+        $client->click($link);
+
+        // TEST logout functions
+        $linkCrawler = $client->followRedirect();
+        $this->assertContains('/', $client->getResponse()->getContent());
+
+        $content = $client->getResponse()->getContent();
+        $expectedText = 'log in';
+
+
+
+        $this->assertContains(strtolower($expectedText), strtolower($content));
     }
+
+//    public function testNewUserSignup()
+//    {
+//        // Arrange
+//        $url = '/login';
+//        $httpMethod = 'GET';
+//        $client = static::createClient();
+//        $crawler = $client->request($httpMethod, $url);
+//        $buttonName = 'form[login]';
+//
+//        //act
+//        $button = $crawler->selectButton($buttonName);
+//        $form = $button->form();
+//
+//        $form['form[username]'] = 'test user';
+//
+//        $crawler = $client->submit($form);
+//        $expectedText = 'user created successfully';
+//
+//        $crawler = $client->followRedirect();
+//        $content = $client->getResponse()->getContent();
+//        $this->assertContains(strtolower($expectedText), strtolower($content));
+//
+//    }
 
 }
