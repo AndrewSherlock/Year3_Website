@@ -33,8 +33,8 @@
     </logging>
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>tests/</directory>
-            <!--<directory>tests/ControllerTests/FoodControllerTest.php</directory>-->
+            <!--<directory>tests/</directory>-->
+            <directory>tests/ControllerTests/AdminControllerTest.php</directory>
         </testsuite>
     </testsuites>
 

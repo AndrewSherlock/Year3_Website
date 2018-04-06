@@ -38,7 +38,7 @@ class DefaultController extends Controller
         $user = new User();
         $template = 'default/register.html.twig';
 
-        if($session->get("user_id") != null)
+        if($this->getUser() != null)
         {
             $this->addFlash('error', 'You cannot do this while logged in');
             return $this->redirectToRoute('home');
@@ -117,10 +117,10 @@ class DefaultController extends Controller
      */
     public function logoutAction()
     {
-//        $session = new Session();
+        $session = new Session();
 //
 //        //$session->set('user', null);
-//        $session->clear();
-//        return $this->redirectToRoute('home');
+        $session->clear();
+        return $this->redirectToRoute('home');
     }
 }

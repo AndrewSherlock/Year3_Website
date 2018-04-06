@@ -18,7 +18,9 @@ class FoodType extends AbstractType
             ->add('summary')
             ->add('photoLink', FileType::class, array(
                 'multiple' => true,
-                'label' => 'Upload images'
+                'data_class' => null,
+                'label' => 'Upload images',
+                'required' => false
             ))
             ->add('description')
             ->add('listOfIngredients')

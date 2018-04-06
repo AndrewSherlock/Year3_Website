@@ -123,15 +123,15 @@ class FoodController extends Controller
      */
     public function new(Request $request)
     {
-        $user_id  = $this->getUser()->getId();
-        $userRP = $this->getDoctrine()->getRepository('App:User');
-        $user = $userRP->find($user_id);
-
-        if($user_id == null)
-        {
+        if($this->getUser() != null) {
+            $user_id = $this->getUser()->getId();
+        } else{
             $this->addFlash('error', 'You must be logged in for this action');
             return $this->redirectToRoute('home');
         }
+
+        $userRP = $this->getDoctrine()->getRepository('App:User');
+        $user = $userRP->find($user_id);
 
         $food = new Food();
         $form = $this->createForm(FoodType::class, $food);
@@ -178,16 +178,16 @@ class FoodController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="show")
-     * @Method("GET")
-     */
-    public function show(Food $food)
-    {
-        return $this->render('food/show.html.twig', [
-            'food' => $food,
-        ]);
-    }
+//    /**
+//     * @Route("/{id}", name="show")
+//     * @Method("GET")
+//     */
+//    public function show(Food $food)
+//    {
+//        return $this->render('food/show.html.twig', [
+//            'food' => $food,
+//        ]);
+//    }
 
     /**
      * @Route("/{id}/edit", name="edit")
@@ -201,7 +201,7 @@ class FoodController extends Controller
         if($this->getUser() == null)
         {
             $this->addFlash('error', 'You must be logged in for that');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('/');
         }
 
         $user_id = $this->getUser()->getId();
@@ -211,7 +211,7 @@ class FoodController extends Controller
             $this->addFlash('error', 'You do not have access to do that');
 
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('/');
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -227,14 +227,13 @@ class FoodController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="delete")
      */
     public function delete(Request $request, Food $food)
     {
-        if (!$this->isCsrfTokenValid('delete'.$food->getId(), $request->request->get('_token'))) {
-            return $this->redirectToRoute('food_index');
-        }
+//        if (!$this->isCsrfTokenValid('delete'.$food->getId(), $request->request->get('_token'))) {
+//            return $this->redirectToRoute('food_index');
+//        }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($food);
@@ -243,26 +242,26 @@ class FoodController extends Controller
         return $this->redirectToRoute('food_index');
     }
 
-    /**
-     * @Route("/list/{id}", name="show_list")
-     */
-    public function showFoodsForUser(Request $request)
-    {
-        $user_id = $request->getSession()->get('user_id');
-        $foodRP = $this->getDoctrine()->getRepository(Food::class);
-
-        $foodList = $foodRP->findBy(['addedBy' => $user_id]);
-
-
-        $args = [
-                'foods' => $foodList,
-                'user_id' => $user_id
-            ];
-
-        $template = 'food\index.html.twig';
-
-        return $this->render($template, $args);
-    }
+//    /**
+//     * @Route("/list/{id}", name="show_list")
+//     */
+//    public function showFoodsForUser(Request $request)
+//    {
+//        $user_id = $request->getSession()->get('user_id');
+//        $foodRP = $this->getDoctrine()->getRepository(Food::class);
+//
+//        $foodList = $foodRP->findBy(['addedBy' => $user_id]);
+//
+//
+//        $args = [
+//                'foods' => $foodList,
+//                'user_id' => $user_id
+//            ];
+//
+//        $template = 'food\index.html.twig';
+//
+//        return $this->render($template, $args);
+//    }
 
     private function getPhotoLinks($fileString)
     {

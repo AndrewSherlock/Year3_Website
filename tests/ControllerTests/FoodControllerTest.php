@@ -2,8 +2,13 @@
 
 namespace App\Tests\ControllerTests;
 
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
+use App\Utils\ImageUploader;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 class FoodControllerTest  extends WebTestCase
@@ -120,12 +125,14 @@ class FoodControllerTest  extends WebTestCase
         $buttonName = 'Edit';
         $button = $crawler->selectButton($buttonName);
         $editForm = $button->form();
+        $client->getRequest()->files->set('food[photolink]', new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', 'test.jpg', 'image/jpg', 10000000));
+
         $client->submit($editForm);
 
         $content = $client->getResponse()->getContent();
         $this->assertNotNull($editForm);
 
-        $this->assertContains('/122/edit', strtolower($content));
+        $this->assertContains('edit Food', strtolower($content));
 
     }
 
@@ -135,7 +142,7 @@ class FoodControllerTest  extends WebTestCase
         $httpMethod = 'GET';
         $client = static::createClient();
         $crawler = $client->request($httpMethod, $url);
-        $client->followRedirect();
+       // $client->followRedirect();
 
         $content = $client->getResponse()->getContent();
         $this->assertContains('you must be logged in for that', strtolower($content));
@@ -323,5 +330,136 @@ class FoodControllerTest  extends WebTestCase
         ];
     }
 
+    public function testNewFood()
+    {
+        $url = '/login';
+        $httpMethod = 'GET';
+        $client = static::createClient();
+
+        $crawler = $client->request($httpMethod, $url);
+        $buttonName = 'form[login]';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+        $form['form[username]'] = 'reg_user';
+        $form['form[password]'] = 'password';
+        $client->submit($form);
+        $client->followRedirects(true);
+
+        $url = '/food/new';
+        $crawler = $client->request($httpMethod, $url);
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $content = $client->getResponse()->getContent();
+        $this->assertContains('create new food', strtolower($content));
+
+
+        $buttonName = 'Save';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+
+        $this->assertNotNull($form);
+
+        $category = new Category();
+        $categoryRepo = $this->createMock(ObjectManager::class);
+        $categoryRepo->method('find')->willReturn($category);
+
+        $form['food[title]'] = 'Testing food';
+        $form['food[summary]'] = 'test summary';
+        $form['food[photoLink]'] = new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', '873625426_a7baa1334b_o.jpg', 'image/jpeg', 85890);
+        $form['food[description]'] = 'test description';
+        $form['food[listOfIngredients]'] = 'test ingredents';
+        $form['food[price]'] = '3';
+        $form['food[category]'] = '134';
+
+        //$client->getRequest()->files->set('food[photolink]', new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', 'test.jpg', 'image/jpg', 10000000));
+        $client->submit($form);
+
+        $content = $client->getResponse()->getContent();
+        $this->assertContains('sugar free foods', strtolower($content));
+
+    }
+
+    public function testNewNotLoggedIn()
+    {
+        $httpMethod = 'GET';
+        $url = '/food/new';
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $crawler = $client->request($httpMethod, $url);
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $content = $client->getResponse()->getContent();
+
+        $this->assertContains('you must be logged in for this action', strtolower($content));
+    }
+
+    public function testNewFailingImage()
+    {
+        $url = '/login';
+        $httpMethod = 'GET';
+        $client = static::createClient();
+
+        $crawler = $client->request($httpMethod, $url);
+        $buttonName = 'form[login]';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+        $form['form[username]'] = 'reg_user';
+        $form['form[password]'] = 'password';
+        $client->submit($form);
+        $client->followRedirects(true);
+
+        $url = '/food/new';
+        $crawler = $client->request($httpMethod, $url);
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $content = $client->getResponse()->getContent();
+
+
+        $buttonName = 'Save';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+
+        $this->assertNotNull($form);
+
+        $category = new Category();
+        $categoryRepo = $this->createMock(ObjectManager::class);
+        $categoryRepo->method('find')->willReturn($category);
+
+        $form['food[title]'] = 'Testing food';
+        $form['food[summary]'] = 'test summary';
+        $form['food[photoLink]'] = new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', '873625426_a7baa1334b_o.jpg', 'image/jpeg', 85890);
+        $form['food[description]'] = 'test description';
+        $form['food[listOfIngredients]'] = 'test ingredents';
+        $form['food[price]'] = '3';
+        $form['food[category]'] = '134';
+
+        //$client->getRequest()->files->set('food[photolink]', new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', 'test.jpg', 'image/jpg', 10000000));
+        $client->submit($form);
+
+        $content = $client->getResponse()->getContent();
+        $this->assertContains('there was a probelm with your images', strtolower($content));
+    }
+
+    public function testDeleteOption()
+    {
+        $url = '/login';
+        $httpMethod = 'GET';
+        $client = static::createClient();
+
+        $crawler = $client->request($httpMethod, $url);
+        $buttonName = 'form[login]';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+        $form['form[username]'] = 'admin';
+        $form['form[password]'] = 'admin';
+        $client->submit($form);
+        $client->followRedirects(true);
+
+        $url = 'food/delete/136';
+        $crawler = $client->request($httpMethod, $url);
+
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $content = $client->getResponse()->getContent();
+
+        $this->assertContains('sugar free foods',strtolower($content));
+
+    }
 
 }

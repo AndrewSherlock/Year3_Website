@@ -88,58 +88,92 @@ class DefaultControllerTest extends WebTestCase
         $httpMethod = 'GET';
         $client = static::createClient();
         $crawler = $client->request($httpMethod, $url);
-        $buttonName = 'form[login]';
 
+        $buttonName = 'form[login]';
 
         //act
         $button = $crawler->selectButton($buttonName);
         $form = $button->form();
         $form['form[username]'] = 'admin';
         $form['form[password]'] = 'admin';
+        $client->submit($form);
+        $client->followRedirect();
 
-        $crawler = $client->submit($form);
+        $url = '/logout';
+        $client->request($httpMethod, $url);
+        $expectedCode = 302;
+        $this->assertSame($expectedCode, $client->getResponse()->getStatusCode());
 
-        $crawler = $client->followRedirect();
-       // $crawler = $client->getRequest();
-
-        $linkText = 'Log out';
-        $link = $crawler->selectLink($linkText)->link();
-        $client->click($link);
-
-        // TEST logout functions
-        $linkCrawler = $client->followRedirect();
-        $this->assertContains('/', $client->getResponse()->getContent());
 
         $content = $client->getResponse()->getContent();
-        $expectedText = 'log in';
-
-
-
+        $expectedText = 'redirect';
+        $this->assertEmpty($client->getRequest()->getSession());
         $this->assertContains(strtolower($expectedText), strtolower($content));
     }
 
-//    public function testNewUserSignup()
-//    {
-//        // Arrange
-//        $url = '/login';
-//        $httpMethod = 'GET';
-//        $client = static::createClient();
-//        $crawler = $client->request($httpMethod, $url);
-//        $buttonName = 'form[login]';
-//
-//        //act
-//        $button = $crawler->selectButton($buttonName);
-//        $form = $button->form();
-//
-//        $form['form[username]'] = 'test user';
-//
-//        $crawler = $client->submit($form);
-//        $expectedText = 'user created successfully';
-//
-//        $crawler = $client->followRedirect();
-//        $content = $client->getResponse()->getContent();
-//        $this->assertContains(strtolower($expectedText), strtolower($content));
-//
-//    }
+    public function testUserLoggedAttemptToRegister()
+    {
+        // Arrange
+        $url = '/login';
+        $httpMethod = 'GET';
+        $client = static::createClient();
+        $crawler = $client->request($httpMethod, $url);
+        $buttonName = 'form[login]';
+        $client->followRedirects(true);
 
+        //act
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+        $form['form[username]'] = 'admin';
+        $form['form[password]'] = 'admin';
+        $crawler = $client->submit($form);
+
+
+        $url = '/register';
+        $client->request($httpMethod, $url);
+
+        $content = $client->getResponse()->getContent();
+        $this->assertContains('you cannot do this while logged in', strtolower($content));
+
+
+    }
+
+    public function testNewUserSignup()
+    {
+        // Arrange
+        $url = '/register';
+        $httpMethod = 'GET';
+        $client = static::createClient();
+        $crawler = $client->request($httpMethod, $url);
+        $client->followRedirects(true);
+
+        $buttonName = 'form[login]';
+
+        //act
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+//
+//        $values = array(
+//            'form[username]' => 'test user',
+//            'form[password]' => [
+//                'first' => 'password',
+//                'second' => 'password'
+//            ]
+//        );
+
+      //  $form->setValues($values);
+       // $client->request($form->getMethod(), $form->getUri(), $values);
+
+
+        $form['form[username]'] = 'test user';
+        $form['form[password][first]'] = 'password';
+        $form['form[password][second]'] = 'password';
+
+        $crawler = $client->submit($form);
+        $expectedText = 'user successfully created';
+
+        $content = $client->getResponse()->getContent();
+        $this->assertContains(strtolower($expectedText), strtolower($content));
+
+    }
 }

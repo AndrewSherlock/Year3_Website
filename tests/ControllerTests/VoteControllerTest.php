@@ -27,7 +27,7 @@ class VoteControllerTest extends WebTestCase
         $form['form[username]'] = 'admin';
         $form['form[password]'] = 'admin';
         $client->submit($form);
-        $client->followRedirect();
+        $client->followRedirects(true);
 
         $crawler = $client->request($httpMethod, '/food/detail/122');
         $linkText = 'Upvote';
@@ -37,9 +37,8 @@ class VoteControllerTest extends WebTestCase
 
         $content = $client->getResponse()->getContent();
 
-        $redirect_code = 302;
-        $this->assertSame($redirect_code, $client->getResponse()->getStatusCode());
-        $this->assertContains('/setscore', strtolower($content));
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $this->assertContains('franks diabetic ice cream', strtolower($content));
     }
 
     public function testNewVoteWithConflict()
@@ -55,9 +54,9 @@ class VoteControllerTest extends WebTestCase
         $form['form[username]'] = 'admin';
         $form['form[password]'] = 'admin';
         $client->submit($form);
-        $client->followRedirect();
+        $client->followRedirects(true);
 
-        $crawler = $client->request($httpMethod, '/food/detail/122');
+        $crawler = $client->request($httpMethod, '/food/detail/126');
         $linkText = 'Upvote';
 
         $link = $crawler->selectLink($linkText)->link();
@@ -65,8 +64,6 @@ class VoteControllerTest extends WebTestCase
 
         $content = $client->getResponse()->getContent();
 
-        $redirect_code = 302;
-        $this->assertSame($redirect_code, $client->getResponse()->getStatusCode());
-        $this->assertContains('/food/detail/122', strtolower($content));
+        $this->assertContains('you can not vote twice', strtolower($content));
     }
 }
