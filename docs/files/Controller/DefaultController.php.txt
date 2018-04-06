@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Comment for file
+ */
 namespace App\Controller;
 
 use App\Entity\User;
@@ -16,24 +18,30 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+/***
+ * Public pages controller
+ * Class DefaultController
+ * @package App\Controller
+ */
 class DefaultController extends Controller
 {
     /**
+     * home page function
      * @Route("/", name="home")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
     {
-        $session = new Session();
-        $user = $session->get('user_id');
-
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
-            'user_id' => $user
         ]);
     }
 
     /**
-     * @Route("/register", name="register") methods={"GET", "POST"}
+     * function for new users to register
+     * @Route("/register", name="register") methods={"GET", "POST")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request)
     {
@@ -42,7 +50,7 @@ class DefaultController extends Controller
         $user = new User();
         $template = 'default/register.html.twig';
 
-        if($session->get("user_id") != null)
+        if($this->getUser() != null)
         {
             $this->addFlash('error', 'You cannot do this while logged in');
             return $this->redirectToRoute('home');
@@ -90,7 +98,11 @@ class DefaultController extends Controller
     }
 
     /**
+     * function to log in users
      * @Route("/login", name="login", methods={"GET", "POST"})
+     * @param Request $request
+     * @param AuthenticationUtils $authUtils
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
@@ -106,31 +118,6 @@ class DefaultController extends Controller
             ->add('login', SubmitType::class,
                 array('label' => 'Login'))->getForm();
 
-//        $form->handleRequest($request);
-//
-//        if($form->isSubmitted() && $form->isValid())
-//        {
-//            $username = $request->request->get('form')['username'];
-//            $password = $request->request->get('form')['password'];
-//
-//            $userRp =  $this->getDoctrine()->getRepository('App:User');
-//            $user_info_array = $userRp->findOneByUsername($username);
-//
-//            if($user_info_array == null || empty($user_info_array))
-//            {
-//                $this->addFlash('error', 'No such user found.');
-//                return $this->redirectToRoute('home');;
-//            }
-//
-//            if(password_verify($password, $user_info_array['password']))
-//            {
-//                $session = new Session();
-//                $session->set('user_id', $user_info_array['id']);
-//                return $this->redirectToRoute('home');
-//            } else{
-//                $this->addFlash('error', 'Incorrect login information');
-//            }
-//        }
 
         $args = [
             'login_form' => $form->createView(),
@@ -142,13 +129,15 @@ class DefaultController extends Controller
     }
 
     /**
+     * log out function
      * @Route("/logout", name="logout")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function logoutAction()
     {
         $session = new Session();
-
-        //$session->set('user', null);
+//
+//        //$session->set('user', null);
         $session->clear();
         return $this->redirectToRoute('home');
     }

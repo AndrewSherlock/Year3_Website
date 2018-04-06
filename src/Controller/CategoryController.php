@@ -1,7 +1,9 @@
 <?php
 
 /**
+ *
  *  comment for file
+
  */
 namespace App\Controller;
 
@@ -15,14 +17,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * Category controller
  * @Route("/category", name="category_")
+ * Class CategoryController
+ * @package App\Controller
  */
 class CategoryController extends Controller
 {
     /**
+     * new category page
      * @Route("/new", name="new")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function new(Request $request)
     {
@@ -45,9 +53,13 @@ class CategoryController extends Controller
     }
 
     /**
+     * edit the category
      * @Route("/{id}/edit", name="edit")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function edit(Request $request, Category $category)
     {
@@ -67,14 +79,15 @@ class CategoryController extends Controller
     }
 
     /**
+     * deletes the category
      * @Route("/{id}/delete", name="delete")
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function delete(Request $request, Category $category)
     {
-//        if (!$this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
-//            return $this->redirectToRoute('admin_cat_list');
-//        }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);

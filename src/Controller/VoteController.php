@@ -1,4 +1,7 @@
 <?php
+/**
+ * Comment for file
+ */
 
 namespace App\Controller;
 
@@ -13,7 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * Review voting system
  * @Route("/vote", name="vote_")
+ * Class VoteController
+ * @package App\Controller
  */
 class VoteController extends Controller
 {
@@ -32,8 +38,11 @@ class VoteController extends Controller
 //    }
 
     /**
+     * new vote creation system
      * @Route("/new", name="new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function new(Request $request)
     {

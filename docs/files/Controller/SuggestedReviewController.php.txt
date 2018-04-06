@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * comment for the file
+ */
 namespace App\Controller;
 
 use App\Entity\Review;
@@ -10,12 +12,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
 /**
+ * Suggested public review system
  * @Route("/suggested_review", name="suggested_review_")
+ * Class SuggestedReviewController
+ * @package App\Controller
  */
 class SuggestedReviewController extends Controller
 {
     /**
+     * add a new suggeestion for public reviews
      * @Route("/suggested_review/new/{id}", name="new")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function newSuggestedProduct(Request $request)
     {

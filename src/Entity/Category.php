@@ -1,39 +1,47 @@
 <?php
-
+/**
+ * Comment for file
+ */
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Food category
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
+ * Class Category
+ * @package App\Entity
  */
 class Category
 {
     /**
+     * Category id
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
-     * * @ORM\Column(type="string")
+     * name of category
+     * @ORM\Column(type="string")
+     * @var string
      */
     private $category;
 
 
     /**
+     * food list in category
      * @ORM\OneToMany(targetEntity="App\Entity\Food", mappedBy="category")
+     * @var Food
      */
     private $foods;
 
-    public function __construct()
-    {
-      //  $this->foods = new ArrayCollection();
-    }
 
     /**
-     * @return mixed
+     * gets the id of the category
+     * @return int
      */
     public function getId()
     {
@@ -41,7 +49,8 @@ class Category
     }
 
     /**
-     * @param mixed $id
+     * set the id
+     * @param int $id
      */
     public function setId($id): void
     {
@@ -49,7 +58,8 @@ class Category
     }
 
     /**
-     * @return mixed
+     * get the name of the category
+     * @return string
      */
     public function getCategory()
     {
@@ -57,7 +67,8 @@ class Category
     }
 
     /**
-     * @param mixed $category
+     * sets the name of the category
+     * @param string $category
      */
     public function setCategory($category): void
     {

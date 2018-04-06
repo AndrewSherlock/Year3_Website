@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * comment for file
+ */
 namespace App\Controller;
 
 use App\Entity\User;
@@ -13,13 +15,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * User pages controller
  * @Route("/user", name="user_")
+ * Class UserController
+ * @package App\Controller
  */
 class UserController extends Controller
 {
     /**
+     * user home page
      * @Route("/", name="index")
-     *
      * @return Response
      */
     public function index()
@@ -32,8 +37,11 @@ class UserController extends Controller
     }
 
     /**
+     * creates a new user page
      * @Route("/new", name="new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function newAction(Request $request)
     {
@@ -72,8 +80,12 @@ class UserController extends Controller
     }
 
     /**
+     * show the user details
      * @Route("/{id}", name="show")
      * @Method("GET")
+     * @param User $user
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function show(User $user, Request $request)
     {
@@ -99,8 +111,12 @@ class UserController extends Controller
     }
 
     /**
+     * edit user page
      * @Route("/{id}/edit", name="edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function edit(Request $request, User $user)
     {
@@ -126,9 +142,13 @@ class UserController extends Controller
     }
 
     /**
- * @Route("delete/{id}", name="delete")
- * @Method("DELETE")
- */
+     * delete a user page
+    * @Route("delete/{id}", name="delete")
+    * @Method("DELETE")
+     * @param Request $request
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function delete(Request $request, User $user)
     {
 //        if (!$this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {

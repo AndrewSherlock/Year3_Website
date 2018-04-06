@@ -1,84 +1,116 @@
 <?php
-
+/**
+ * comment for the file
+ */
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bundle\MakerBundle\Str;
 
 /**
+ * the food object that is on site
  * @ORM\Entity(repositoryClass="App\Repository\FoodRepository")
+ * Class Food
+ * @package App\Entity
  */
 class Food
 {
     /**
+     * Id of food object
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int $id
      */
     private $id;
 
     /**
+     * Title of the food
      *  @ORM\Column(type="string")
+     * @var string
      */
     private $title;
 
     /**
+     * summary of the food
      *  @ORM\Column(type="text")
+     * @var string
      */
     private $summary;
 
     /**
+     * The photos of the food
      *  @ORM\Column(type="string")
+     * @var string
      */
     private $photoLink;
 
     /**
+     * description of food
      *  @ORM\Column(type="text")
+     * @var string
      */
     private $description;
 
     /**
+     *  ingrendients of food
      *  @ORM\Column(type="text")
+     * @var string
      */
     private $listOfIngredients;
 
     /**
+     *  price of food
      *  @ORM\Column(type="decimal")
+     * @var float
      */
     private $price;
 
     /**
+     * The user that added the food
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="foods")
      * @ORM\JoinColumn(nullable=true)
+     * @var User
      */
     private $addedBy;
 
     /**
+     * Category of the food
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="foods")
      * @ORM\JoinColumn(nullable=true)
+     * @var Category
      */
     private $category;
 
     /**
+     * The reviews that are linked to the food
      * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="reviews")
      * @ORM\JoinColumn(nullable=true)
+     * @var Review
      */
     private $reviews;
 
     /**
+     * If the food is suggested to be public
      * @ORM\OneToMany(targetEntity="App\Entity\SuggestedProduct", mappedBy="suggestProducts")
      * @ORM\JoinColumn(nullable=true)
+     * @var SuggestedProduct
      */
     private $suggestedProduct;
 
     /**
+     * for use to make the item public
      * @ORM\Column(type="boolean")
+     * @var boolean
      */
     private $isPublic;
 
 
     /**
+     * gets the reviews that are linked to the food
      * @return mixed
+     * @return Review|ArrayCollection
      */
     public function getReviews()
     {
@@ -86,7 +118,8 @@ class Food
     }
 
     /**
-     * @param mixed $reviews
+     * sets the reviews linked to object
+     * @param Review $reviews
      */
     public function setReviews($reviews): void
     {
@@ -94,17 +127,24 @@ class Food
     }
 
     /**
+     * Date of the food added
      *  @ORM\Column(type="date")
+     * @var \DateTime
      */
     private $dateAdded;
 
+    /**
+     * Food constructor.
+     */
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
     }
 
     /**
+     * gets the id of the food
      * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -112,7 +152,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the title of the food
+     * @return string
      */
     public function getTitle()
     {
@@ -120,7 +161,8 @@ class Food
     }
 
     /**
-     * @param mixed $title
+     * Sets the name of the food
+     * @param string $title
      */
     public function setTitle($title): void
     {
@@ -128,7 +170,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the summary of the food
+     * @return string
      */
     public function getSummary()
     {
@@ -136,7 +179,8 @@ class Food
     }
 
     /**
-     * @param mixed $summary
+     * sets the summary of the food
+     * @param string $summary
      */
     public function setSummary($summary): void
     {
@@ -144,7 +188,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the photos links
+     * @return string
      */
     public function getPhotoLink()
     {
@@ -152,7 +197,8 @@ class Food
     }
 
     /**
-     * @param mixed $photoLink
+     * sets the photo links
+     * @param string $photoLink
      */
     public function setPhotoLink($photoLink): void
     {
@@ -160,7 +206,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the  description
+     * @return string
      */
     public function getDescription()
     {
@@ -168,7 +215,8 @@ class Food
     }
 
     /**
-     * @param mixed $description
+     * sets the description
+     * @param string $description
      */
     public function setDescription($description): void
     {
@@ -176,7 +224,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the price of the food
+     * @return float
      */
     public function getPrice()
     {
@@ -184,7 +233,8 @@ class Food
     }
 
     /**
-     * @param mixed $price
+     * sets the price of the food
+     * @param float $price
      */
     public function setPrice($price): void
     {
@@ -192,7 +242,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the user that added the food
+     * @return User
      */
     public function getAddedBy()
     {
@@ -200,7 +251,8 @@ class Food
     }
 
     /**
-     * @param mixed $addedBy
+     * sets teh user that created the food
+     * @param User $addedBy
      */
     public function setAddedBy($addedBy): void
     {
@@ -208,7 +260,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the category of the food
+     * @return Category
      */
     public function getCategory()
     {
@@ -216,7 +269,8 @@ class Food
     }
 
     /**
-     * @param mixed $category
+     * sets the category of the food
+     * @param Category $category
      */
     public function setCategory($category): void
     {
@@ -224,7 +278,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the date the food was added to the site
+     * @return \DateTime
      */
     public function getDateAdded()
     {
@@ -232,7 +287,8 @@ class Food
     }
 
     /**
-     * @param mixed $dateAdded
+     * sets the date of the food
+     * @param \DateTime $dateAdded
      */
     public function setDateAdded($dateAdded): void
     {
@@ -240,7 +296,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the food public state
+     * @return boolean
      */
     public function getisPublic()
     {
@@ -248,7 +305,8 @@ class Food
     }
 
     /**
-     * @param mixed $isPublic
+     * sets the foods public state
+     * @param boolean $isPublic
      */
     public function setIsPublic($isPublic): void
     {
@@ -256,7 +314,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the indregients of the food
+     * @return string
      */
     public function getListOfIngredients()
     {
@@ -264,7 +323,8 @@ class Food
     }
 
     /**
-     * @param mixed $listOfIngredients
+     * sets the list of ingredients
+     * @param string $listOfIngredients
      */
     public function setListOfIngredients($listOfIngredients): void
     {
@@ -272,7 +332,8 @@ class Food
     }
 
     /**
-     * @return mixed
+     * gets the list of times it was suggested to be public
+     * @return SuggestedProduct
      */
     public function getSuggestedProduct()
     {
@@ -280,14 +341,12 @@ class Food
     }
 
     /**
-     * @param mixed $suggestedProduct
+     * sets the suggested products
+     * @param SuggestedProduct $suggestedProduct
      */
     public function setSuggestedProduct($suggestedProduct): void
     {
         $this->suggestedProduct = $suggestedProduct;
     }
-
-
-
 }
 

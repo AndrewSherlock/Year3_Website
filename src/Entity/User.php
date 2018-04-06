@@ -79,6 +79,7 @@ class User implements  UserInterface, \Serializable
     }
 
     /**
+     * set the id of our user, just for testing
      * @param int $id
      */
     public function setId(int $id): void
@@ -180,6 +181,7 @@ class User implements  UserInterface, \Serializable
      */
     public function eraseCredentials()
     {
+        return null;
         // TODO: Implement eraseCredentials() method.
     }
 }

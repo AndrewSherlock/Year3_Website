@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * comment for the file
+ */
 namespace App\Controller;
 
 use App\Entity\Food;
@@ -14,13 +16,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * Food pages controller
  * @Route("/food", name="food_")
+ * Class FoodController
+ * @package App\Controller
  */
 class FoodController extends Controller
 {
     /**
+     * Gets the food home page
      * @Route("/", name="index")
-     *
      * @return Response
      */
     public function index()
@@ -53,6 +58,7 @@ class FoodController extends Controller
     }
 
     /**
+     * shows all of the foods added by a user
      * @Route("/user/{id}", name="show_users")
      * @return Response
      */
@@ -78,6 +84,7 @@ class FoodController extends Controller
     }
 
     /**
+     * the detailed page of the foods
      * @Route("/detail/{id}", name="show_detail")
      * @Method("GET")
      */
@@ -118,6 +125,7 @@ class FoodController extends Controller
     }
 
     /**
+     * new food page
      * @Route("/new", name="new")
      * @Method({"GET", "POST"})
      */
@@ -190,6 +198,7 @@ class FoodController extends Controller
 //    }
 
     /**
+     * edit the food page
      * @Route("/{id}/edit", name="edit")
      * @Method({"GET", "POST"})
      */
@@ -227,6 +236,7 @@ class FoodController extends Controller
     }
 
     /**
+     * delete the food page
      * @Route("/delete/{id}", name="delete")
      */
     public function delete(Request $request, Food $food)
@@ -263,6 +273,11 @@ class FoodController extends Controller
 //        return $this->render($template, $args);
 //    }
 
+    /**
+     * processes the foods images
+     * @param string $fileString
+     * @return array
+     */
     private function getPhotoLinks($fileString)
     {
         $array = [];
@@ -288,6 +303,7 @@ class FoodController extends Controller
     }
 
     /**
+     * search system for the food page
      * @Route("/search", name="process_search")
      * @return Response
      */
@@ -380,6 +396,12 @@ class FoodController extends Controller
 
     }
 
+    /**
+     * checks of the food is in a particular range
+     * @param string $priceValue
+     * @param Food $food
+     * @return bool
+     */
     private function getCheckFoodForPriceRange($priceValue, $food)
     {
         $price = $food->getPrice();

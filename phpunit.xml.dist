@@ -34,7 +34,8 @@
     <testsuites>
         <testsuite name="Project Test Suite">
             <!--<directory>tests/</directory>-->
-            <directory>tests/ControllerTests/AdminControllerTest.php</directory>
+            <!--<directory>tests/ControllerTests/AdminControllerTest.php</directory>-->
+            <directory>tests/UserTest.php</directory>
         </testsuite>
     </testsuites>
 

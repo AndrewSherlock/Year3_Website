@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * comment for the file
  */
 namespace App\Controller;
 
@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
 /**
+ * Controls the admin section
  * @Route("/admin", name="admin")
  * Class AdminController
  * @package App\Controller
@@ -122,6 +123,7 @@ class AdminController extends Controller
 
 
     /**
+     * shows the list of reviews to make public
      * @Route("/approve_review_list", name="_approve_review_list")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -141,6 +143,7 @@ class AdminController extends Controller
     }
 
     /**
+     * accept food as public
      * @Route("/accept_public/{id}", name="_accept")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -155,7 +158,8 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/accept_public/{id}", name="_reject")
+     * reject food as public
+     * @Route("/reject_public/{id}", name="_reject")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function rejectPublicItem(Request $request)
@@ -168,6 +172,7 @@ class AdminController extends Controller
     }
 
     /**
+     * promotes users to admin
      * @Route("/promote/{id}", name="_promote")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -184,6 +189,7 @@ class AdminController extends Controller
     }
 
     /**
+     * demotes users
      * @Route("/demote/{id}", name="_demote")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -200,6 +206,7 @@ class AdminController extends Controller
     }
 
     /**
+     * the admins page to delete users
      * @Route("/delete/{id}", name="_delete_user")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -217,6 +224,7 @@ class AdminController extends Controller
     }
 
     /**
+     * Accept review as a public review
      * @Route("/accept_public_review/{id}", name="_accept_review")
      * @Security("has_role('ROLE_ADMIN')")
      */
@@ -231,7 +239,8 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/accept_public_review/{id}", name="_reject_review")
+     * Reject food as a public item
+     * @Route("/reject_public_review/{id}", name="_reject_review")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function rejectPublicReview(Request $request)

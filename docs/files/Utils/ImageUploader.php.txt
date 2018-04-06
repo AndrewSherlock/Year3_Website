@@ -30,12 +30,12 @@ class ImageUploader
 
         foreach ($fileArray as $file)
         {
-            if(!in_array($file->getClientOriginalExtension(), $this->allowedFiles))
+            if($this->checkExtType($file->getClientOriginalExtension(), $this->allowedFiles))
             {
                 return null;
             }
 
-            if($file->getClientSize() > 1000000)
+            if($this->checkSize($file->getClientSize(), 1000000))
             {
                 return null;
             }
@@ -55,7 +55,27 @@ class ImageUploader
 
     }
 
-    private function getNewFileName()
+    public function checkExtType($extension, $permitted)
+    {
+        if(!in_array($extension, $permitted))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function checkSize($imageSize, $size)
+    {
+        if($imageSize > $size)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function getNewFileName()
     {
         return md5(uniqid());
     }

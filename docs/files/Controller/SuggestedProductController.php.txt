@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * comment for file
+ */
 namespace App\Controller;
 
 use App\Entity\Food;
@@ -9,12 +11,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
+ * Suggested public foods controller
  * @Route("/suggested_product", name="suggested_product_")
+ * Class SuggestedProductController
+ * @package App\Controller
  */
 class SuggestedProductController extends Controller
 {
     /**
+     * add a new suggestion
      * @Route("/suggested/new/{id}", name="new")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function newSuggestedProduct(Request $request)
     {

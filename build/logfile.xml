@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Project Test Suite" tests="8" assertions="13" errors="0" failures="0" skipped="0" time="0.112038">
+    <testsuite name="App\Tests\UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" tests="8" assertions="13" errors="0" failures="0" skipped="0" time="0.112038">
+      <testcase name="testInstance" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="37" assertions="1" time="0.062586"/>
+      <testcase name="testUserIdNotNull" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="47" assertions="1" time="0.006561"/>
+      <testcase name="testIDEqualToZero" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="57" assertions="1" time="0.006628"/>
+      <testcase name="testUserName" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="67" assertions="2" time="0.006613"/>
+      <testcase name="testUserNameFail" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="78" assertions="1" time="0.009444"/>
+      <testcase name="testUserPassword" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="88" assertions="2" time="0.006604"/>
+      <testcase name="testRoleNotEmpty" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="99" assertions="1" time="0.006921"/>
+      <testcase name="testNulls" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="110" assertions="4" time="0.006681"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

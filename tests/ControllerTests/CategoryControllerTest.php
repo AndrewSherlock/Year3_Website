@@ -94,7 +94,7 @@ class CategoryControllerTest extends WebTestCase
         $client->submit($form);
         $client->followRedirect();
 
-        $url = '/category/150/delete';
+        $url = '/category/151/delete';
         $crawler = $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();

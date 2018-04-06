@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Comment for file
+ */
 namespace App\Controller;
 
 use App\Entity\User;
@@ -16,10 +18,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+/***
+ * Public pages controller
+ * Class DefaultController
+ * @package App\Controller
+ */
 class DefaultController extends Controller
 {
     /**
+     * home page function
      * @Route("/", name="home")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
     {
@@ -29,7 +38,10 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/register", name="register") methods={"GET", "POST"}
+     * function for new users to register
+     * @Route("/register", name="register") methods={"GET", "POST")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request)
     {
@@ -86,7 +98,11 @@ class DefaultController extends Controller
     }
 
     /**
+     * function to log in users
      * @Route("/login", name="login", methods={"GET", "POST"})
+     * @param Request $request
+     * @param AuthenticationUtils $authUtils
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
@@ -113,7 +129,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * log out function
      * @Route("/logout", name="logout")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function logoutAction()
     {

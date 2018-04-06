@@ -1,0 +1,10 @@
+App\Tests\User
+ [x] Instance
+ [x] User id not null
+ [x] I d equal to zero
+ [x] User name
+ [x] User name fail
+ [x] User password
+ [x] Role not empty
+ [x] Nulls
+

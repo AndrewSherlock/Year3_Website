@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Comment for the file
+ */
 namespace App\Controller;
 
 use App\Entity\Review;
@@ -19,7 +22,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * The review system controller
  * @Route("/review", name="review_")
+ * Class ReviewController
+ * @package App\Controller
  */
 class ReviewController extends Controller
 {
@@ -38,8 +44,11 @@ class ReviewController extends Controller
 //    }
 
     /**
+     * When a user wants to create a new review for a food
      * @Route("/new/{id}", name="new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newReviewAction(Request $request)
     {
@@ -105,7 +114,10 @@ class ReviewController extends Controller
     }
 
     /**
+     * Used to set the score the review depending on the thumbs up and down
      * @Route("/setScore/{id}", name="set_score")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function setScore(Request $request)
     {
