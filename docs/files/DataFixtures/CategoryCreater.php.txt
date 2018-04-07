@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * comment for the file
+ */
 namespace App\DataFixtures;
 
 use App\Entity\Category;
@@ -7,9 +9,17 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 
-
+/**
+ *  Fixture class for category
+ * Class CategoryCreater
+ * @package App\DataFixtures
+ */
 class CategoryCreater extends Fixture
 {
+    /**
+     * load the categorys
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $cat_1 = new Category();

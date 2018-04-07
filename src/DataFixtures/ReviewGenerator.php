@@ -1,5 +1,7 @@
 <?php
-
+/**
+ *  comment for the file
+ */
 namespace App\DataFixtures;
 
 use App\Entity\Food;
@@ -9,11 +11,23 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 
-
+/**
+ *  Generate the reviews for the food
+ * Class ReviewGenerator
+ * @package App\DataFixtures
+ */
 class ReviewGenerator extends Fixture
 {
+    /**
+     * the users list
+     * @var array
+     */
     private $users = [];
 
+    /**
+     *  load the review fixtures
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $foods = $manager->getRepository(Food::class)->findAll();
@@ -47,7 +61,10 @@ class ReviewGenerator extends Fixture
 
     }
 
-
+    /**
+     *  get a random user for the review
+     * @return User
+     */
     private function randomizeUser()
     {
         $rand = rand(0, (sizeof($this->users) - 1));

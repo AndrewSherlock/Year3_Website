@@ -1,5 +1,7 @@
 <?php
-
+/**
+ *  comment for the file
+ */
 namespace App\Repository;
 
 use App\Entity\User;
@@ -7,18 +9,30 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
+ * User repository
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
  * @method User|null findOneBy(array $criteria, array $orderBy = null)
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * Class UserRepository
+ * @package App\Repository
  */
 class UserRepository extends ServiceEntityRepository
 {
+    /**
+     * UserRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * gets the user by name
+     * @param string $username
+     * @return User
+     */
     public function findOneByUsername($username)
     {
         $u = $this->createQueryBuilder('u')
@@ -32,6 +46,12 @@ class UserRepository extends ServiceEntityRepository
         else
             return null;
     }
+
+    /**
+     * changes the user role
+     * @param int $id
+     * @param string $nAccount
+     */
     public function changeUserAccount($id, $nAccount)
     {
         $json_array = [$nAccount];
@@ -49,6 +69,10 @@ class UserRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * gives the fixture all users
+     * @return User[]
+     */
     public function giveUsersToFixtures()
     {
         return $this->findAll();

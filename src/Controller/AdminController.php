@@ -146,6 +146,8 @@ class AdminController extends Controller
      * accept food as public
      * @Route("/accept_public/{id}", name="_accept")
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function acceptPublicItem(Request $request)
     {
@@ -161,6 +163,8 @@ class AdminController extends Controller
      * reject food as public
      * @Route("/reject_public/{id}", name="_reject")
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function rejectPublicItem(Request $request)
     {
@@ -175,6 +179,8 @@ class AdminController extends Controller
      * promotes users to admin
      * @Route("/promote/{id}", name="_promote")
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function promoteUser(Request $request)
     {
@@ -192,6 +198,8 @@ class AdminController extends Controller
      * demotes users
      * @Route("/demote/{id}", name="_demote")
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function demoteUser(Request $request)
     {
@@ -209,6 +217,8 @@ class AdminController extends Controller
      * the admins page to delete users
      * @Route("/delete/{id}", name="_delete_user")
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function adminDelete(Request $request)
     {
@@ -227,6 +237,8 @@ class AdminController extends Controller
      * Accept review as a public review
      * @Route("/accept_public_review/{id}", name="_accept_review")
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function acceptPublicReview(Request $request)
     {
@@ -242,6 +254,8 @@ class AdminController extends Controller
      * Reject food as a public item
      * @Route("/reject_public_review/{id}", name="_reject_review")
      * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function rejectPublicReview(Request $request)
     {

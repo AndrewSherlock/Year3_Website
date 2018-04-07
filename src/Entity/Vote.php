@@ -1,40 +1,55 @@
 <?php
+/**
+ * comment for file
+ */
 
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Used for when a user upvotes or downvotes a review
  * @ORM\Entity(repositoryClass="App\Repository\VoteRepository")
+ * Class Vote
+ * @package App\Entity
  */
 class Vote
 {
     /**
+     * The id of the vote object
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
+     * The value of the vote, either 1 or -1
     * @ORM\Column(type="integer")
-    */
+     * @var int
+     */
     private $voteType;
 
     /**
+     * the user associated with the vote
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="votes")
      * @ORM\JoinColumn(nullable=true)
+     * @var User
      */
     private $user;
 
     /**
+     * the review that the vote is associated with
      * @ORM\ManyToOne(targetEntity="App\Entity\Review", inversedBy="votes")
      * @ORM\JoinColumn(nullable=true)
+     * @var Review
      */
     private $review;
 
     /**
-     * @return mixed
+     * the id of the vote
+     * @return int
      */
     public function getId()
     {
@@ -42,7 +57,8 @@ class Vote
     }
 
     /**
-     * @return mixed
+     * the value of the vote
+     * @return int
      */
     public function getVoteType()
     {
@@ -50,7 +66,8 @@ class Vote
     }
 
     /**
-     * @param mixed $voteType
+     * sets the value of the vote
+     * @param int $voteType
      */
     public function setVoteType($voteType): void
     {
@@ -58,7 +75,8 @@ class Vote
     }
 
     /**
-     * @return mixed
+     * get the user who voted
+     * @return User
      */
     public function getUser()
     {
@@ -66,7 +84,8 @@ class Vote
     }
 
     /**
-     * @param mixed $user
+     * sets the User
+     * @param User $user
      */
     public function setUser($user): void
     {
@@ -74,7 +93,8 @@ class Vote
     }
 
     /**
-     * @return mixed
+     * sets the review for this vote
+     * @return Review
      */
     public function getReview()
     {
@@ -82,7 +102,8 @@ class Vote
     }
 
     /**
-     * @param mixed $review
+     * sets the review for this vote
+     * @param Review $review
      */
     public function setReview($review): void
     {

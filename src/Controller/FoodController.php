@@ -1,6 +1,6 @@
 <?php
 /**
- * comment for the file
+ * comment for file
  */
 namespace App\Controller;
 

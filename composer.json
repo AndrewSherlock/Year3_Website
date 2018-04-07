@@ -55,6 +55,7 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "run_doc":"php phpDocumentor.phar -d src/Controller -d src/Entity -d src/Util  -d src/Repository/ -d src/DataFixtures/ -d src/Security/ -t docs ",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",

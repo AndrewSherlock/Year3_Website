@@ -1,11 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andrew
- * Date: 03/04/2018
- * Time: 16:27
- */
 
+/**
+ * Comment for file
+ */
 namespace App\DataFixtures;
 
 
@@ -15,12 +12,24 @@ use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
-
+/**
+ *  food fixtures
+ * Class FoodFixture
+ * @package App\DataFixtures
+ */
 class FoodFixture  extends Fixture
 {
 
+    /**
+     *  user list
+     * @var array
+     */
     private $users = [];
 
+    /**
+     * load the foods
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $this->users = $manager->getRepository(User::class)->findAll();
@@ -48,6 +57,11 @@ class FoodFixture  extends Fixture
         $manager->flush();
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function franksIceCream(ObjectManager $manager)
     {
         $food = new Food();
@@ -78,6 +92,11 @@ class FoodFixture  extends Fixture
 
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function freeistChoc(ObjectManager $manager)
     {
         $food = new Food();
@@ -105,6 +124,11 @@ class FoodFixture  extends Fixture
 
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function freeistWhiteChoc(ObjectManager $manager)
     {
         $food = new Food();
@@ -131,6 +155,11 @@ class FoodFixture  extends Fixture
         return $food;
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function freeistChocCookie(ObjectManager $manager)
     {
         $food = new Food();
@@ -159,6 +188,11 @@ class FoodFixture  extends Fixture
 
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function freeistChocDark(ObjectManager $manager)
     {
         $food = new Food();
@@ -185,6 +219,11 @@ class FoodFixture  extends Fixture
 
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function freeistJam(ObjectManager $manager)
     {
         $food = new Food();
@@ -210,6 +249,11 @@ class FoodFixture  extends Fixture
 
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function freeistMarsh(ObjectManager $manager)
     {
         $food = new Food();
@@ -234,6 +278,11 @@ class FoodFixture  extends Fixture
 
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function freeistPeanut(ObjectManager $manager)
     {
         $food = new Food();
@@ -260,6 +309,11 @@ class FoodFixture  extends Fixture
 
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function freeistPop(ObjectManager $manager)
     {
         $food = new Food();
@@ -284,7 +338,12 @@ class FoodFixture  extends Fixture
 
     }
 
-       private function pepsiMax(ObjectManager $manager)
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
+    private function pepsiMax(ObjectManager $manager)
     {
         $food = new Food();
         $food->setTitle('Pepsi Max');
@@ -308,6 +367,11 @@ class FoodFixture  extends Fixture
 
     }
 
+    /**
+     *  generate food
+     * @param ObjectManager $manager
+     * @return Food
+     */
     private function pepsiMaxCherry(ObjectManager $manager)
     {
         $food = new Food();
@@ -330,7 +394,10 @@ class FoodFixture  extends Fixture
 
     }
 
-
+    /**
+     *  get a random user to add the food
+     * @return User
+     */
     private function randomizeUser()
     {
         $rand = rand(0, (sizeof($this->users) - 1));

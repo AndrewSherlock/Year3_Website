@@ -12,6 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Authorization\AccessDeniedHandlerInterface;
 
+/**
+ *  Exception handler
+ * Class AccessDeniedHandler
+ * @package App\Security
+ */
 class AccessDeniedHandler implements AccessDeniedHandlerInterface
 {
 
@@ -26,6 +31,11 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
      */
     private $logger;
 
+    /**
+     * AccessDeniedHandler constructor.
+     * @param ContainerInterface $container
+     * @param LoggerInterface $logger
+     */
     public function __construct(ContainerInterface $container, LoggerInterface $logger)
     {
         $this->twig = $container->get('twig');

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ *  comment for the file
+ */
 namespace App\Repository;
 
 use App\Entity\Review;
@@ -7,18 +9,30 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
+ * Review repository
  * @method Review|null find($id, $lockMode = null, $lockVersion = null)
  * @method Review|null findOneBy(array $criteria, array $orderBy = null)
  * @method Review[]    findAll()
  * @method Review[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * Class ReviewRepository
+ * @package App\Repository
  */
 class ReviewRepository extends ServiceEntityRepository
 {
+    /**
+     * ReviewRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Review::class);
     }
 
+    /**
+     * sets the review score when a vote comes in
+     * @param int $id
+     * @param int $value
+     */
     public function changeReviewScore($id, $value)
     {
         $queryRes = $this->createQueryBuilder('r')
@@ -36,6 +50,10 @@ class ReviewRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * sets the item as a public item
+     * @param int $id
+     */
     public function setItemPublic($id)
     {
         $query = $this->createQueryBuilder('q')

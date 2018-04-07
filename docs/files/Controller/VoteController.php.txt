@@ -1,8 +1,7 @@
 <?php
 /**
- * Comment for file
+ * comment for the file
  */
-
 namespace App\Controller;
 
 use App\Entity\Review;
