@@ -36,6 +36,8 @@
             <!--<directory>tests/</directory>-->
             <!--<directory>tests/ControllerTests/AdminControllerTest.php</directory>-->
             <directory>tests/UserTest.php</directory>
+            <directory>tests/FoodTest.php</directory>
+            <directory>tests/SuggestedReviewTest.php</directory>
         </testsuite>
     </testsuites>
 

@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Project Test Suite" tests="8" assertions="13" errors="0" failures="0" skipped="0" time="0.112038">
-    <testsuite name="App\Tests\UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" tests="8" assertions="13" errors="0" failures="0" skipped="0" time="0.112038">
-      <testcase name="testInstance" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="37" assertions="1" time="0.062586"/>
-      <testcase name="testUserIdNotNull" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="47" assertions="1" time="0.006561"/>
-      <testcase name="testIDEqualToZero" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="57" assertions="1" time="0.006628"/>
-      <testcase name="testUserName" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="67" assertions="2" time="0.006613"/>
-      <testcase name="testUserNameFail" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="78" assertions="1" time="0.009444"/>
-      <testcase name="testUserPassword" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="88" assertions="2" time="0.006604"/>
-      <testcase name="testRoleNotEmpty" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="99" assertions="1" time="0.006921"/>
-      <testcase name="testNulls" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="110" assertions="4" time="0.006681"/>
+  <testsuite name="Project Test Suite" tests="13" assertions="70" errors="0" failures="0" skipped="0" time="0.147240">
+    <testsuite name="App\Tests\UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" tests="8" assertions="13" errors="0" failures="0" skipped="0" time="0.111286">
+      <testcase name="testInstance" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="31" assertions="1" time="0.061322"/>
+      <testcase name="testUserIdNotNull" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="41" assertions="1" time="0.006238"/>
+      <testcase name="testIDEqualToZero" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="51" assertions="1" time="0.006774"/>
+      <testcase name="testUserName" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="61" assertions="2" time="0.006950"/>
+      <testcase name="testUserNameFail" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="72" assertions="1" time="0.009380"/>
+      <testcase name="testUserPassword" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="82" assertions="2" time="0.006462"/>
+      <testcase name="testRoleNotEmpty" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="93" assertions="1" time="0.006786"/>
+      <testcase name="testNulls" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="104" assertions="4" time="0.007374"/>
+    </testsuite>
+    <testsuite name="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" tests="4" assertions="55" errors="0" failures="0" skipped="0" time="0.033032">
+      <testcase name="testFood" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" line="88" assertions="27" time="0.017349"/>
+      <testcase name="testReview" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" line="135" assertions="20" time="0.007263"/>
+      <testcase name="testVote" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" line="172" assertions="6" time="0.004761"/>
+      <testcase name="testSuggestedProduct" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" line="187" assertions="2" time="0.003659"/>
+    </testsuite>
+    <testsuite name="App\Tests\SuggestedReviewTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\SuggestedReviewTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.002922">
+      <testcase name="testSuggestedReview" class="App\Tests\SuggestedReviewTest" classname="App.Tests.SuggestedReviewTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\SuggestedReviewTest.php" line="17" assertions="2" time="0.002922"/>
     </testsuite>
   </testsuite>
 </testsuites>

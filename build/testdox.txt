@@ -8,3 +8,12 @@ App\Tests\User
  [x] Role not empty
  [x] Nulls
 
+Food
+ [x] Food
+ [x] Review
+ [x] Vote
+ [x] Suggested product
+
+App\Tests\SuggestedReview
+ [x] Suggested review
+
