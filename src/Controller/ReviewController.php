@@ -143,57 +143,57 @@ class ReviewController extends Controller
 //        ]);
 //    }
 //
-//    /**
-//     * @Route("/{id}/edit", name="edit")
-//     * @Method({"GET", "POST"})
-//     */
-//    public function edit(Request $request, Review $review)
-//    {
-//        $form = $this->createForm(ReviewType::class, $review);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $this->getDoctrine()->getManager()->flush();
-//
-//            $this->addFlash('success', 'Review edited successfully.');
-//            return $this->redirectToRoute('food_show_detail', ['id' => $review->getFood()->getId()]);
+    /**
+     * @Route("/{id}/edit", name="edit")
+     * @Method({"GET", "POST"})
+     */
+    public function edit(Request $request, Review $review)
+    {
+        $form = $this->createForm(ReviewType::class, $review);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Review edited successfully.');
+            return $this->redirectToRoute('food_show_detail', ['id' => $review->getFood()->getId()]);
+        }
+
+        return $this->render('review/edit.html.twig', [
+            'review' => $review,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/delete", name="delete")
+     */
+    public function delete(Request $request, Review $review)
+    {
+//        if (!$this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
+//            return $this->redirectToRoute('review_index');
 //        }
-//
-//        return $this->render('review/edit.html.twig', [
-//            'review' => $review,
-//            'form' => $form->createView(),
-//        ]);
-//    }
 
-//    /**
-//     * @Route("/{id}/delete", name="delete")
-//     */
-//    public function delete(Request $request, Review $review)
-//    {
-////        if (!$this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
-////            return $this->redirectToRoute('review_index');
-////        }
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $em->remove($review);
-//        $em->flush();
-//
-//        $this->addFlash('success', 'Review deleted successfully.');
-//        return $this->redirectToRoute('food_show_detail', ['id'=>$review->getFood()->getId()]);
-//    }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($review);
+        $em->flush();
 
-//    /**
-//     * @Route("/show_users/{id}", name="show_users")
-//     */
-//    public function showUsersReviews(Request $request)
-//    {
-//        $id = $request->get('id');
-//
-//        $reviews = $this->getDoctrine()->getRepository(Review::class)->findBy(['addedBy' => $id]);
-//
-//        return $this->render('review/show_users.html.twig', [
-//            'reviews' => $reviews,
-//        ]);
-//    }
+        $this->addFlash('success', 'Review deleted successfully.');
+        return $this->redirectToRoute('food_show_detail', ['id'=>$review->getFood()->getId()]);
+    }
+
+    /**
+     * @Route("/show_users/{id}", name="show_users")
+     */
+    public function showUsersReviews(Request $request)
+    {
+        $id = $request->get('id');
+
+        $reviews = $this->getDoctrine()->getRepository(Review::class)->findBy(['addedBy' => $id]);
+
+        return $this->render('review/show_users.html.twig', [
+            'reviews' => $reviews,
+        ]);
+    }
 
 }

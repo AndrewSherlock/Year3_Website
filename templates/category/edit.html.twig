@@ -4,12 +4,17 @@
 
 {% block body %}
 
-    <h1>Edit Category</h1>
+    <div class="container">
+        <h1 style="text-align: center">Edit Category</h1>
+        <div class="col-md-3"></div>
+          <div class="col-md-6" style="margin: 20px auto;">
 
-    {% include 'category/_form.html.twig' with {'form': form, 'button_label': 'Edit'} only %}
+            {% include 'category/_form.html.twig' with {'form': form, 'button_label': 'Edit'} only %}
 
-    <a href="{{ path('admin_cat_list') }}">back to list</a>
+            <a href="{{ path('admin_cat_list') }}">back to list</a>
 
-    {% include 'category/_delete_form.html.twig' with {'identifier': category.id} only %}
-
+            {% include 'category/_delete_form.html.twig' with {'identifier': category.id} only %}
+          </div>
+        <div class="col-md-3"></div>
+    </div>
 {% endblock %}
