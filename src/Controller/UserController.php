@@ -51,7 +51,11 @@ class UserController extends Controller
 
 
         $userRp = $this->getDoctrine()->getRepository('App:User');
-        $foundUser  = $userRp->findOneByUsername($data['username']);
+        $foundUser  = $userRp->findOneBy(
+            [
+                'username' =>  $data['username']
+            ]
+        );
 
         if($foundUser)
         {
