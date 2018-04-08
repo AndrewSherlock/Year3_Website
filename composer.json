@@ -27,6 +27,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "fzaninotto/faker": "^1.7",
         "koff/crud-maker-bundle": "^1.0",
+        "symfony/symfony/monolog-bundle":"^1.0",
         "symfony/browser-kit": "^4.0",
         "symfony/css-selector": "^4.0",
         "symfony/debug-pack": "^1.0",
