@@ -1,24 +1,315 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Project Test Suite" tests="13" assertions="70" errors="0" failures="0" skipped="0" time="0.147240">
-    <testsuite name="App\Tests\UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" tests="8" assertions="13" errors="0" failures="0" skipped="0" time="0.111286">
-      <testcase name="testInstance" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="31" assertions="1" time="0.061322"/>
-      <testcase name="testUserIdNotNull" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="41" assertions="1" time="0.006238"/>
-      <testcase name="testIDEqualToZero" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="51" assertions="1" time="0.006774"/>
-      <testcase name="testUserName" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="61" assertions="2" time="0.006950"/>
-      <testcase name="testUserNameFail" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="72" assertions="1" time="0.009380"/>
-      <testcase name="testUserPassword" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="82" assertions="2" time="0.006462"/>
-      <testcase name="testRoleNotEmpty" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="93" assertions="1" time="0.006786"/>
-      <testcase name="testNulls" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\UserTest.php" line="104" assertions="4" time="0.007374"/>
+  <testsuite name="Project Test Suite" tests="85" assertions="197" errors="0" failures="4" skipped="0" time="143.714386">
+    <testsuite name="App\Tests\ControllerTests\AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" tests="13" assertions="20" errors="0" failures="0" skipped="0" time="31.349261">
+      <testsuite name="App\Tests\ControllerTests\AdminControllerTest::testAdminPages" tests="6" assertions="12" errors="0" failures="0" skipped="0" time="11.457480">
+        <testcase name="testAdminPages with data set #0" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="13" assertions="2" time="2.411090"/>
+        <testcase name="testAdminPages with data set #1" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="13" assertions="2" time="2.255731"/>
+        <testcase name="testAdminPages with data set #2" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="13" assertions="2" time="1.774356"/>
+        <testcase name="testAdminPages with data set #3" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="13" assertions="2" time="1.877699"/>
+        <testcase name="testAdminPages with data set #4" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="13" assertions="2" time="1.626197"/>
+        <testcase name="testAdminPages with data set #5" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="13" assertions="2" time="1.512407"/>
+      </testsuite>
+      <testcase name="testPromoteUser" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="48" assertions="1" time="2.993402"/>
+      <testcase name="testdemoteUser" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="72" assertions="1" time="2.993079"/>
+      <testcase name="testAcceptPublic" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="96" assertions="1" time="2.690656"/>
+      <testcase name="testRejectPublic" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="119" assertions="1" time="2.686213"/>
+      <testcase name="testAcceptPublicReview" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="142" assertions="1" time="2.703354"/>
+      <testcase name="testRejectPublicReview" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="165" assertions="1" time="2.727482"/>
+      <testcase name="testAdminDelete" class="App\Tests\ControllerTests\AdminControllerTest" classname="App.Tests.ControllerTests.AdminControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\AdminControllerTest.php" line="188" assertions="2" time="3.097595"/>
     </testsuite>
-    <testsuite name="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" tests="4" assertions="55" errors="0" failures="0" skipped="0" time="0.033032">
-      <testcase name="testFood" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" line="88" assertions="27" time="0.017349"/>
-      <testcase name="testReview" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" line="135" assertions="20" time="0.007263"/>
-      <testcase name="testVote" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" line="172" assertions="6" time="0.004761"/>
-      <testcase name="testSuggestedProduct" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\FoodTest.php" line="187" assertions="2" time="0.003659"/>
+    <testsuite name="App\Tests\ControllerTests\CategoryControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\CategoryControllerTest.php" tests="3" assertions="9" errors="0" failures="0" skipped="0" time="8.642360">
+      <testcase name="testNewCategory" class="App\Tests\ControllerTests\CategoryControllerTest" classname="App.Tests.ControllerTests.CategoryControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\CategoryControllerTest.php" line="11" assertions="4" time="3.664598"/>
+      <testcase name="testEditCategory" class="App\Tests\ControllerTests\CategoryControllerTest" classname="App.Tests.ControllerTests.CategoryControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\CategoryControllerTest.php" line="48" assertions="4" time="2.982957"/>
+      <testcase name="testDeleteCategory" class="App\Tests\ControllerTests\CategoryControllerTest" classname="App.Tests.ControllerTests.CategoryControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\CategoryControllerTest.php" line="82" assertions="1" time="1.994805"/>
     </testsuite>
-    <testsuite name="App\Tests\SuggestedReviewTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\SuggestedReviewTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.002922">
-      <testcase name="testSuggestedReview" class="App\Tests\SuggestedReviewTest" classname="App.Tests.SuggestedReviewTest" file="C:\Users\andrew\Desktop\Year 3\Year3_website\tests\SuggestedReviewTest.php" line="17" assertions="2" time="0.002922"/>
+    <testsuite name="App\Tests\ControllerTests\DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\DefaultControllerTest.php" tests="7" assertions="15" errors="0" failures="0" skipped="0" time="9.504342">
+      <testsuite name="App\Tests\ControllerTests\DefaultControllerTest::testPagesAreReachable" tests="3" assertions="6" errors="0" failures="0" skipped="0" time="1.327593">
+        <testcase name="testPagesAreReachable with data set #0" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\DefaultControllerTest.php" line="20" assertions="2" time="0.320046"/>
+        <testcase name="testPagesAreReachable with data set #1" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\DefaultControllerTest.php" line="20" assertions="2" time="0.535990"/>
+        <testcase name="testPagesAreReachable with data set #2" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\DefaultControllerTest.php" line="20" assertions="2" time="0.471557"/>
+      </testsuite>
+      <testcase name="testLoginWithValidInformation" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\DefaultControllerTest.php" line="54" assertions="3" time="1.495955"/>
+      <testcase name="testLogout" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\DefaultControllerTest.php" line="84" assertions="4" time="1.873084"/>
+      <testcase name="testUserLoggedAttemptToRegister" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\DefaultControllerTest.php" line="115" assertions="1" time="2.460382"/>
+      <testcase name="testNewUserSignup" class="App\Tests\ControllerTests\DefaultControllerTest" classname="App.Tests.ControllerTests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\DefaultControllerTest.php" line="142" assertions="1" time="2.347328"/>
+    </testsuite>
+    <testsuite name="App\Tests\ControllerTests\ExceptionControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ExceptionControllerTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.322337">
+      <testcase name="testExceptionThrow" class="App\Tests\ControllerTests\ExceptionControllerTest" classname="App.Tests.ControllerTests.ExceptionControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ExceptionControllerTest.php" line="11" assertions="2" time="0.322337"/>
+    </testsuite>
+    <testsuite name="App\Tests\ControllerTests\FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" tests="20" assertions="38" errors="0" failures="2" skipped="0" time="40.454548">
+      <testcase name="testFoodIndexLoggedIn" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="18" assertions="2" time="2.030287"/>
+      <testcase name="testIndexNotLoggedIn" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="42" assertions="2" time="0.507085"/>
+      <testcase name="testFoodListForUser" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="55" assertions="2" time="2.063256"/>
+      <testcase name="testShowDetailActionPublic" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="79" assertions="2" time="0.638247"/>
+      <testcase name="testShowDetailActionNotLogged" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="93" assertions="2" time="1.017373"/>
+      <testcase name="testEditFood" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="108" assertions="3" time="3.232671">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\ControllerTests\FoodControllerTest::testEditFood
+Failed asserting that '&lt;!doctype html&gt;\n
+&lt;html&gt;\n
+    &lt;head&gt;\n
+        &lt;meta charset="utf-8"&gt;\n
+        &lt;title&gt;page not found&lt;/title&gt;\n
+                    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-psh8r72jq3sodhvi3uxftmaw6vc51mkb0q5p2rruppvrszue4w1povhygtpbfshb" crossorigin="anonymous"&gt;\n
+            &lt;link rel="stylesheet" href="/css/font-awesome.css"&gt;\n
+            &lt;link rel="stylesheet" href="/css/styles.css"&gt;\n
+            &lt;link rel="stylesheet" href="/css/food.css"&gt;\n
+\n
+            &lt;/head&gt;\n
+    &lt;body&gt;\n
+    &lt;img class="top_image" src="/../images/background.jpg"&gt;\n
+\n
+    &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;\n
+        &lt;a class="navbar-brand" href="/"&gt;sugar-free foods&lt;/a&gt;\n
+        &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarnavaltmarkup" aria-controls="navbarnavaltmarkup" aria-expanded="false" aria-label="toggle navigation"&gt;\n
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;\n
+        &lt;/button&gt;\n
+        &lt;div class="collapse navbar-collapse" id="navbarnavaltmarkup"&gt;\n
+            &lt;div class="navbar-nav"&gt;\n
+                &lt;a class="nav-link nav-item" href="http://localhost/"&gt;home&lt;/a&gt;\n
+                &lt;a class="nav-link nav-item" href="http://localhost/food/"&gt;see foods&lt;/a&gt;\n
+\n
+                                                    &lt;a class="nav-link nav-item" href="/admin/"&gt;admin panel&lt;/a&gt;\n
+                                                        &lt;a class="nav-link nav-item" href="/food/new"&gt;add new food&lt;/a&gt;\n
+                        &lt;a class="nav-link nav-item" href="/user/206"&gt;profile&lt;/a&gt;\n
+                        &lt;a class="nav-link nav-item" href="http://localhost/logout"&gt;log out&lt;/a&gt;\n
+                            &lt;/div&gt;\n
+        &lt;/div&gt;\n
+    &lt;/nav&gt;\n
+\n
+        \n
+        \n
+        \n
+    &lt;div class="container"&gt;\n
+\n
+        &lt;div class="col-md-12"&gt;\n
+            &lt;div class="col-md-3"&gt;&lt;/div&gt;\n
+            &lt;div class="col-md-6 page_not_found"&gt;\n
+\n
+                &lt;h1&gt;page not found&lt;/h1&gt;\n
+\n
+                &lt;p&gt;it looks like something went wrong. click the link below to go back to home.&lt;/p&gt;\n
+\n
+                &lt;p&gt;&lt;a href="/"&gt;back to home&lt;/a&gt; &lt;/p&gt;\n
+\n
+            &lt;/div&gt;\n
+            &lt;div class="col-md-3"&gt;&lt;/div&gt;\n
+        &lt;/div&gt;\n
+\n
+    &lt;/div&gt;\n
+        \n
+                \n
+    &lt;/body&gt;\n
+&lt;/html&gt;\n
+' contains "122".
+
+C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php:138
+</failure>
+      </testcase>
+      <testcase name="testEditNotLoggedIn" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="142" assertions="1" time="0.822073"/>
+      <testcase name="testEditFoodReg" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="154" assertions="1" time="1.866235"/>
+      <testcase name="testFoodSearchText" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="176" assertions="2" time="2.116488"/>
+      <testcase name="testFoodSearchDate" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="205" assertions="2" time="2.243604"/>
+      <testcase name="testFoodSearchPriceRange" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="235" assertions="2" time="2.146684"/>
+      <testcase name="testFoodSearchAll" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="265" assertions="2" time="2.215800"/>
+      <testsuite name="App\Tests\ControllerTests\FoodControllerTest::testFoodSearchWithPriceProd" tests="4" assertions="4" errors="0" failures="0" skipped="0" time="8.490206">
+        <testcase name="testFoodSearchWithPriceProd with data set #0" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="300" assertions="1" time="2.075712"/>
+        <testcase name="testFoodSearchWithPriceProd with data set #1" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="300" assertions="1" time="2.117141"/>
+        <testcase name="testFoodSearchWithPriceProd with data set #2" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="300" assertions="1" time="2.154842"/>
+        <testcase name="testFoodSearchWithPriceProd with data set #3" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="300" assertions="1" time="2.142511"/>
+      </testsuite>
+      <testcase name="testNewFood" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="337" assertions="4" time="4.016555">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\ControllerTests\FoodControllerTest::testNewFood
+Failed asserting that '&lt;!doctype html&gt;\n
+&lt;html&gt;\n
+    &lt;head&gt;\n
+        &lt;meta charset="utf-8"&gt;\n
+        &lt;title&gt;new food&lt;/title&gt;\n
+                    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-psh8r72jq3sodhvi3uxftmaw6vc51mkb0q5p2rruppvrszue4w1povhygtpbfshb" crossorigin="anonymous"&gt;\n
+            &lt;link rel="stylesheet" href="/css/font-awesome.css"&gt;\n
+            &lt;link rel="stylesheet" href="/css/styles.css"&gt;\n
+            &lt;link rel="stylesheet" href="/css/food.css"&gt;\n
+\n
+            &lt;/head&gt;\n
+    &lt;body&gt;\n
+    &lt;img class="top_image" src="/../images/background.jpg"&gt;\n
+\n
+    &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;\n
+        &lt;a class="navbar-brand" href="/"&gt;sugar-free foods&lt;/a&gt;\n
+        &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarnavaltmarkup" aria-controls="navbarnavaltmarkup" aria-expanded="false" aria-label="toggle navigation"&gt;\n
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;\n
+        &lt;/button&gt;\n
+        &lt;div class="collapse navbar-collapse" id="navbarnavaltmarkup"&gt;\n
+            &lt;div class="navbar-nav"&gt;\n
+                &lt;a class="nav-link nav-item" href="http://localhost/"&gt;home&lt;/a&gt;\n
+                &lt;a class="nav-link nav-item" href="http://localhost/food/"&gt;see foods&lt;/a&gt;\n
+\n
+                                                                        &lt;a class="nav-link nav-item" href="/food/new"&gt;add new food&lt;/a&gt;\n
+                        &lt;a class="nav-link nav-item" href="/user/207"&gt;profile&lt;/a&gt;\n
+                        &lt;a class="nav-link nav-item" href="http://localhost/logout"&gt;log out&lt;/a&gt;\n
+                            &lt;/div&gt;\n
+        &lt;/div&gt;\n
+    &lt;/nav&gt;\n
+\n
+        \n
+                    &lt;div class="flash-notice"&gt; there was a probelm with your images &lt;/div&gt;\n
+        \n
+        \n
+    &lt;h1 style="text-align: center"&gt;create new food&lt;/h1&gt;\n
+\n
+    &lt;div class="container"&gt;\n
+    &lt;div class="col-md-3" &gt;&lt;/div&gt;\n
+\n
+    &lt;div class="col-md-6" style="margin: 0 auto"&gt;\n
+    \n
+&lt;form name="food" method="post" enctype="multipart/form-data"&gt;\n
+    &lt;div id="food"&gt;&lt;div class="form-group"&gt;&lt;label for="food_title" class="form-control-label required"&gt;title&lt;/label&gt;&lt;input type="text" id="food_title" name="food[title]" required="required" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group"&gt;&lt;label for="food_summary" class="form-control-label required"&gt;summary&lt;/label&gt;&lt;textarea id="food_summary" name="food[summary]" required="required" class="form-control"&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;div class="form-group"&gt;&lt;label for="food_photolink" class="form-control-label"&gt;upload images&lt;/label&gt;&lt;input type="file" id="food_photolink" name="food[photolink][]" multiple="multiple" class="form-control-file" /&gt;&lt;/div&gt;&lt;div class="form-group"&gt;&lt;label for="food_description" class="form-control-label required"&gt;description&lt;/label&gt;&lt;textarea id="food_description" name="food[description]" required="required" class="form-control"&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;div class="form-group"&gt;&lt;label for="food_listofingredients" class="form-control-label required"&gt;list of ingredients&lt;/label&gt;&lt;textarea id="food_listofingredients" name="food[listofingredients]" required="required" class="form-control"&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;div class="form-group"&gt;&lt;label for="food_price" class="form-control-label required"&gt;price&lt;/label&gt;&lt;input type="text" id="food_price" name="food[price]" required="required" class="form-control" /&gt;&lt;/div&gt;&lt;div class="form-group"&gt;&lt;label class="form-control-label required" for="food_category"&gt;category&lt;/label&gt;&lt;select id="food_category" name="food[category]" class="form-control"&gt;&lt;option value="171"&gt;sweets&lt;/option&gt;&lt;option value="172"&gt;drinks&lt;/option&gt;&lt;option value="173"&gt;biscuits&lt;/option&gt;&lt;option value="174"&gt;chocolate&lt;/option&gt;&lt;option value="175"&gt;ice-cream&lt;/option&gt;&lt;option value="176"&gt;jam&lt;/option&gt;&lt;option value="179"&gt;test category&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;input type="hidden" id="food__token" name="food[_token]" value="dfftxd-_d1j4qvsg94x4_2mkc5semmw1d7hcsj2rv1i" /&gt;&lt;/div&gt;\n
+    &lt;button&gt;save&lt;/button&gt;\n
+&lt;/form&gt;    &lt;/div&gt;\n
+\n
+    &lt;div class="col-md-3"&gt;&lt;/div&gt;\n
+    &lt;/div&gt;\n
+        \n
+                \n
+    &lt;/body&gt;\n
+&lt;/html&gt;\n
+' contains "sugar free foods".
+
+C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php:384
+</failure>
+      </testcase>
+      <testcase name="testNewNotLoggedIn" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="388" assertions="2" time="0.632930"/>
+      <testcase name="testNewFailingImage" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="401" assertions="3" time="3.994526"/>
+      <testcase name="testDeleteOption" class="App\Tests\ControllerTests\FoodControllerTest" classname="App.Tests.ControllerTests.FoodControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\FoodControllerTest.php" line="447" assertions="2" time="2.420528"/>
+    </testsuite>
+    <testsuite name="App\Tests\ControllerTests\ReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php" tests="6" assertions="8" errors="0" failures="2" skipped="0" time="16.261275">
+      <testcase name="testNewReview" class="App\Tests\ControllerTests\ReviewControllerTest" classname="App.Tests.ControllerTests.ReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php" line="17" assertions="3" time="3.762294"/>
+      <testcase name="testStarsOutOfBounds" class="App\Tests\ControllerTests\ReviewControllerTest" classname="App.Tests.ControllerTests.ReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php" line="52" assertions="1" time="3.523857"/>
+      <testcase name="testSetScore" class="App\Tests\ControllerTests\ReviewControllerTest" classname="App.Tests.ControllerTests.ReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php" line="84" assertions="1" time="3.872553"/>
+      <testcase name="testEditReview" class="App\Tests\ControllerTests\ReviewControllerTest" classname="App.Tests.ControllerTests.ReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php" line="110" assertions="1" time="1.633987">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\ControllerTests\ReviewControllerTest::testEditReview
+Failed asserting that 404 is identical to 200.
+
+C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php:127
+</failure>
+      </testcase>
+      <testcase name="testEditDelete" class="App\Tests\ControllerTests\ReviewControllerTest" classname="App.Tests.ControllerTests.ReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php" line="138" assertions="1" time="1.732924">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\ControllerTests\ReviewControllerTest::testEditDelete
+Failed asserting that '&lt;!doctype html&gt;\n
+&lt;html&gt;\n
+    &lt;head&gt;\n
+        &lt;meta charset="utf-8"&gt;\n
+        &lt;title&gt;page not found&lt;/title&gt;\n
+                    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-psh8r72jq3sodhvi3uxftmaw6vc51mkb0q5p2rruppvrszue4w1povhygtpbfshb" crossorigin="anonymous"&gt;\n
+            &lt;link rel="stylesheet" href="/css/font-awesome.css"&gt;\n
+            &lt;link rel="stylesheet" href="/css/styles.css"&gt;\n
+            &lt;link rel="stylesheet" href="/css/food.css"&gt;\n
+\n
+            &lt;/head&gt;\n
+    &lt;body&gt;\n
+    &lt;img class="top_image" src="/../images/background.jpg"&gt;\n
+\n
+    &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;\n
+        &lt;a class="navbar-brand" href="/"&gt;sugar-free foods&lt;/a&gt;\n
+        &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarnavaltmarkup" aria-controls="navbarnavaltmarkup" aria-expanded="false" aria-label="toggle navigation"&gt;\n
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;\n
+        &lt;/button&gt;\n
+        &lt;div class="collapse navbar-collapse" id="navbarnavaltmarkup"&gt;\n
+            &lt;div class="navbar-nav"&gt;\n
+                &lt;a class="nav-link nav-item" href="http://localhost/"&gt;home&lt;/a&gt;\n
+                &lt;a class="nav-link nav-item" href="http://localhost/food/"&gt;see foods&lt;/a&gt;\n
+\n
+                                                    &lt;a class="nav-link nav-item" href="/admin/"&gt;admin panel&lt;/a&gt;\n
+                                                        &lt;a class="nav-link nav-item" href="/food/new"&gt;add new food&lt;/a&gt;\n
+                        &lt;a class="nav-link nav-item" href="/user/206"&gt;profile&lt;/a&gt;\n
+                        &lt;a class="nav-link nav-item" href="http://localhost/logout"&gt;log out&lt;/a&gt;\n
+                            &lt;/div&gt;\n
+        &lt;/div&gt;\n
+    &lt;/nav&gt;\n
+\n
+        \n
+        \n
+        \n
+    &lt;div class="container"&gt;\n
+\n
+        &lt;div class="col-md-12"&gt;\n
+            &lt;div class="col-md-3"&gt;&lt;/div&gt;\n
+            &lt;div class="col-md-6 page_not_found"&gt;\n
+\n
+                &lt;h1&gt;page not found&lt;/h1&gt;\n
+\n
+                &lt;p&gt;it looks like something went wrong. click the link below to go back to home.&lt;/p&gt;\n
+\n
+                &lt;p&gt;&lt;a href="/"&gt;back to home&lt;/a&gt; &lt;/p&gt;\n
+\n
+            &lt;/div&gt;\n
+            &lt;div class="col-md-3"&gt;&lt;/div&gt;\n
+        &lt;/div&gt;\n
+\n
+    &lt;/div&gt;\n
+        \n
+                \n
+    &lt;/body&gt;\n
+&lt;/html&gt;\n
+' contains "review deleted successfully".
+
+C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php:156
+</failure>
+      </testcase>
+      <testcase name="testShowUserReviews" class="App\Tests\ControllerTests\ReviewControllerTest" classname="App.Tests.ControllerTests.ReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\ReviewControllerTest.php" line="159" assertions="1" time="1.735660"/>
+    </testsuite>
+    <testsuite name="App\Tests\ControllerTests\SuggestedProductControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\SuggestedProductControllerTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="2.809373">
+      <testcase name="testNewSuggestedProduct" class="App\Tests\ControllerTests\SuggestedProductControllerTest" classname="App.Tests.ControllerTests.SuggestedProductControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\SuggestedProductControllerTest.php" line="12" assertions="2" time="2.809373"/>
+    </testsuite>
+    <testsuite name="App\Tests\ControllerTests\SuggestedReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\SuggestedReviewControllerTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="2.837811">
+      <testcase name="testNewSuggestedProduct" class="App\Tests\ControllerTests\SuggestedReviewControllerTest" classname="App.Tests.ControllerTests.SuggestedReviewControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\SuggestedReviewControllerTest.php" line="12" assertions="2" time="2.837811"/>
+    </testsuite>
+    <testsuite name="App\Tests\ControllerTests\UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" tests="10" assertions="20" errors="0" failures="0" skipped="0" time="24.682382">
+      <testcase name="testUserHome" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="15" assertions="2" time="2.344650"/>
+      <testcase name="testProfilePage" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="42" assertions="2" time="2.021396"/>
+      <testcase name="testEditProfilePage" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="72" assertions="2" time="2.237949"/>
+      <testcase name="testEditFormWithAdmin" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="98" assertions="3" time="4.193928"/>
+      <testcase name="testEditSameUser" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="133" assertions="3" time="3.872851"/>
+      <testcase name="testShowWithNull" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="167" assertions="1" time="0.489139"/>
+      <testcase name="testShowRegUser" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="179" assertions="1" time="2.199066"/>
+      <testcase name="testNewUser" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="205" assertions="2" time="2.405907"/>
+      <testcase name="testNewUserSameName" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="231" assertions="2" time="2.352197"/>
+      <testcase name="testDeleteUser" class="App\Tests\ControllerTests\UserControllerTest" classname="App.Tests.ControllerTests.UserControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\UserControllerTest.php" line="257" assertions="2" time="2.565299"/>
+    </testsuite>
+    <testsuite name="App\Tests\ControllerTests\VoteControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\VoteControllerTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="6.713676">
+      <testcase name="testNewVote" class="App\Tests\ControllerTests\VoteControllerTest" classname="App.Tests.ControllerTests.VoteControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\VoteControllerTest.php" line="17" assertions="2" time="3.363976"/>
+      <testcase name="testNewVoteWithConflict" class="App\Tests\ControllerTests\VoteControllerTest" classname="App.Tests.ControllerTests.VoteControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ControllerTests\VoteControllerTest.php" line="44" assertions="1" time="3.349700"/>
+    </testsuite>
+    <testsuite name="App\Tests\DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\DefaultControllerTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.002129">
+      <testcase name="testOnePlusOneEqualsTwo" class="App\Tests\DefaultControllerTest" classname="App.Tests.DefaultControllerTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\DefaultControllerTest.php" line="9" assertions="1" time="0.002129"/>
+    </testsuite>
+    <testsuite name="FoodTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\FoodTest.php" tests="4" assertions="55" errors="0" failures="0" skipped="0" time="0.037052">
+      <testcase name="testFood" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\FoodTest.php" line="88" assertions="27" time="0.017592"/>
+      <testcase name="testReview" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\FoodTest.php" line="135" assertions="20" time="0.009637"/>
+      <testcase name="testVote" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\FoodTest.php" line="172" assertions="6" time="0.006088"/>
+      <testcase name="testSuggestedProduct" class="FoodTest" classname="FoodTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\FoodTest.php" line="187" assertions="2" time="0.003735"/>
+    </testsuite>
+    <testsuite name="ImageUploaderTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ImageUploaderTest.php" tests="7" assertions="7" errors="0" failures="0" skipped="0" time="0.020056">
+      <testcase name="testCreateInstance" class="ImageUploaderTest" classname="ImageUploaderTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ImageUploaderTest.php" line="9" assertions="1" time="0.002617"/>
+      <testcase name="testUpload" class="ImageUploaderTest" classname="ImageUploaderTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ImageUploaderTest.php" line="17" assertions="1" time="0.002726"/>
+      <testcase name="testCheckSize" class="ImageUploaderTest" classname="ImageUploaderTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ImageUploaderTest.php" line="27" assertions="1" time="0.003604"/>
+      <testcase name="testCheckSizeFail" class="ImageUploaderTest" classname="ImageUploaderTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ImageUploaderTest.php" line="35" assertions="1" time="0.003128"/>
+      <testcase name="testExtType" class="ImageUploaderTest" classname="ImageUploaderTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ImageUploaderTest.php" line="43" assertions="1" time="0.002539"/>
+      <testcase name="testExtTypeFail" class="ImageUploaderTest" classname="ImageUploaderTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ImageUploaderTest.php" line="55" assertions="1" time="0.002778"/>
+      <testcase name="testNameGeneration" class="ImageUploaderTest" classname="ImageUploaderTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\ImageUploaderTest.php" line="67" assertions="1" time="0.002665"/>
+    </testsuite>
+    <testsuite name="App\Tests\SuggestedReviewTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\SuggestedReviewTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.003053">
+      <testcase name="testSuggestedReview" class="App\Tests\SuggestedReviewTest" classname="App.Tests.SuggestedReviewTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\SuggestedReviewTest.php" line="17" assertions="2" time="0.003053"/>
+    </testsuite>
+    <testsuite name="App\Tests\UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" tests="8" assertions="13" errors="0" failures="0" skipped="0" time="0.074731">
+      <testcase name="testInstance" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" line="31" assertions="1" time="0.016064"/>
+      <testcase name="testUserIdNotNull" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" line="41" assertions="1" time="0.007984"/>
+      <testcase name="testIDEqualToZero" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" line="51" assertions="1" time="0.008694"/>
+      <testcase name="testUserName" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" line="61" assertions="2" time="0.007908"/>
+      <testcase name="testUserNameFail" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" line="72" assertions="1" time="0.008877"/>
+      <testcase name="testUserPassword" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" line="82" assertions="2" time="0.008213"/>
+      <testcase name="testRoleNotEmpty" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" line="93" assertions="1" time="0.008216"/>
+      <testcase name="testNulls" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="C:\Users\andrew\Desktop\Undeployed Version\Year3_Dev_version\tests\UserTest.php" line="104" assertions="4" time="0.008775"/>
     </testsuite>
   </testsuite>
 </testsuites>

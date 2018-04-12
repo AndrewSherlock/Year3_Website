@@ -61,7 +61,7 @@ class AdminControllerTest extends WebTestCase
         $client->submit($form);
 
 
-        $url = '/admin/promote/2529';
+        $url = '/admin/promote/213';
         $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();
@@ -85,7 +85,7 @@ class AdminControllerTest extends WebTestCase
         $client->submit($form);
 
 
-        $url = '/admin/demote/2529';
+        $url = '/admin/demote/213';
         $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();
@@ -109,7 +109,7 @@ class AdminControllerTest extends WebTestCase
         $client->submit($form);
 
 
-        $url = '/admin/accept_public/122';
+        $url = '/admin/accept_public/165';
         $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();
@@ -132,7 +132,7 @@ class AdminControllerTest extends WebTestCase
         $client->submit($form);
 
 
-        $url = '/admin/reject_public/123';
+        $url = '/admin/reject_public/166';
         $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();
@@ -155,7 +155,7 @@ class AdminControllerTest extends WebTestCase
         $client->submit($form);
 
 
-        $url = '/admin/accept_public_review/122';
+        $url = '/admin/accept_public_review/498';
         $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();
@@ -178,7 +178,7 @@ class AdminControllerTest extends WebTestCase
         $client->submit($form);
 
 
-        $url = '/admin/reject_public_review/123';
+        $url = '/admin/reject_public_review/497';
         $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();
@@ -201,10 +201,12 @@ class AdminControllerTest extends WebTestCase
         $client->submit($form);
 
 
-        $url = '/admin/delete/2550';
+        $url = '/admin/delete/242';
         $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();
+
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
         $this->assertContains('user list', strtolower($content));
     }
 }

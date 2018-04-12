@@ -29,7 +29,7 @@ class ReviewControllerTest extends WebTestCase
         $client->submit($form);
         $client->followRedirects(true);
 
-        $url = '/review/new/123';
+        $url = '/review/new/155';
         $crawler = $client->request($httpMethod, $url);
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
@@ -64,7 +64,7 @@ class ReviewControllerTest extends WebTestCase
         $client->submit($form);
         $client->followRedirects(true);
 
-        $url = '/review/new/123';
+        $url = '/review/new/155';
         $crawler = $client->request($httpMethod, $url);
 
         $buttonName = 'Submit Review';
@@ -91,12 +91,12 @@ class ReviewControllerTest extends WebTestCase
         $buttonName = 'form[login]';
         $button = $crawler->selectButton($buttonName);
         $form = $button->form();
-        $form['form[username]'] = 'reg_user';
-        $form['form[password]'] = 'password';
+        $form['form[username]'] = 'admin';
+        $form['form[password]'] = 'admin';
         $client->submit($form);
         $client->followRedirects(true);
 
-        $url = 'food/detail/123';
+        $url = '/food/detail/155';
         $crawler = $client->request($httpMethod, $url);
 
         $linkText = 'Downvote';
@@ -105,5 +105,77 @@ class ReviewControllerTest extends WebTestCase
 
         $content = $client->getResponse()->getContent();
         $this->assertContains('review voted', strtolower($content));
+    }
+
+    public function testEditReview()
+    {
+        $httpMethod = 'GET';
+        $client = static::createClient();
+        $url = '/login';
+        $crawler = $client->request($httpMethod, $url);
+        $buttonName = 'form[login]';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+        $form['form[username]'] = 'admin';
+        $form['form[password]'] = 'admin';
+        $client->submit($form);
+        $client->followRedirects(true);
+
+        $url = '/review/583/edit';
+        $crawler = $client->request($httpMethod, $url);
+
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $buttonName = 'Edit';
+        $form = $crawler->selectButton($buttonName)->form();
+
+        $client->submit($form);
+
+        $content = $client->getResponse()->getContent();
+        $this->assertContains('review edited successfully', strtolower($content));
+
+    }
+
+    public function testEditDelete()
+    {
+        $httpMethod = 'GET';
+        $client = static::createClient();
+        $url = '/login';
+        $crawler = $client->request($httpMethod, $url);
+        $buttonName = 'form[login]';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+        $form['form[username]'] = 'admin';
+        $form['form[password]'] = 'admin';
+        $client->submit($form);
+        $client->followRedirects(true);
+
+        $url = '/review/620/delete';
+        $crawler = $client->request($httpMethod, $url);
+
+        $content = $client->getResponse()->getContent();
+        $this->assertContains('review deleted successfully', strtolower($content));
+    }
+
+    public function testShowUserReviews()
+    {
+        $httpMethod = 'GET';
+        $client = static::createClient();
+        $url = '/login';
+        $crawler = $client->request($httpMethod, $url);
+        $buttonName = 'form[login]';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+        $form['form[username]'] = 'admin';
+        $form['form[password]'] = 'admin';
+        $client->submit($form);
+        $client->followRedirects(true);
+
+
+        $url = '/review/show_users/206';
+        $crawler = $client->request($httpMethod, $url);
+
+        $content = $client->getResponse()->getContent();
+        $this->assertContains('review list', strtolower($content));
+
     }
 }

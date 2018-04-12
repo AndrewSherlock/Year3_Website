@@ -29,7 +29,7 @@ class VoteControllerTest extends WebTestCase
         $client->submit($form);
         $client->followRedirects(true);
 
-        $crawler = $client->request($httpMethod, '/food/detail/122');
+        $crawler = $client->request($httpMethod, '/food/detail/155');
         $linkText = 'Upvote';
 
         $link = $crawler->selectLink($linkText)->link();
@@ -56,7 +56,7 @@ class VoteControllerTest extends WebTestCase
         $client->submit($form);
         $client->followRedirects(true);
 
-        $crawler = $client->request($httpMethod, '/food/detail/126');
+        $crawler = $client->request($httpMethod, '/food/detail/155');
         $linkText = 'Upvote';
 
         $link = $crawler->selectLink($linkText)->link();

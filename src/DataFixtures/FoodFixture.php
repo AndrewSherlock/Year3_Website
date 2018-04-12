@@ -301,7 +301,7 @@ class FoodFixture  extends Fixture
         $food->setPhotoLink($photos);
         $food->setIsPublic(false);
 
-        $cat = $manager->getRepository(Category::class)->findOneBy(['category' => 'Biscuit']);
+        $cat = $manager->getRepository(Category::class)->findOneBy(['category' => 'Biscuits']);
         $food->setCategory($cat);
         $food->setIsPublic(false);
 
@@ -400,7 +400,7 @@ class FoodFixture  extends Fixture
      */
     private function randomizeUser()
     {
-        $rand = rand(0, (sizeof($this->users) - 1));
+        $rand = rand(0, (sizeof($this->users) - 30));
         return $this->users[$rand];
     }
 }

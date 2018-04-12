@@ -108,6 +108,7 @@ class DefaultControllerTest extends WebTestCase
         $content = $client->getResponse()->getContent();
         $expectedText = 'redirect';
         $this->assertEmpty($client->getRequest()->getSession());
+        $this->assertSame(302, $client->getResponse()->getStatusCode());
         $this->assertContains(strtolower($expectedText), strtolower($content));
     }
 

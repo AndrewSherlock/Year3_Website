@@ -60,7 +60,7 @@ class CategoryControllerTest extends WebTestCase
         $client->submit($form);
         $client->followRedirect();
 
-        $url = '/category/134/edit';
+        $url = '/category/171/edit';
         $crawler = $client->request($httpMethod, $url);
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
@@ -94,7 +94,7 @@ class CategoryControllerTest extends WebTestCase
         $client->submit($form);
         $client->followRedirect();
 
-        $url = '/category/151/delete';
+        $url = '/category/178/delete';
         $crawler = $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();

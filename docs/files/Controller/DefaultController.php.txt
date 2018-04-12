@@ -128,19 +128,17 @@ class DefaultController extends Controller
 
         return $this->render($template, $args);
     }
-
-    /**
-     * log out function
-     * @Route("/logout", name="logout")
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function logoutAction()
-    {
-        $session = new Session();
 //
-//        //$session->set('user', null);
-        $session->clear();
-        return $this->redirectToRoute('home');
-    }
+//    /**
+//     * log out function
+//     * @Route("/logout", name="logout")
+//     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+//     */
+//    public function logoutAction()
+//    {
+//        $session = new Session();
+//        $session->clear();
+//        return $this->redirectToRoute('home');
+//    }
 }
 

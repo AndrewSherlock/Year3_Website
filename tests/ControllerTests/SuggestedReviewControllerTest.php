@@ -24,7 +24,7 @@ class SuggestedReviewControllerTest  extends WebTestCase
         $client->submit($form);
         $crawler =$client->followRedirect();
 
-        $url = '/food/detail/122';
+        $url = '/food/detail/156';
         $crawler = $client->request($httpMethod, $url);
 
         $linkText = 'Suggest Review food';

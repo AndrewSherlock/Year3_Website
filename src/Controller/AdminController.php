@@ -225,6 +225,11 @@ class AdminController extends Controller
         $id = $request->get('id');
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $id]);
 
+        $reviewManager = $this->getDoctrine()->getRepository(Review::class);
+        $reviews = $reviewManager->findBy(['addedBy' => $user->getId()]);
+        $reviewManager->deleteReviews($reviews);
+
+
         $this->addFlash('success', "User deleted");
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);

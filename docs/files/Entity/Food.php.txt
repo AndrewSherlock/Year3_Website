@@ -70,7 +70,7 @@ class Food
     /**
      * The user that added the food
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="foods")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @var User
      */
     private $addedBy;
@@ -78,7 +78,7 @@ class Food
     /**
      * Category of the food
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="foods")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @var Category
      */
     private $category;

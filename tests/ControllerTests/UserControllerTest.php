@@ -84,7 +84,7 @@ class UserControllerTest  extends WebTestCase
         $client->submit($form);
         $crawler =$client->followRedirect();
         $client->followRedirects(true);
-        $client->request('GET', '/user/2528/edit');
+        $client->request('GET', '/user/206/edit');
 
         $statusCode = $client->getResponse()->getStatusCode();
 
@@ -110,7 +110,7 @@ class UserControllerTest  extends WebTestCase
         $client->submit($form);
         $crawler =$client->followRedirect();
         $client->followRedirects(true);
-        $crawler = $client->request('GET', '/user/2588/edit');
+        $crawler = $client->request('GET', '/user/208/edit');
 
         $editButtonName = 'Edit';
         $editButton = $crawler->selectButton($editButtonName);
@@ -145,7 +145,7 @@ class UserControllerTest  extends WebTestCase
         $client->submit($form);
         $crawler =$client->followRedirect();
         $client->followRedirects(true);
-        $crawler = $client->request('GET', '/user/2529/edit');
+        $crawler = $client->request('GET', '/user/207/edit');
 
         $editButtonName = 'Edit';
         $editButton = $crawler->selectButton($editButtonName);
@@ -166,7 +166,7 @@ class UserControllerTest  extends WebTestCase
 
     public function testShowWithNull()
     {
-        $url = '/user/2528';
+        $url = '/user/206';
         $httpMethod = 'GET';
         $client = static::createClient();
         $client->request($httpMethod, $url);
@@ -191,7 +191,7 @@ class UserControllerTest  extends WebTestCase
         $client->submit($form);
         $crawler =$client->followRedirects(true);
 
-        $url = '/user/2528';
+        $url = '/user/206';
         $crawler = $client->request($httpMethod, $url);
         $content = $client->getResponse()->getContent();
 
@@ -201,24 +201,24 @@ class UserControllerTest  extends WebTestCase
         );
     }
 
-    public function testNewUser()
+
+        public function testNewUser()
     {
-        $url = '/user/new';
+        $url = '/register';
         $httpMethod = 'GET';
         $client = static::createClient();
+        $client->followRedirects(true);
 
-        $data = [
-            'username' => 'testing user',
-            'password' => 'password',
-        ];
+        $crawler = $client->request($httpMethod, $url);
 
-        $client->getRequest()->setSession(new Session());
-        $client->getRequest()->getSession()->set('data', $data);
-        $client->request($httpMethod, $url);
+        $buttonName = 'Register';
+        $form = $crawler->selectButton($buttonName)->form();
+        $form['form[username]'] = 'teting user';
+        $form['form[password][first]'] = 'password';
+        $form['form[password][second]'] = 'password';
+        $client->submit($form);
 
         $statusCode = $client->getResponse()->getStatusCode();
-        //$client->followRedirect();
-
         $content = $client->getResponse()->getContent();
 
         $this->assertSame(Response::HTTP_OK, $statusCode);
@@ -226,7 +226,55 @@ class UserControllerTest  extends WebTestCase
             strtolower('User successfully created'),
             strtolower($content)
         );
+    }
 
+    public function testNewUserSameName()
+    {
+        $url = '/register';
+        $httpMethod = 'GET';
+        $client = static::createClient();
+        $client->followRedirects(true);
+
+        $crawler = $client->request($httpMethod, $url);
+
+        $buttonName = 'Register';
+        $form = $crawler->selectButton($buttonName)->form();
+        $form['form[username]'] = 'admin';
+        $form['form[password][first]'] = 'password';
+        $form['form[password][second]'] = 'password';
+        $client->submit($form);
+
+        $statusCode = $client->getResponse()->getStatusCode();
+        $content = $client->getResponse()->getContent();
+
+        $this->assertSame(Response::HTTP_OK, $statusCode);
+        $this->assertContains(
+            strtolower('user already exists'),
+            strtolower($content)
+        );
+    }
+
+    public function testDeleteUser()
+    {
+        $url = '/login';
+        $httpMethod = 'GET';
+        $client = static::createClient();
+        $client->followRedirects(true);
+
+        $crawler = $client->request($httpMethod, $url);
+        $buttonName = 'form[login]';
+        $button = $crawler->selectButton($buttonName);
+        $form = $button->form();
+        $form['form[username]'] = 'admin';
+        $form['form[password]'] = 'admin';
+        $client->submit($form);
+
+        $url = '/user/delete/220';
+        $client->request($httpMethod, $url);
+
+        $content = $client->getResponse()->getContent();
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $this->assertContains('user deleted successfully', strtolower($content));
     }
 
 //    /**

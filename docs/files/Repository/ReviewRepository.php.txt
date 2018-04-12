@@ -66,5 +66,21 @@ class ReviewRepository extends ServiceEntityRepository
 
         $query->execute();
     }
+
+    /**
+     * deletes a list of reviews when a food is deleted
+     * @param array|Review $reviews
+     */
+    public function deleteReviews($reviews)
+    {
+        foreach ($reviews as $review) {
+            $this->createQueryBuilder('q')
+                ->delete(Review::class, 'r')
+                ->where('r.id = ?1')
+                ->setParameter(1, $review->getId())
+                ->getQuery()
+                ->execute();
+            }
+    }
 }
 

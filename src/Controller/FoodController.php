@@ -1,6 +1,6 @@
 <?php
 /**
- * comment for file
+ *  commeent for the file
  */
 namespace App\Controller;
 
@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -224,8 +225,13 @@ class FoodController extends Controller
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
+            if($form['food[photoLink]'][0] == null)
+            {
+                $food->setPhotoLink($food->getPhotoLink());
+            }
+
+            $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('food_edit', ['id' => $food->getId()]);
         }
 
@@ -244,6 +250,11 @@ class FoodController extends Controller
 //        if (!$this->isCsrfTokenValid('delete'.$food->getId(), $request->request->get('_token'))) {
 //            return $this->redirectToRoute('food_index');
 //        }
+
+
+        $reviewManager = $this->getDoctrine()->getRepository(Review::class);
+        $reviews = $reviewManager->findBy(['food' => $food->getId()]);
+        $reviewManager->deleteReviews($reviews);
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($food);
@@ -402,23 +413,23 @@ class FoodController extends Controller
      * @param Food $food
      * @return bool
      */
-    private function getCheckFoodForPriceRange($priceValue, $food)
+    public function getCheckFoodForPriceRange($priceValue, $food)
     {
         $price = $food->getPrice();
         switch ($priceValue)
         {
             case 0:
-                if($price < 1)
+                if($price <= 1)
                 {
                     return true;
                 }
             case 1:
-                if($price > 1 && $price < 3 )
+                if($price > 1 && $price <= 3 )
                 {
                     return true;
                 }
             case 2:
-                if($price > 3 && $price < 5)
+                if($price > 3 && $price <= 5)
                 {
                     return true;
                 }

@@ -29,19 +29,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ReviewController extends Controller
 {
-//    /**
-//     * @Route("/", name="index")
-//     *
-//     * @return Response
-//     */
-//    public function index()
-//    {
-//        $reviews = $this->getDoctrine()
-//            ->getRepository(Review::class)
-//            ->findAll();
-//
-//        return $this->render('review/index.html.twig', ['reviews' => $reviews]);
-//    }
 
     /**
      * When a user wants to create a new review for a food
@@ -132,20 +119,14 @@ class ReviewController extends Controller
         return $this->redirectToRoute('food_show_detail',array('id' => $food_id));
     }
 
-//    /**
-//     * @Route("/{id}", name="show")
-//     * @Method("GET")
-//     */
-//    public function show(Review $review)
-//    {
-//        return $this->render('review/show.html.twig', [
-//            'review' => $review,
-//        ]);
-//    }
-//
+
     /**
+     *  the edit function for the review
      * @Route("/{id}/edit", name="edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Review $review
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function edit(Request $request, Review $review)
     {
@@ -166,13 +147,14 @@ class ReviewController extends Controller
     }
 
     /**
+     * deletes the review item
      * @Route("/{id}/delete", name="delete")
+     * @param Request $request
+     * @param Review $review
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function delete(Request $request, Review $review)
     {
-//        if (!$this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
-//            return $this->redirectToRoute('review_index');
-//        }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($review);
@@ -183,7 +165,10 @@ class ReviewController extends Controller
     }
 
     /**
+     *  gets the page with the list of reviews for the user
      * @Route("/show_users/{id}", name="show_users")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showUsersReviews(Request $request)
     {

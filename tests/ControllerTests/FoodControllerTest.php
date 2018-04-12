@@ -2,7 +2,9 @@
 
 namespace App\Tests\ControllerTests;
 
+use App\Controller\FoodController;
 use App\Entity\Category;
+use App\Entity\Food;
 use App\Repository\CategoryRepository;
 use App\Utils\ImageUploader;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -65,7 +67,7 @@ class FoodControllerTest  extends WebTestCase
         $client->submit($form);
         $client->followRedirect();
 
-        $url = '/food/user/2528';
+        $url = '/food/user/206';
         $crawler = $client->request($httpMethod, $url);
 
         $content = $client->getResponse()->getContent();
@@ -76,7 +78,7 @@ class FoodControllerTest  extends WebTestCase
 
     public function testShowDetailActionPublic()
     {
-        $url = '/food/detail/122';
+        $url = '/food/detail/155';
         $httpMethod = 'GET';
         $client = static::createClient();
 
@@ -90,7 +92,7 @@ class FoodControllerTest  extends WebTestCase
 
     public function testShowDetailActionNotLogged()
     {
-        $url = '/food/detail/123';
+        $url = '/food/detail/156';
         $httpMethod = 'GET';
         $client = static::createClient();
         $client->followRedirects(true);
@@ -118,27 +120,28 @@ class FoodControllerTest  extends WebTestCase
         $client->submit($form);
         $client->followRedirects(true);
 
-        $url = '/food/122/edit';
+        $url = '/food/155/edit';
         $crawler = $client->request($httpMethod, $url);
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
         $buttonName = 'Edit';
         $button = $crawler->selectButton($buttonName);
         $editForm = $button->form();
-        $client->getRequest()->files->set('food[photolink]', new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', 'test.jpg', 'image/jpg', 10000000));
+
+        $editForm['food[photoLink]'][0]->upload(new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', '873625426_a7baa1334b_o.jpg', 'image/jpeg', 85890));
 
         $client->submit($editForm);
 
         $content = $client->getResponse()->getContent();
         $this->assertNotNull($editForm);
 
-        $this->assertContains('edit Food', strtolower($content));
+        $this->assertContains('122', strtolower($content));
 
     }
 
     public function testEditNotLoggedIn()
     {
-        $url = '/food/122/edit';
+        $url = '/food/155/edit';
         $httpMethod = 'GET';
         $client = static::createClient();
         $crawler = $client->request($httpMethod, $url);
@@ -163,7 +166,7 @@ class FoodControllerTest  extends WebTestCase
         $client->submit($form);
         $client->followRedirects(true);
 
-        $url = '/food/122/edit';
+        $url = '/food/155/edit';
         $crawler = $client->request($httpMethod, $url);
         $content = $client->getResponse()->getContent();
 
@@ -186,7 +189,7 @@ class FoodControllerTest  extends WebTestCase
 
         $url = '/food/';
         $crawler = $client->request($httpMethod, $url);
-        $buttonName = 'Search foods';
+        $buttonName = 'Search_foods';
         $button = $crawler->selectButton($buttonName);
         $form = $button->form();
 
@@ -229,7 +232,7 @@ class FoodControllerTest  extends WebTestCase
 
     }
 
-    public function testFoodSearchPrice()
+    public function testFoodSearchPriceRange()
     {
         $url = '/login';
         $httpMethod = 'GET';
@@ -324,9 +327,10 @@ class FoodControllerTest  extends WebTestCase
     public function rangeGetter()
     {
         return [
-            ['0','sugar free foods'],
-            ['2','sugar free foods'],
-            ['3','sugar free foods']
+            [0,'sugar free foods'],
+            [1,'sugar free foods'],
+            [2,'sugar free foods'],
+            [3,'sugar free foods']
         ];
     }
 
@@ -362,13 +366,16 @@ class FoodControllerTest  extends WebTestCase
         $categoryRepo = $this->createMock(ObjectManager::class);
         $categoryRepo->method('find')->willReturn($category);
 
+        $file = new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', '873625426_a7baa1334b_o.jpg', 'image/jpeg', 85890);
+
+
         $form['food[title]'] = 'Testing food';
         $form['food[summary]'] = 'test summary';
-        $form['food[photoLink]'] = new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', '873625426_a7baa1334b_o.jpg', 'image/jpeg', 85890);
+        $form['food[photoLink]'][0]->upload($file);
         $form['food[description]'] = 'test description';
         $form['food[listOfIngredients]'] = 'test ingredents';
         $form['food[price]'] = '3';
-        $form['food[category]'] = '134';
+        $form['food[category]'] = '171';
 
         //$client->getRequest()->files->set('food[photolink]', new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', 'test.jpg', 'image/jpg', 10000000));
         $client->submit($form);
@@ -424,11 +431,11 @@ class FoodControllerTest  extends WebTestCase
 
         $form['food[title]'] = 'Testing food';
         $form['food[summary]'] = 'test summary';
-        $form['food[photoLink]'] = new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', '873625426_a7baa1334b_o.jpg', 'image/jpeg', 85890);
+        $form['food[photoLink]'][0]->upload(new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', '873625426_a7baa1334b_o.jpg', 'image/jpeg', 85890));
         $form['food[description]'] = 'test description';
         $form['food[listOfIngredients]'] = 'test ingredents';
         $form['food[price]'] = '3';
-        $form['food[category]'] = '134';
+        $form['food[category]'] = '171';
 
         //$client->getRequest()->files->set('food[photolink]', new UploadedFile('C:\Users\andrew\Desktop\873625426_a7baa1334b_o.jpg', 'test.jpg', 'image/jpg', 10000000));
         $client->submit($form);
@@ -452,7 +459,7 @@ class FoodControllerTest  extends WebTestCase
         $client->submit($form);
         $client->followRedirects(true);
 
-        $url = 'food/delete/137';
+        $url = 'food/delete/161';
         $crawler = $client->request($httpMethod, $url);
 
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());

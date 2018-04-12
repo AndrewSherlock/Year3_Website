@@ -111,6 +111,13 @@
                         <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': 1}) }}"> <img src="/images/thumb_up.png" alt="thumb_up"> Upvote</a>
                         <a href="{{ url('vote_new', {'id': review.id, 'food_id': food.id, 'vote': -1}) }}"><img src="/images/thumb_down.png" alt="thumb_down">Downvote</a>
                         {% endif %}
+
+                        {%  if is_granted('ROLE_ADMIN') or (app.user != null and app.user.id == review.user.id) %}
+                            <p style="margin: 10px">Upvote/Downvote Review</p>
+                            <a href="{{ url('review_edit', {'id': review.id}) }}"> Edit review</a>
+                            <a href="{{ url('review_delete', {'id': review.id}) }}">Delete review</a>
+                        {% endif %}
+
                     </div>
                     {% endif %}
                     {#<div style="float: left;">#}

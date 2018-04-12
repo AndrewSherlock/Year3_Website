@@ -4,6 +4,7 @@
  */
 namespace App\Controller;
 
+use App\Entity\Review;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -51,11 +52,7 @@ class UserController extends Controller
 
 
         $userRp = $this->getDoctrine()->getRepository('App:User');
-        $foundUser  = $userRp->findOneBy(
-            [
-                'username' =>  $data['username']
-            ]
-        );
+        $foundUser  = $userRp->findOneByUsername($data['username']);
 
         if($foundUser)
         {
@@ -74,11 +71,6 @@ class UserController extends Controller
         $em->flush();
 
         $this->addFlash('success', 'User successfully created');
-
-        if($this->getUser() != null && in_array('ROLE_ADMIN',  $user->getRoles()))
-        {
-            return $this->redirectToRoute('admin_users');
-        }
 
         return $this->redirectToRoute('login');
     }
@@ -147,22 +139,23 @@ class UserController extends Controller
 
     /**
      * delete a user page
-    * @Route("delete/{id}", name="delete")
-    * @Method("DELETE")
+    * @Route("/delete/{id}", name="delete")
      * @param Request $request
      * @param User $user
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function delete(Request $request, User $user)
     {
-//        if (!$this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-//            return $this->redirectToRoute('user_index');
-//        }
+
+        $reviewManager = $this->getDoctrine()->getRepository(Review::class);
+        $reviews = $reviewManager->findBy(['addedBy' => $user->getId()]);
+        $reviewManager->deleteReviews($reviews);
+        $this->addFlash('success', 'user deleted successfully');
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
         $em->flush();
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('home');
     }
 }

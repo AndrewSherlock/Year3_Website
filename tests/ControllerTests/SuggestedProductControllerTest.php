@@ -24,7 +24,7 @@ class SuggestedProductControllerTest  extends WebTestCase
         $client->submit($form);
         $crawler =$client->followRedirect();
 
-        $url = '/food/detail/123';
+        $url = '/food/detail/158';
         $crawler = $client->request($httpMethod, $url);
 
         $linkText = 'Suggest Public food';

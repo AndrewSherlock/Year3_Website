@@ -1,3 +1,98 @@
+App\Tests\ControllerTests\AdminController
+ [x] Admin pages 
+ [x] Promote user
+ [x] Demote user
+ [x] Accept public
+ [x] Reject public
+ [x] Accept public review
+ [x] Reject public review
+ [x] Admin delete
+
+App\Tests\ControllerTests\CategoryController
+ [x] New category
+ [x] Edit category
+ [x] Delete category
+
+App\Tests\ControllerTests\DefaultController
+ [x] Pages are reachable 
+ [x] Login with valid information
+ [x] Logout
+ [x] User logged attempt to register
+ [x] New user signup
+
+App\Tests\ControllerTests\ExceptionController
+ [x] Exception throw
+
+App\Tests\ControllerTests\FoodController
+ [x] Food index logged in
+ [x] Index not logged in
+ [x] Food list for user
+ [x] Show detail action public
+ [x] Show detail action not logged
+ [ ] Edit food
+ [x] Edit not logged in
+ [x] Edit food reg
+ [x] Food search text
+ [x] Food search date
+ [x] Food search price range
+ [x] Food search all
+ [x] Food search with price prod 
+ [ ] New food
+ [x] New not logged in
+ [x] New failing image
+ [x] Delete option
+
+App\Tests\ControllerTests\ReviewController
+ [x] New review
+ [x] Stars out of bounds
+ [x] Set score
+ [ ] Edit review
+ [ ] Edit delete
+ [x] Show user reviews
+
+App\Tests\ControllerTests\SuggestedProductController
+ [x] New suggested product
+
+App\Tests\ControllerTests\SuggestedReviewController
+ [x] New suggested product
+
+App\Tests\ControllerTests\UserController
+ [x] User home
+ [x] Profile page
+ [x] Edit profile page
+ [x] Edit form with admin
+ [x] Edit same user
+ [x] Show with null
+ [x] Show reg user
+ [x] New user
+ [x] New user same name
+ [x] Delete user
+
+App\Tests\ControllerTests\VoteController
+ [x] New vote
+ [x] New vote with conflict
+
+App\Tests\DefaultController
+ [x] One plus one equals two
+
+Food
+ [x] Food
+ [x] Review
+ [x] Vote
+ [x] Suggested product
+
+ImageUploader
+ [x] Create instance
+ [x] Upload
+ [x] Check size
+ [x] Check size fail
+ [x] Ext type
+ [x] Ext type fail
+ [x] Name generation
+
+App\Tests\SuggestedReview
+ [x] Suggested review
+
 App\Tests\User
  [x] Instance
  [x] User id not null
@@ -7,13 +102,4 @@ App\Tests\User
  [x] User password
  [x] Role not empty
  [x] Nulls
-
-Food
- [x] Food
- [x] Review
- [x] Vote
- [x] Suggested product
-
-App\Tests\SuggestedReview
- [x] Suggested review
 

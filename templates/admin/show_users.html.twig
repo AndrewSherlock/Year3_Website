@@ -42,42 +42,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <h1>User list</h1>
-
-    {#<a href="{{ path('food_new')}}" >Add new food</a>#}
-    {#<a href="{{ path('admin_home')}}" >Back to Admin panel</a></td>#}
-
-    <table>
-        <tr>
-            <th>User ID</th>
-            <th>User name</th>
-            <th>Password</th>
-            <th>Role</th>
-            <th>Promote User</th>
-            <th>Edit User</th>
-            <th>Delete User</th>
-        </tr>
-        {% for user in userlist %}
-            <tr>
-                <td><a href="{{ path('user_show', {'id': user.id}) }}" >{{ user.id }}</a></td>
-                <td><a href="{{ path('user_show', {'id': user.id}) }}" >{{ user.username }}</a></td>
-                <td>{{ user.password }}</td>
-
-                {% set key = 'ROLE_ADMIN' %}
-                {% if key in user.roles %}
-                    <td>Admin</td>
-                    <td><a href="{{ path('admin_demote', {'id': user.id}) }}"> Demote Admin</a></td>
-                {% else %}
-                    <td>User</td>
-                    <td><a href="{{ path('admin_promote', {'id': user.id}) }}"> Promote User</a></td>
-                {% endif %}
-
-
-                <td><a href="{{ path('user_edit', {'id': user.id}) }}"> Edit User </a></td>
-                <td><a href="{{ path('admin_delete_user', {'id': user.id}) }}"> Delete User </a></td>
-
-            </tr>
-        {% endfor %}
-    </table>
 {% endblock %}
